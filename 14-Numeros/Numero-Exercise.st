@@ -364,12 +364,10 @@ Numero subclass: #Entero
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'JD 9/13/2021 21:04:47'!
-* aMultiplier 
-	
-	(aMultiplier isKindOf: Fraccion) ifTrue: [^Fraccion with: (self * aMultiplier numerator) over: aMultiplier denominator].
+!Entero methodsFor: 'arithmetic operations' stamp: 'JD 9/14/2021 21:11:04'!
+* aMultiplier
 
-	^self class with: value * aMultiplier integerValue
+	^aMultiplier multiplyAnInteger: self
 	! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'JD 9/14/2021 17:44:32'!
@@ -383,12 +381,10 @@ Numero subclass: #Entero
 	
 	^aSubtrahend substractToAnInteger: self.! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'JD 9/13/2021 21:09:08'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'JD 9/14/2021 21:28:23'!
 / aDivisor 
 	
-	(aDivisor isKindOf: Fraccion) ifTrue: [^Fraccion with: (self * aDivisor denominator) over: aDivisor numerator].
-	
-	^Fraccion with: self over: aDivisor! !
+	^aDivisor divideAnInteger: self.! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 21:55'!
 // aDivisor 
@@ -406,6 +402,16 @@ addAnInteger: anIntegerAdder
 	
 	^self class with: value + anIntegerAdder integerValue
 ! !
+
+!Entero methodsFor: 'arithmetic operations' stamp: 'JD 9/14/2021 21:34:00'!
+divideAFraction: aFractionalDividendo
+
+	^Fraccion with: aFractionalDividendo numerator over: (aFractionalDividendo denominator * self)! !
+
+!Entero methodsFor: 'arithmetic operations' stamp: 'JD 9/14/2021 21:28:23'!
+divideAnInteger: anIntegerDividendo 
+	
+	^Fraccion with: anIntegerDividendo over: self! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'HAW 9/24/2018 08:47:50'!
 fibonacci
@@ -425,6 +431,18 @@ fibonacci
 greatestCommonDivisorWith: anEntero 
 	
 	^self class with: (value gcd: anEntero integerValue)! !
+
+!Entero methodsFor: 'arithmetic operations' stamp: 'JD 9/14/2021 21:20:44'!
+multiplyAFraction: aFractionalMultiplying
+
+	^Fraccion with: (aFractionalMultiplying numerator * self) over: aFractionalMultiplying denominator
+	! !
+
+!Entero methodsFor: 'arithmetic operations' stamp: 'JD 9/14/2021 21:14:37'!
+multiplyAnInteger: anIntegerMultiplying
+
+	^self class with: anIntegerMultiplying integerValue * value
+	! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'JD 9/14/2021 20:29:02'!
 substractToAFraction: aFractionalMinuend
@@ -509,13 +527,10 @@ Numero subclass: #Fraccion
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'JD 9/13/2021 21:06:56'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'JD 9/14/2021 21:21:47'!
 * aMultiplier 
 	
-	(aMultiplier isKindOf: Entero) ifTrue: [^Fraccion with: (numerator * aMultiplier) over: denominator].
-
-	^(numerator * aMultiplier numerator) / (denominator * aMultiplier denominator)
-	! !
+	^aMultiplier multiplyAFraction: self.! !
 
 !Fraccion methodsFor: 'arithmetic operations' stamp: 'JD 9/14/2021 18:07:59'!
 + anAdder 
@@ -528,12 +543,10 @@ Numero subclass: #Fraccion
 	^aSubtrahend substractToAFraction: self.
 ! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'JD 9/13/2021 21:11:09'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'JD 9/14/2021 21:34:00'!
 / aDivisor 
 	
-	(aDivisor isKindOf: Entero) ifTrue: [^Fraccion with: numerator over: (denominator * aDivisor)].
-	
-	^(numerator * aDivisor denominator) / (denominator * aDivisor numerator)! !
+	^aDivisor divideAFraction: self.! !
 
 !Fraccion methodsFor: 'arithmetic operations' stamp: 'JD 9/14/2021 17:53:40'!
 addAFraction: aFractionalAdder
@@ -549,6 +562,27 @@ addAFraction: aFractionalAdder
 addAnInteger: anIntegerAdder
 
 	^Fraccion with: (denominator * anIntegerAdder + numerator) over: denominator! !
+
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'JD 9/14/2021 21:34:00'!
+divideAFraction: aFractionalDividendo 
+	
+	^ (aFractionalDividendo numerator * denominator) / (aFractionalDividendo denominator * numerator)! !
+
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'JD 9/14/2021 21:28:23'!
+divideAnInteger: anIntegerDividendo 
+	
+	^Fraccion with: (anIntegerDividendo * denominator) over: numerator! !
+
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'JD 9/14/2021 21:20:44'!
+multiplyAFraction: aFractionalMultiplying 
+
+	^(aFractionalMultiplying numerator * numerator) / (aFractionalMultiplying denominator * denominator)
+	! !
+
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'JD 9/14/2021 21:15:04'!
+multiplyAnInteger: multiplyAnInteger
+
+	^Fraccion with: (multiplyAnInteger * numerator) over: denominator! !
 
 !Fraccion methodsFor: 'arithmetic operations' stamp: 'JD 9/14/2021 20:43:18'!
 substractToAFraction: aFractionalSubtrahend 

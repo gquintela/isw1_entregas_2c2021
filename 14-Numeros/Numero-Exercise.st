@@ -517,38 +517,38 @@ with: aValue
 	^targetSubclass new initalizeWith: aValue! !
 
 
-!classDefinition: #Cero category: 'Numero-Exercise'!
-Entero subclass: #Cero
+!classDefinition: #EnteroCero category: 'Numero-Exercise'!
+Entero subclass: #EnteroCero
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!Cero methodsFor: 'arithmetic operations' stamp: 'JD 9/15/2021 16:27:00'!
+!EnteroCero methodsFor: 'arithmetic operations' stamp: 'JD 9/15/2021 16:27:00'!
 fibonacci
 	
 	^Entero with: 1.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Cero class' category: 'Numero-Exercise'!
-Cero class
+!classDefinition: 'EnteroCero class' category: 'Numero-Exercise'!
+EnteroCero class
 	instanceVariableNames: ''!
 
-!Cero class methodsFor: 'testing' stamp: 'JD 9/15/2021 17:16:01'!
+!EnteroCero class methodsFor: 'testing' stamp: 'JD 9/15/2021 17:16:01'!
 isFor: anIntegerValue
 	
 	^anIntegerValue = 0.! !
 
 
-!classDefinition: #MayorAUno category: 'Numero-Exercise'!
-Entero subclass: #MayorAUno
+!classDefinition: #EnteroMayorAUno category: 'Numero-Exercise'!
+Entero subclass: #EnteroMayorAUno
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!MayorAUno methodsFor: 'arithmetic operations' stamp: 'JD 9/15/2021 17:10:41'!
+!EnteroMayorAUno methodsFor: 'arithmetic operations' stamp: 'JD 9/15/2021 17:10:41'!
 fibonacci
 
 	| one two |
@@ -560,59 +560,59 @@ fibonacci
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'MayorAUno class' category: 'Numero-Exercise'!
-MayorAUno class
+!classDefinition: 'EnteroMayorAUno class' category: 'Numero-Exercise'!
+EnteroMayorAUno class
 	instanceVariableNames: ''!
 
-!MayorAUno class methodsFor: 'testing' stamp: 'JD 9/15/2021 17:00:24'!
+!EnteroMayorAUno class methodsFor: 'testing' stamp: 'JD 9/15/2021 17:00:24'!
 isFor: anIntegerValue
 	
 	^anIntegerValue > 1.! !
 
 
-!classDefinition: #Negativo category: 'Numero-Exercise'!
-Entero subclass: #Negativo
+!classDefinition: #EnteroNegativo category: 'Numero-Exercise'!
+Entero subclass: #EnteroNegativo
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!Negativo methodsFor: 'arithmetic operations' stamp: 'JD 9/15/2021 16:19:14'!
+!EnteroNegativo methodsFor: 'arithmetic operations' stamp: 'JD 9/15/2021 16:19:14'!
 fibonacci
 
 	self error: Entero negativeFibonacciErrorDescription ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Negativo class' category: 'Numero-Exercise'!
-Negativo class
+!classDefinition: 'EnteroNegativo class' category: 'Numero-Exercise'!
+EnteroNegativo class
 	instanceVariableNames: ''!
 
-!Negativo class methodsFor: 'testing' stamp: 'JD 9/15/2021 17:15:09'!
+!EnteroNegativo class methodsFor: 'testing' stamp: 'JD 9/15/2021 17:15:09'!
 isFor: anIntegerValue
 	
 	^anIntegerValue < 0.! !
 
 
-!classDefinition: #Uno category: 'Numero-Exercise'!
-Entero subclass: #Uno
+!classDefinition: #EnteroUno category: 'Numero-Exercise'!
+Entero subclass: #EnteroUno
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!Uno methodsFor: 'arithmetic operations' stamp: 'JD 9/15/2021 17:13:32'!
+!EnteroUno methodsFor: 'arithmetic operations' stamp: 'JD 9/15/2021 17:13:32'!
 fibonacci
 	
 	^Entero with: 1.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Uno class' category: 'Numero-Exercise'!
-Uno class
+!classDefinition: 'EnteroUno class' category: 'Numero-Exercise'!
+EnteroUno class
 	instanceVariableNames: ''!
 
-!Uno class methodsFor: 'testing' stamp: 'JD 9/15/2021 17:15:14'!
+!EnteroUno class methodsFor: 'testing' stamp: 'JD 9/15/2021 17:15:14'!
 isFor: anIntegerValue
 	
 	^anIntegerValue = 1.! !

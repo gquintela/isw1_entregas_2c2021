@@ -403,6 +403,51 @@ greatestCommonDivisorWith: anEntero
 	^self class with: (value gcd: anEntero integerValue)! !
 
 
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'JD 9/14/2021 18:00:59'!
+addAFraction: aFractionalAdder 
+	
+	^Fraccion with: ((aFractionalAdder denominator * self) + aFractionalAdder numerator) over: aFractionalAdder denominator.
+! !
+
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'JD 9/14/2021 17:44:32'!
+addAnInteger: anIntegerAdder 
+	
+	^self class with: value + anIntegerAdder integerValue
+! !
+
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'JD 9/15/2021 16:07:54'!
+divideAFraction: aFractionalDividend
+
+	^Fraccion with: aFractionalDividend numerator over: (aFractionalDividend denominator * self)! !
+
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'JD 9/15/2021 16:07:26'!
+divideAnInteger: anIntegerDividend 
+	
+	^Fraccion with: anIntegerDividend over: self! !
+
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'JD 9/14/2021 21:20:44'!
+multiplyAFraction: aFractionalMultiplying
+
+	^Fraccion with: (aFractionalMultiplying numerator * self) over: aFractionalMultiplying denominator
+	! !
+
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'JD 9/14/2021 21:14:37'!
+multiplyAnInteger: anIntegerMultiplying
+
+	^self class with: anIntegerMultiplying integerValue * value
+	! !
+
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'JD 9/14/2021 20:29:02'!
+substractToAFraction: aFractionalMinuend
+	
+	^Fraccion with: (aFractionalMinuend numerator - (aFractionalMinuend denominator * self)) over: aFractionalMinuend denominator! !
+
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'JD 9/14/2021 20:15:35'!
+substractToAnInteger: anIntegerMinuend
+	
+	^self class with: anIntegerMinuend integerValue - value! !
+
+
 !Entero methodsFor: 'comparing' stamp: 'HernanWilkinson 5/7/2016 21:01'!
 = anObject
 
@@ -414,18 +459,37 @@ hash
 	^value hash! !
 
 
+!Entero methodsFor: 'fraction creation - private' stamp: 'JD 9/15/2021 21:26:46'!
+createAFractionOrFailIfDivisorIsZero: aDividend
+	
+	^aDividend createAFractionOrReturnZeroIfNumeratorIsZero: self.! !
+
+!Entero methodsFor: 'fraction creation - private' stamp: 'JD 9/15/2021 21:35:07'!
+createAFractionOrReturnTheNumeratorIfDenominatorIsOne: aNumerator
+	
+	^Fraccion new initializeWith: aNumerator over: self! !
+
+!Entero methodsFor: 'fraction creation - private' stamp: 'JD 9/15/2021 21:36:09'!
+createAFractionOrReturnZeroIfNumeratorIsZero: aDivisor
+	
+	^aDivisor createAFractionWithCorrectSign: self.! !
+
+!Entero methodsFor: 'fraction creation - private' stamp: 'JD 9/15/2021 21:36:09'!
+createAFractionWithCorrectSign: aDividend
+	
+	| greatestCommonDivisor numerator denominator |
+
+	greatestCommonDivisor := aDividend greatestCommonDivisorWith: self. 
+	numerator := aDividend // greatestCommonDivisor.
+	denominator := self // greatestCommonDivisor.
+	
+	^denominator createAFractionOrReturnTheNumeratorIfDenominatorIsOne: numerator.! !
+
+
 !Entero methodsFor: 'initialization' stamp: 'HernanWilkinson 5/7/2016 20:09'!
 initalizeWith: aValue 
 	
 	value := aValue! !
-
-
-!Entero methodsFor: 'value' stamp: 'HernanWilkinson 5/7/2016 21:02'!
-integerValue
-
-	"Usamos integerValue en vez de value para que no haya problemas con el mensaje value implementado en Object - Hernan"
-	
-	^value! !
 
 
 !Entero methodsFor: 'printing' stamp: 'HAW 9/24/2018 08:53:19'!
@@ -450,49 +514,12 @@ isZero
 	^value = 0! !
 
 
-!Entero methodsFor: 'private' stamp: 'JD 9/14/2021 18:00:59'!
-addAFraction: aFractionalAdder 
+!Entero methodsFor: 'value' stamp: 'HernanWilkinson 5/7/2016 21:02'!
+integerValue
+
+	"Usamos integerValue en vez de value para que no haya problemas con el mensaje value implementado en Object - Hernan"
 	
-	^Fraccion with: ((aFractionalAdder denominator * self) + aFractionalAdder numerator) over: aFractionalAdder denominator.
-! !
-
-!Entero methodsFor: 'private' stamp: 'JD 9/14/2021 17:44:32'!
-addAnInteger: anIntegerAdder 
-	
-	^self class with: value + anIntegerAdder integerValue
-! !
-
-!Entero methodsFor: 'private' stamp: 'JD 9/15/2021 16:07:54'!
-divideAFraction: aFractionalDividend
-
-	^Fraccion with: aFractionalDividend numerator over: (aFractionalDividend denominator * self)! !
-
-!Entero methodsFor: 'private' stamp: 'JD 9/15/2021 16:07:26'!
-divideAnInteger: anIntegerDividend 
-	
-	^Fraccion with: anIntegerDividend over: self! !
-
-!Entero methodsFor: 'private' stamp: 'JD 9/14/2021 21:20:44'!
-multiplyAFraction: aFractionalMultiplying
-
-	^Fraccion with: (aFractionalMultiplying numerator * self) over: aFractionalMultiplying denominator
-	! !
-
-!Entero methodsFor: 'private' stamp: 'JD 9/14/2021 21:14:37'!
-multiplyAnInteger: anIntegerMultiplying
-
-	^self class with: anIntegerMultiplying integerValue * value
-	! !
-
-!Entero methodsFor: 'private' stamp: 'JD 9/14/2021 20:29:02'!
-substractToAFraction: aFractionalMinuend
-	
-	^Fraccion with: (aFractionalMinuend numerator - (aFractionalMinuend denominator * self)) over: aFractionalMinuend denominator! !
-
-!Entero methodsFor: 'private' stamp: 'JD 9/14/2021 20:15:35'!
-substractToAnInteger: anIntegerMinuend
-	
-	^self class with: anIntegerMinuend integerValue - value! !
+	^value! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -528,6 +555,17 @@ Entero subclass: #EnteroCero
 fibonacci
 	
 	^Entero with: 1.! !
+
+
+!EnteroCero methodsFor: 'fraction creation - private' stamp: 'JD 9/15/2021 22:07:47'!
+createAFractionOrFailIfDivisorIsZero: aDividend
+
+	Fraccion error: Fraccion canNotDivideByZeroErrorDescription.! !
+
+!EnteroCero methodsFor: 'fraction creation - private' stamp: 'JD 9/15/2021 22:07:51'!
+createAFractionOrReturnZeroIfNumeratorIsZero: aDivisor
+
+	^self! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -582,6 +620,12 @@ fibonacci
 
 	self error: Entero negativeFibonacciErrorDescription ! !
 
+
+!EnteroNegativo methodsFor: 'fraction creation - private' stamp: 'JD 9/15/2021 21:36:09'!
+createAFractionWithCorrectSign: aDividend
+	
+	^aDividend negated / self negated! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'EnteroNegativo class' category: 'Numero-Exercise'!
@@ -606,6 +650,12 @@ fibonacci
 	
 	^Entero with: 1.! !
 
+
+!EnteroUno methodsFor: 'fraction creation - private' stamp: 'JD 9/15/2021 21:35:07'!
+createAFractionOrReturnTheNumeratorIfDenominatorIsOne: aNumerator
+	
+	^aNumerator! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'EnteroUno class' category: 'Numero-Exercise'!
@@ -624,6 +674,17 @@ Numero subclass: #Fraccion
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
+
+!Fraccion methodsFor: 'accessing' stamp: 'HernanWilkinson 5/7/2016 21:56'!
+denominator
+
+	^ denominator! !
+
+!Fraccion methodsFor: 'accessing' stamp: 'HernanWilkinson 5/7/2016 21:56'!
+numerator
+
+	^ numerator! !
+
 
 !Fraccion methodsFor: 'arithmetic operations' stamp: 'JD 9/14/2021 21:21:47'!
 * aMultiplier 
@@ -647,6 +708,59 @@ Numero subclass: #Fraccion
 	^aDivisor divideAFraction: self.! !
 
 
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'JD 9/14/2021 17:53:40'!
+addAFraction: aFractionalAdder
+	
+	| newNumerator newDenominator |
+
+	newNumerator := (aFractionalAdder denominator * numerator) + (aFractionalAdder numerator * denominator).
+	newDenominator := denominator * aFractionalAdder denominator.
+	
+	^newNumerator / newDenominator! !
+
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'JD 9/14/2021 17:45:02'!
+addAnInteger: anIntegerAdder
+
+	^Fraccion with: (denominator * anIntegerAdder + numerator) over: denominator! !
+
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'JD 9/15/2021 17:39:42'!
+divideAFraction: aFractionalDividend 
+	
+	^(aFractionalDividend numerator * denominator) / (aFractionalDividend denominator * numerator)! !
+
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'JD 9/15/2021 16:08:20'!
+divideAnInteger: anIntegerDividend 
+	
+	^Fraccion with: (anIntegerDividend * denominator) over: numerator! !
+
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'JD 9/14/2021 21:20:44'!
+multiplyAFraction: aFractionalMultiplying 
+
+	^(aFractionalMultiplying numerator * numerator) / (aFractionalMultiplying denominator * denominator)
+	! !
+
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'JD 9/14/2021 21:15:04'!
+multiplyAnInteger: multiplyAnInteger
+
+	^Fraccion with: (multiplyAnInteger * numerator) over: denominator! !
+
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'JD 9/14/2021 20:43:18'!
+substractToAFraction: aFractionalSubtrahend 
+	
+	| newNumerator newDenominator |
+
+	newNumerator := (aFractionalSubtrahend numerator * denominator) - (aFractionalSubtrahend denominator *  numerator).
+	newDenominator := aFractionalSubtrahend denominator * denominator.
+	
+	^newNumerator / newDenominator 
+! !
+
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'JD 9/14/2021 20:15:35'!
+substractToAnInteger: anIntegerMinuend
+	
+	^Fraccion with: (anIntegerMinuend * denominator -  numerator) over: denominator! !
+
+
 !Fraccion methodsFor: 'comparing' stamp: 'HernanWilkinson 5/7/2016 20:42'!
 = anObject
 
@@ -658,17 +772,6 @@ hash
 	^(numerator hash / denominator hash) hash! !
 
 
-!Fraccion methodsFor: 'accessing' stamp: 'HernanWilkinson 5/7/2016 21:56'!
-denominator
-
-	^ denominator! !
-
-!Fraccion methodsFor: 'accessing' stamp: 'HernanWilkinson 5/7/2016 21:56'!
-numerator
-
-	^ numerator! !
-
-
 !Fraccion methodsFor: 'initialization' stamp: 'HernanWilkinson 5/7/2016 22:54'!
 initializeWith: aNumerator over: aDenominator
 
@@ -678,6 +781,15 @@ initializeWith: aNumerator over: aDenominator
 	
 	numerator := aNumerator.
 	denominator := aDenominator ! !
+
+
+!Fraccion methodsFor: 'printing' stamp: 'HAW 9/24/2018 08:54:46'!
+printOn: aStream
+
+	aStream 
+		print: numerator;
+		nextPut: $/;
+		print: denominator ! !
 
 
 !Fraccion methodsFor: 'testing' stamp: 'NR 9/23/2018 23:41:38'!
@@ -695,89 +807,14 @@ isZero
 	
 	^false! !
 
-
-!Fraccion methodsFor: 'printing' stamp: 'HAW 9/24/2018 08:54:46'!
-printOn: aStream
-
-	aStream 
-		print: numerator;
-		nextPut: $/;
-		print: denominator ! !
-
-
-!Fraccion methodsFor: 'private' stamp: 'JD 9/14/2021 17:53:40'!
-addAFraction: aFractionalAdder
-	
-	| newNumerator newDenominator |
-
-	newNumerator := (aFractionalAdder denominator * numerator) + (aFractionalAdder numerator * denominator).
-	newDenominator := denominator * aFractionalAdder denominator.
-	
-	^newNumerator / newDenominator! !
-
-!Fraccion methodsFor: 'private' stamp: 'JD 9/14/2021 17:45:02'!
-addAnInteger: anIntegerAdder
-
-	^Fraccion with: (denominator * anIntegerAdder + numerator) over: denominator! !
-
-!Fraccion methodsFor: 'private' stamp: 'JD 9/15/2021 17:39:42'!
-divideAFraction: aFractionalDividend 
-	
-	^(aFractionalDividend numerator * denominator) / (aFractionalDividend denominator * numerator)! !
-
-!Fraccion methodsFor: 'private' stamp: 'JD 9/15/2021 16:08:20'!
-divideAnInteger: anIntegerDividend 
-	
-	^Fraccion with: (anIntegerDividend * denominator) over: numerator! !
-
-!Fraccion methodsFor: 'private' stamp: 'JD 9/14/2021 21:20:44'!
-multiplyAFraction: aFractionalMultiplying 
-
-	^(aFractionalMultiplying numerator * numerator) / (aFractionalMultiplying denominator * denominator)
-	! !
-
-!Fraccion methodsFor: 'private' stamp: 'JD 9/14/2021 21:15:04'!
-multiplyAnInteger: multiplyAnInteger
-
-	^Fraccion with: (multiplyAnInteger * numerator) over: denominator! !
-
-!Fraccion methodsFor: 'private' stamp: 'JD 9/14/2021 20:43:18'!
-substractToAFraction: aFractionalSubtrahend 
-	
-	| newNumerator newDenominator |
-
-	newNumerator := (aFractionalSubtrahend numerator * denominator) - (aFractionalSubtrahend denominator *  numerator).
-	newDenominator := aFractionalSubtrahend denominator * denominator.
-	
-	^newNumerator / newDenominator 
-! !
-
-!Fraccion methodsFor: 'private' stamp: 'JD 9/14/2021 20:15:35'!
-substractToAnInteger: anIntegerMinuend
-	
-	^Fraccion with: (anIntegerMinuend * denominator -  numerator) over: denominator! !
-
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Fraccion class' category: 'Numero-Exercise'!
 Fraccion class
 	instanceVariableNames: ''!
 
-!Fraccion class methodsFor: 'intance creation' stamp: 'NR 9/23/2018 23:45:19'!
+!Fraccion class methodsFor: 'intance creation' stamp: 'JD 9/15/2021 21:24:06'!
 with: aDividend over: aDivisor
 
-	| greatestCommonDivisor numerator denominator |
-	
-	aDivisor isZero ifTrue: [ self error: self canNotDivideByZeroErrorDescription ].
-	aDividend isZero ifTrue: [ ^aDividend ].
-	
-	aDivisor isNegative ifTrue:[ ^aDividend negated / aDivisor negated].
-	
-	greatestCommonDivisor := aDividend greatestCommonDivisorWith: aDivisor. 
-	numerator := aDividend // greatestCommonDivisor.
-	denominator := aDivisor // greatestCommonDivisor.
-	
-	denominator isOne ifTrue: [ ^numerator ].
-
-	^self new initializeWith: numerator over: denominator
+	^aDivisor createAFractionOrFailIfDivisorIsZero: aDividend.
 	! !

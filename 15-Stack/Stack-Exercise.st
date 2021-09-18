@@ -144,7 +144,7 @@ TestCase subclass: #SentenceFinderByPrefixTest
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 21:17:48'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'JD 9/18/2021 17:46:17'!
 test01CanNotFindASentenceInAnEmptyStack
 	
 	| anEmptyOOStack aSentenceFinderByPrefix foundSentences |
@@ -152,91 +152,108 @@ test01CanNotFindASentenceInAnEmptyStack
 	anEmptyOOStack := OOStack new.
 	aSentenceFinderByPrefix := SentenceFinderByPrefix new.
 	
-	foundSentences _ aSentenceFinderByPrefix find: 'something' in: anEmptyOOStack.
+	foundSentences _ aSentenceFinderByPrefix findAllSentencesWith: 'something' in: anEmptyOOStack.
 	self assert: foundSentences isEmpty! !
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 21:52:09'!
-test02APresentSentenceInTheStackIsFoundSearchingByAPrefixOfIt
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'JD 9/18/2021 17:46:17'!
+test02AllPresentSentencesWithACommonPrefixInTheStackAreFoundSearchingByIt
 	
-	| anOOStack aSentenceFinderByPrefix foundSentences aSentence expectedSentence |
+	| anOOStack aSentenceFinderByPrefix foundSentences aSentenceWithCommonPrefix anotherSentenceWithCommonPrefix expectedSentence aSentenceWithDifferentPrefix |
+	
+	anOOStack := OOStack new.
+	aSentenceWithCommonPrefix := 'Something to find'.
+	anotherSentenceWithCommonPrefix := 'Somewhere in Argentina'.
+	aSentenceWithDifferentPrefix := 'Sentence with different prefix'.
+	anOOStack push: aSentenceWithCommonPrefix.
+	anOOStack push: aSentenceWithDifferentPrefix.
+	anOOStack push: anotherSentenceWithCommonPrefix.
+	aSentenceFinderByPrefix := SentenceFinderByPrefix new.
+	
+	foundSentences := aSentenceFinderByPrefix findAllSentencesWith: 'Some' in: anOOStack.
+	
+	expectedSentence := OrderedCollection with: aSentenceWithCommonPrefix with: anotherSentenceWithCommonPrefix.
+	self assert: (foundSentences isEqualTo: expectedSentence)! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'JD 9/18/2021 17:46:17'!
+test03NoneSentenceIsFoundSearchingByAWordNotPrefixOfAnySentenceInTheStack
+	
+	| anOOStack aSentenceFinderByPrefix foundSentences aSentence |
 	
 	anOOStack := OOStack new.
 	aSentence := 'Something to find'.
 	anOOStack push: aSentence.
 	aSentenceFinderByPrefix := SentenceFinderByPrefix new.
 	
-	foundSentences := aSentenceFinderByPrefix find: 'Some' in: anOOStack.
+	foundSentences := aSentenceFinderByPrefix findAllSentencesWith: 'aNotPrefix' in: anOOStack.
 	
-	expectedSentence := OrderedCollection with: aSentence.
-	self assert: (foundSentences isEqualTo: expectedSentence)! !
+	self assert: foundSentences isEmpty! !
 
 
 !classDefinition: #OOStack category: 'Stack-Exercise'!
 Object subclass: #OOStack
-	instanceVariableNames: 'content state'
+	instanceVariableNames: 'content'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 18:58:10'!
+!OOStack methodsFor: 'initialization' stamp: 'JD 9/18/2021 17:59:25'!
 initialize
 
-	content := OrderedCollection new.
-	state := OOStackStateEmpty new.! !
+	content := OrderedCollection new! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 18:47:32'!
-isEmpty
-	
-	^ content isEmpty.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 20:05:55'!
+!OOStack methodsFor: 'operations' stamp: 'JD 9/18/2021 18:03:41'!
 pop
 
-	^ state pop: self.! !
+	^ self state popForCurrentStateOf: self! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 20:23:57'!
-popOnANotEmptyOOStack
-	
-	content size = 1 ifTrue: [ state := OOStackStateEmpty new].
-	^ content removeFirst! !
-
-!OOStack methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 20:14:13'!
-popOnAnEmptyOOStack
-	
-	self error: self class stackEmptyErrorDescription! !
-
-!OOStack methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 20:22:01'!
+!OOStack methodsFor: 'operations' stamp: 'JD 9/18/2021 16:07:18'!
 push: anElement
 
-	state push: anElement on: self.! !
-
-!OOStack methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 20:20:13'!
-pushOnANotEmptyOOStack: anElement
-	
 	content addFirst: anElement! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 20:24:04'!
-pushOnAnEmptyOOStack: anElement
-	
-	state := OOStackStateNotEmpty new.
-	content addFirst: anElement! !
-
-!OOStack methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 18:53:44'!
+!OOStack methodsFor: 'operations' stamp: 'JD 9/17/2021 18:53:44'!
 size
 	
 	^ content size! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 19:38:08'!
+!OOStack methodsFor: 'operations' stamp: 'JD 9/18/2021 18:03:52'!
 top
-	
-	^ state top: self! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 20:18:08'!
+	^ self state topForCurrentStateOf: self! !
+
+
+!OOStack methodsFor: 'testing' stamp: 'JD 9/17/2021 18:47:32'!
+isEmpty
+	
+	^ content isEmpty.! !
+
+
+!OOStack methodsFor: 'operations - private' stamp: 'JD 9/18/2021 16:21:07'!
+popOnANotEmptyOOStack
+
+	^ content removeFirst! !
+
+!OOStack methodsFor: 'operations - private' stamp: 'JD 9/17/2021 20:14:13'!
+popOnAnEmptyOOStack
+	
+	self error: self class stackEmptyErrorDescription! !
+
+!OOStack methodsFor: 'operations - private' stamp: 'JD 9/18/2021 17:56:11'!
+state
+
+	| anOOStackCurrentState |
+	
+	anOOStackCurrentState := (OOStackState for: self) new.
+
+	^ anOOStackCurrentState! !
+
+!OOStack methodsFor: 'operations - private' stamp: 'JD 9/17/2021 20:18:08'!
 topOnANotEmptyOOStack
 	
 	^ content first! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 20:17:48'!
+!OOStack methodsFor: 'operations - private' stamp: 'JD 9/17/2021 20:17:48'!
 topOnAnEmptyOOStack
 	
 	self error: self class stackEmptyErrorDescription! !
@@ -260,6 +277,21 @@ Object subclass: #OOStackState
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'OOStackState class' category: 'Stack-Exercise'!
+OOStackState class
+	instanceVariableNames: ''!
+
+!OOStackState class methodsFor: 'as yet unclassified' stamp: 'JD 9/18/2021 17:56:41'!
+for: anOOStack
+	
+	| targetSubclass |
+	
+	targetSubclass := self subclasses detect: [:anOOStackStateSubclass |  anOOStackStateSubclass isFor: anOOStack].
+	
+	^ targetSubclass! !
+
 
 !classDefinition: #OOStackStateEmpty category: 'Stack-Exercise'!
 OOStackState subclass: #OOStackStateEmpty
@@ -268,28 +300,28 @@ OOStackState subclass: #OOStackStateEmpty
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStackStateEmpty methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 19:10:03'!
-isEmptyState
+!OOStackStateEmpty methodsFor: 'operation dispatchers' stamp: 'JD 9/18/2021 18:04:37'!
+popForCurrentStateOf: anOOStack
 	
-	^ true! !
-
-!OOStackStateEmpty methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 20:14:13'!
-pop: aOOStack
-	
-	^ aOOStack popOnAnEmptyOOStack
+	^ anOOStack popOnAnEmptyOOStack
 		! !
 
-!OOStackStateEmpty methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 20:16:18'!
-push: anElement on: aOOStack 
+!OOStackStateEmpty methodsFor: 'operation dispatchers' stamp: 'JD 9/18/2021 18:04:41'!
+topForCurrentStateOf: anOOStack
 	
-	^ aOOStack pushOnAnEmptyOOStack: anElement
+	^ anOOStack topOnAnEmptyOOStack
 		! !
 
-!OOStackStateEmpty methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 20:17:48'!
-top: aOOStack
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'OOStackStateEmpty class' category: 'Stack-Exercise'!
+OOStackStateEmpty class
+	instanceVariableNames: ''!
+
+!OOStackStateEmpty class methodsFor: 'as yet unclassified' stamp: 'JD 9/18/2021 17:56:53'!
+isFor: anOOStack
 	
-	^ aOOStack topOnAnEmptyOOStack
-		! !
+	^ anOOStack size = 0! !
 
 
 !classDefinition: #OOStackStateNotEmpty category: 'Stack-Exercise'!
@@ -299,25 +331,26 @@ OOStackState subclass: #OOStackStateNotEmpty
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStackStateNotEmpty methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 19:10:13'!
-isEmptyState
+!OOStackStateNotEmpty methodsFor: 'operation dispatchers' stamp: 'JD 9/18/2021 18:04:48'!
+popForCurrentStateOf: anOOStack
+
+	^ anOOStack popOnANotEmptyOOStack! !
+
+!OOStackStateNotEmpty methodsFor: 'operation dispatchers' stamp: 'JD 9/18/2021 18:04:53'!
+topForCurrentStateOf: anOOStack
+
+	^ anOOStack topOnANotEmptyOOStack! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'OOStackStateNotEmpty class' category: 'Stack-Exercise'!
+OOStackStateNotEmpty class
+	instanceVariableNames: ''!
+
+!OOStackStateNotEmpty class methodsFor: 'as yet unclassified' stamp: 'JD 9/18/2021 17:57:06'!
+isFor: anOOStack
 	
-	^ false! !
-
-!OOStackStateNotEmpty methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 20:15:44'!
-pop: aOOStack
-
-	^ aOOStack popOnANotEmptyOOStack! !
-
-!OOStackStateNotEmpty methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 20:17:20'!
-push: anElement on: aOOStack 
-	
-	^ aOOStack pushOnANotEmptyOOStack: anElement! !
-
-!OOStackStateNotEmpty methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 20:18:08'!
-top: aOOStack
-
-	^ aOOStack topOnANotEmptyOOStack! !
+	^ anOOStack size > 0! !
 
 
 !classDefinition: #SentenceFinderByPrefix category: 'Stack-Exercise'!
@@ -327,27 +360,49 @@ Object subclass: #SentenceFinderByPrefix
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'JD 9/17/2021 21:13:35'!
-find: aString in: anOOStack 
+!SentenceFinderByPrefix methodsFor: 'private' stamp: 'JD 9/18/2021 18:11:57'!
+findSentencesWithPrefix: aString preserving: anOOStack in: anOOStackForPreservingElements
 	
-	| xOOStack foundSentences aSentence |
-	
-	xOOStack := OOStack new.
+	| foundSentences aSentence |
+
 	foundSentences := OrderedCollection new.
 	
 	[anOOStack isEmpty not] whileTrue: 
 		[
 			 aSentence := anOOStack pop.
-			(aSentence beginsWith: aString) ifTrue: [foundSentences addLast: aSentence].
-			xOOStack push: aSentence.
+			(aSentence beginsWith: aString) ifTrue: [foundSentences addFirst: aSentence].
+			anOOStackForPreservingElements push: aSentence.
 		].
 	
+	^ foundSentences.
+	
+	 ! !
+
+!SentenceFinderByPrefix methodsFor: 'private' stamp: 'JD 9/18/2021 17:29:28'!
+restoreStack: anOOStack from: xOOStack
+	
+	| aSentence |
+
 	[xOOStack isEmpty not] whileTrue: 
 		[
 			 aSentence := xOOStack pop.
 			anOOStack push: aSentence.
-		].
+		]
 	
-	^ foundSentences.
+	 ! !
+
+
+!SentenceFinderByPrefix methodsFor: 'operations' stamp: 'JD 9/18/2021 18:11:41'!
+findAllSentencesWith: aPrefix in: anOOStackOfSentences 
+	
+	| anOOStackForPreservingElements foundSentences |
+	
+	anOOStackForPreservingElements := OOStack new.
+	foundSentences := OrderedCollection new.
+	
+	foundSentences := self findSentencesWithPrefix: aPrefix preserving: anOOStackOfSentences in: anOOStackForPreservingElements.
+	self restoreStack: anOOStackOfSentences from: anOOStackForPreservingElements.
+
+	^ foundSentences
 	
 	 ! !

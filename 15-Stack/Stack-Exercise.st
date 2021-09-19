@@ -144,7 +144,7 @@ TestCase subclass: #SentenceFinderByPrefixTest
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'JD 9/18/2021 17:46:17'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'JD 9/19/2021 18:08:11'!
 test01CanNotFindASentenceInAnEmptyStack
 	
 	| anEmptyOOStack aSentenceFinderByPrefix foundSentences |
@@ -152,10 +152,10 @@ test01CanNotFindASentenceInAnEmptyStack
 	anEmptyOOStack := OOStack new.
 	aSentenceFinderByPrefix := SentenceFinderByPrefix new.
 	
-	foundSentences _ aSentenceFinderByPrefix findAllSentencesWith: 'something' in: anEmptyOOStack.
+	foundSentences _ aSentenceFinderByPrefix findSentencesWithPrefix: 'something' in: anEmptyOOStack.
 	self assert: foundSentences isEmpty! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'JD 9/18/2021 17:46:17'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'JD 9/19/2021 18:08:11'!
 test02AllPresentSentencesWithACommonPrefixInTheStackAreFoundSearchingByIt
 	
 	| anOOStack aSentenceFinderByPrefix foundSentences aSentenceWithCommonPrefix anotherSentenceWithCommonPrefix expectedSentence aSentenceWithDifferentPrefix |
@@ -169,12 +169,12 @@ test02AllPresentSentencesWithACommonPrefixInTheStackAreFoundSearchingByIt
 	anOOStack push: anotherSentenceWithCommonPrefix.
 	aSentenceFinderByPrefix := SentenceFinderByPrefix new.
 	
-	foundSentences := aSentenceFinderByPrefix findAllSentencesWith: 'Some' in: anOOStack.
+	foundSentences := aSentenceFinderByPrefix findSentencesWithPrefix: 'Some' in: anOOStack.
 	
 	expectedSentence := OrderedCollection with: aSentenceWithCommonPrefix with: anotherSentenceWithCommonPrefix.
 	self assert: (foundSentences isEqualTo: expectedSentence)! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'JD 9/18/2021 17:46:17'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'JD 9/19/2021 18:08:11'!
 test03NoneSentenceIsFoundSearchingByAWordNotPrefixOfAnySentenceInTheStack
 	
 	| anOOStack aSentenceFinderByPrefix foundSentences aSentence |
@@ -184,7 +184,7 @@ test03NoneSentenceIsFoundSearchingByAWordNotPrefixOfAnySentenceInTheStack
 	anOOStack push: aSentence.
 	aSentenceFinderByPrefix := SentenceFinderByPrefix new.
 	
-	foundSentences := aSentenceFinderByPrefix findAllSentencesWith: 'aNotPrefix' in: anOOStack.
+	foundSentences := aSentenceFinderByPrefix findSentencesWithPrefix: 'aNotPrefix' in: anOOStack.
 	
 	self assert: foundSentences isEmpty! !
 
@@ -318,10 +318,10 @@ topForCurrentStateOf: anOOStack
 OOStackStateEmpty class
 	instanceVariableNames: ''!
 
-!OOStackStateEmpty class methodsFor: 'as yet unclassified' stamp: 'JD 9/18/2021 17:56:53'!
+!OOStackStateEmpty class methodsFor: 'as yet unclassified' stamp: 'JD 9/19/2021 18:06:48'!
 isFor: anOOStack
 	
-	^ anOOStack size = 0! !
+	^ anOOStack isEmpty! !
 
 
 !classDefinition: #OOStackStateNotEmpty category: 'Stack-Exercise'!
@@ -347,10 +347,10 @@ topForCurrentStateOf: anOOStack
 OOStackStateNotEmpty class
 	instanceVariableNames: ''!
 
-!OOStackStateNotEmpty class methodsFor: 'as yet unclassified' stamp: 'JD 9/18/2021 17:57:06'!
+!OOStackStateNotEmpty class methodsFor: 'as yet unclassified' stamp: 'JD 9/19/2021 18:07:01'!
 isFor: anOOStack
 	
-	^ anOOStack size > 0! !
+	^ anOOStack isEmpty not! !
 
 
 !classDefinition: #SentenceFinderByPrefix category: 'Stack-Exercise'!
@@ -360,48 +360,61 @@ Object subclass: #SentenceFinderByPrefix
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefix methodsFor: 'private' stamp: 'JD 9/18/2021 18:11:57'!
-findSentencesWithPrefix: aString preserving: anOOStack in: anOOStackForPreservingElements
+!SentenceFinderByPrefix methodsFor: 'private' stamp: 'JD 9/19/2021 17:44:48'!
+add: aSentenceFromStack in: foundSentences ifBeginsWith: aPrefix andPreserveItOn: anOOStackForPreservingElements
 	
-	| foundSentences aSentence |
+	(aSentenceFromStack beginsWith: aPrefix) ifTrue: [foundSentences addFirst: aSentenceFromStack].
+	anOOStackForPreservingElements push: aSentenceFromStack.
+	 ! !
 
-	foundSentences := OrderedCollection new.
+!SentenceFinderByPrefix methodsFor: 'private' stamp: 'JD 9/19/2021 18:01:20'!
+addSentencesFrom: anOOStackOfSentences WithPrefix: aPrefix in: foundSentences andPreserveThemOn: anOOStackForPreservingElements
 	
-	[anOOStack isEmpty not] whileTrue: 
+	| aSentenceFromStack |
+
+	[anOOStackOfSentences isEmpty not] whileTrue: 
 		[
-			 aSentence := anOOStack pop.
-			(aSentence beginsWith: aString) ifTrue: [foundSentences addFirst: aSentence].
-			anOOStackForPreservingElements push: aSentence.
+			aSentenceFromStack := anOOStackOfSentences pop.
+			self add: aSentenceFromStack in: foundSentences ifBeginsWith: aPrefix andPreserveItOn: anOOStackForPreservingElements.
 		].
+	 ! !
+
+!SentenceFinderByPrefix methodsFor: 'private' stamp: 'JD 9/19/2021 18:02:31'!
+findSentencesWithPrefix: aPrefix preserving: anOOStackOfSentences
+	
+	| foundSentences anOOStackForPreservingElements |
+	
+	foundSentences := OrderedCollection new.
+	anOOStackForPreservingElements := OOStack new.
+
+	self addSentencesFrom: anOOStackOfSentences WithPrefix: aPrefix in: foundSentences andPreserveThemOn: anOOStackForPreservingElements.
+	
+	self restoreStack: anOOStackOfSentences from: anOOStackForPreservingElements.
 	
 	^ foundSentences.
 	
 	 ! !
 
-!SentenceFinderByPrefix methodsFor: 'private' stamp: 'JD 9/18/2021 17:29:28'!
-restoreStack: anOOStack from: xOOStack
+!SentenceFinderByPrefix methodsFor: 'private' stamp: 'JD 9/19/2021 17:46:39'!
+restoreStack: anOOStack from: anOOStackForPreservingElements
 	
-	| aSentence |
+	| aSentenceFromStack |
 
-	[xOOStack isEmpty not] whileTrue: 
+	[anOOStackForPreservingElements isEmpty not] whileTrue: 
 		[
-			 aSentence := xOOStack pop.
-			anOOStack push: aSentence.
+			 aSentenceFromStack := anOOStackForPreservingElements pop.
+			anOOStack push: aSentenceFromStack.
 		]
 	
 	 ! !
 
 
-!SentenceFinderByPrefix methodsFor: 'operations' stamp: 'JD 9/18/2021 18:11:41'!
-findAllSentencesWith: aPrefix in: anOOStackOfSentences 
+!SentenceFinderByPrefix methodsFor: 'operations' stamp: 'JD 9/19/2021 18:08:11'!
+findSentencesWithPrefix: aPrefix in: anOOStackOfSentences 
 	
-	| anOOStackForPreservingElements foundSentences |
+	| foundSentences |
 	
-	anOOStackForPreservingElements := OOStack new.
-	foundSentences := OrderedCollection new.
-	
-	foundSentences := self findSentencesWithPrefix: aPrefix preserving: anOOStackOfSentences in: anOOStackForPreservingElements.
-	self restoreStack: anOOStackOfSentences from: anOOStackForPreservingElements.
+	foundSentences := self findSentencesWithPrefix: aPrefix preserving: anOOStackOfSentences.
 
 	^ foundSentences
 	

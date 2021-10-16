@@ -1,0 +1,1657 @@
+
+
+----QUIT----(9 March 2021 14:58:42) CuisUniversity-4532.image priorSource: 13044060!
+
+----STARTUP---- (9 March 2021 14:58:43) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4532.image!
+
+
+----QUIT----(9 March 2021 14:58:43) CuisUniversity-4532.image priorSource: 16885479!
+
+----STARTUP---- (4 October 2021 20:28:45) as /home/gonzalo/Documents/facultad/isw1/rover/CuisUniversity-4532.image!
+
+
+Object subclass: #NameOfSubclass
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Rover'!
+
+!classDefinition: #NameOfSubclass category: 'Rover' stamp: 'gq 10/4/2021 20:30:02'!
+Object subclass: #NameOfSubclass
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Rover'!
+
+TestCase subclass: #RoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Rover'!
+
+!classDefinition: #RoverTest category: 'Rover' stamp: 'gq 10/4/2021 20:30:17'!
+TestCase subclass: #RoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Rover'!
+
+!classDefinition: #MarsRover category: 'Rover' stamp: 'gq 10/4/2021 20:45:42'!
+Object subclass: #MarsRover
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Rover'!
+!RoverTest methodsFor: 'nil' stamp: 'gq 10/4/2021 20:45:52'!
+test01
+
+	| marsRover|
+	
+	marsRover := MarsRover at: 1@2 heading: #North.
+	
+	marsRover process: ''.
+	
+	self assert: (marsRover isAt: 1@2 heading: #North).! !
+
+!classRemoval: #NameOfSubclass stamp: 'gq 10/4/2021 21:40:30'!
+Object subclass: #NameOfSubclass
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classRenamed: #RoverTest as: #MarsRoverTest stamp: 'gq 10/4/2021 21:40:43'!
+Smalltalk renameClassNamed: #RoverTest as: #MarsRoverTest!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:40:47'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:41:30'!
+ERROR!
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'gq 10/4/2021 21:41:42'!
+at: aPoint heading: aSymbol 
+	self shouldBeImplemented.! !
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'gq 10/4/2021 21:43:08' prior: 50859385!
+at: aPoint heading: aSymbol 
+	^self new.! !
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'gq 10/4/2021 21:43:51' prior: 50859390!
+at: anInitialCoordinate heading: anInitialDirection 
+	^self new.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:44:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:44:13'!
+ERROR!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/4/2021 21:44:18'!
+process: aString 
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/4/2021 21:45:01' prior: 50859405!
+process: aSequenceOfCommands 
+	! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:45:02'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:45:14'!
+ERROR!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/4/2021 21:45:19'!
+isAt: aPoint heading: aSymbol 
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/4/2021 21:45:45' prior: 50859419!
+isAt: aPoint heading: aSymbol 
+	^true! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:45:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:45:46'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'gq 10/4/2021 21:47:07'!
+test02
+
+	| marsRover|
+	
+	marsRover := MarsRover at: 1@2 heading: #North.
+	
+	marsRover process: 'f'.
+	
+	self assert: (marsRover isAt: 1@3 heading: #North).! !
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/4/2021 21:47:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:47:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/4/2021 21:47:08'!
+PASSED!
+
+!methodRemoval: MarsRoverTest #test02 stamp: 'gq 10/4/2021 21:47:40'!
+test02
+
+	| marsRover|
+	
+	marsRover := MarsRover at: 1@2 heading: #North.
+	
+	marsRover process: 'f'.
+	
+	self assert: (marsRover isAt: 1@3 heading: #North).!
+
+!classDefinition: 'MarsRover class' category: 'MarsRover' stamp: 'gq 10/4/2021 21:52:44'!
+MarsRover class
+	instanceVariableNames: 'currentCoordinates'!
+
+!classDefinition: 'MarsRover class' category: 'MarsRover' stamp: 'gq 10/4/2021 21:52:46'!
+MarsRover class
+	instanceVariableNames: 'currentCoordinates currentDirection'!
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'gq 10/4/2021 21:52:40' prior: 50859395!
+at: anInitialCoordinate heading: anInitialDirection 
+	currentCoordinates := anInitialCoordinate.
+	currentDirection := anInitialDirection.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:52:49'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:52:49'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:52:52'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:52:52'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:53:04'!
+ERROR!
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'gq 10/4/2021 21:53:14'!
+process: aString 
+	self shouldBeImplemented.! !
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'gq 10/4/2021 21:53:43' prior: 50859485!
+process: aSequenceOfCommands 
+	! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:53:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:53:55'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:53:55'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:54:07'!
+ERROR!
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'gq 10/4/2021 21:54:27'!
+isAt: aPoint heading: aSymbol 
+	self shouldBeImplemented.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:54:33'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:54:48'!
+ERROR!
+!MarsRover class methodsFor: 'error handling' stamp: 'gq 10/4/2021 21:54:50' overrides: 16881409!
+error: aString 
+	self shouldBeImplemented.! !
+
+!methodRemoval: MarsRover class #error: stamp: 'gq 10/4/2021 21:55:47'!
+error: aString 
+	self shouldBeImplemented.!
+
+!methodRemoval: MarsRover class #isAt:heading: stamp: 'gq 10/4/2021 21:55:52'!
+isAt: aPoint heading: aSymbol 
+	self shouldBeImplemented.!
+
+!methodRemoval: MarsRover class #process: stamp: 'gq 10/4/2021 21:55:56'!
+process: aSequenceOfCommands 
+	!
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'gq 10/4/2021 21:56:03' prior: 50859466!
+at: anInitialCoordinate heading: anInitialDirection 
+
+	currentCoordinates := anInitialCoordinate.
+	currentDirection := anInitialDirection.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:56:28'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:56:28'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:56:36'!
+ERROR!
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'gq 10/4/2021 21:59:34' prior: 50859529!
+at: anInitialCoordinate heading: anInitialDirection 
+
+	|aMarsRover|
+
+	aMarsRover := self new.
+
+	aMarsRover initializeAt: anInitialCoordinate heading: anInitialDirection.
+	
+	^aMarsRover 	! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:59:51'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 21:59:51'!
+ERROR!
+
+!classDefinition: #MarsRover category: 'MarsRover' stamp: 'gq 10/4/2021 21:59:59'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'initialCoordinate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #MarsRover category: 'MarsRover' stamp: 'gq 10/4/2021 21:59:59'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'initialCoordinate initialDirection'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+!MarsRover methodsFor: 'initialization' stamp: 'gq 10/4/2021 21:59:59'!
+initializeAt: anInitialCoordinate heading: anInitialDirection 
+	self shouldBeImplemented.
+	initialCoordinate := anInitialCoordinate.
+	initialDirection := anInitialDirection.! !
+!MarsRover methodsFor: 'initialization' stamp: 'gq 10/4/2021 22:00:10' prior: 50859572!
+initializeAt: anInitialCoordinate heading: anInitialDirection 
+	
+	initialCoordinate := anInitialCoordinate.
+	initialDirection := anInitialDirection.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 22:00:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 22:00:20'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 22:00:20'!
+PASSED!
+
+Object subclass: #MarsRover
+	instanceVariableNames: 'currentCoordinate currentDirection'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #MarsRover category: 'MarsRover' stamp: 'gq 10/4/2021 22:02:15'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'currentCoordinate currentDirection'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+MarsRover class
+	instanceVariableNames: ''!
+
+!classDefinition: 'MarsRover class' category: 'MarsRover' stamp: 'gq 10/4/2021 22:02:24'!
+MarsRover class
+	instanceVariableNames: ''!
+!MarsRover methodsFor: 'initialization' stamp: 'gq 10/4/2021 22:02:46' prior: 50859581!
+initializeAt: anInitialCoordinate heading: anInitialDirection 
+	
+	currentCoordinate := anInitialCoordinate.
+	currentDirection := anInitialDirection.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/4/2021 22:03:55' prior: 50859424!
+isAt: aCoordinate heading: aDirection 
+	^currentCoordinate = aCoordinate and: [currentDirection = aDirection ]! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 22:04:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/4/2021 22:04:04'!
+PASSED!
+
+----QUIT----(4 October 2021 22:05:54) CuisUniversity-4532.image priorSource: 16885703!
+
+----STARTUP---- (5 October 2021 17:17:51) as /home/gonzalo/Documents/facultad/isw1/rover/CuisUniversity-4532.image!
+
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:18:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:18:26'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:20:32'!
+test02
+
+	| marsRover|
+	
+	marsRover := MarsRover at: 1@2 heading: #North.
+	
+	marsRover process: 'f'.
+	
+	self assert: (marsRover isAt: 1@3 heading: #North).! !
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:20:33'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:23:03' prior: 50859410!
+process: aSequenceOfCommands 
+	
+	currentCoordinate := currentCoordinate + 0@1! !
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:23:05'!
+ERROR!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:24:41' prior: 50859660!
+process: aSequenceOfCommands 
+	
+	currentCoordinate := currentCoordinate + (0@1)! !
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:24:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:24:42'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:24:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:24:42'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:24:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:24:49'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:24:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:24:49'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:26:11' prior: 50859668!
+process: aSequenceOfCommands 
+	
+	aSequenceOfCommands = 'f' ifTrue: [currentCoordinate := currentCoordinate + (0@1)]! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:26:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:26:14'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:26:33'!
+test03
+
+	| marsRover|
+	
+	marsRover := MarsRover at: 1@2 heading: #North.
+	
+	marsRover process: 'b'.
+	
+	self assert: (marsRover isAt: 1@1 heading: #North).! !
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 17:26:34'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:27:04' prior: 50859693!
+process: aSequenceOfCommands 
+	
+	aSequenceOfCommands = 'f' ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+	aSequenceOfCommands = 'b' ifTrue: [currentCoordinate := currentCoordinate - (0@1)]! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:27:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:27:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 17:27:06'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:27:38'!
+test04
+
+	| marsRover|
+	
+	marsRover := MarsRover at: 1@2 heading: #North.
+	
+	marsRover process: 'l'.
+	
+	self assert: (marsRover isAt: 1@2 heading: #West).! !
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 17:27:39'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:28:39' prior: 50859715!
+process: aSequenceOfCommands 
+	
+	aSequenceOfCommands = 'f' ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+	aSequenceOfCommands = 'b' ifTrue: [currentCoordinate := currentCoordinate - (0@1)].
+	aSequenceOfCommands = 'l' ifTrue: [currentDirection := #West]! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:28:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:28:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 17:28:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 17:28:40'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:29:37'!
+test05
+
+	| marsRover|
+	
+	marsRover := MarsRover at: 1@2 heading: #North.
+	
+	marsRover process: 'r'.
+	
+	self assert: (marsRover isAt: 1@2 heading: #East).! !
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 17:29:39'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:29:56' prior: 50859742!
+process: aSequenceOfCommands 
+	
+	aSequenceOfCommands = 'f' ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+	aSequenceOfCommands = 'b' ifTrue: [currentCoordinate := currentCoordinate - (0@1)].
+	aSequenceOfCommands = 'l' ifTrue: [currentDirection := #West].
+	aSequenceOfCommands = 'r' ifTrue: [currentDirection := #East].! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:29:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:29:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 17:29:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 17:29:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 17:29:58'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:31:51'!
+test06
+
+	| marsRover|
+	
+	marsRover := MarsRover at: 1@2 heading: #East.
+	
+	marsRover process: 'l'.
+	
+	self assert: (marsRover isAt: 1@2 heading: #North).! !
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 17:31:52'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:36:11' prior: 50859774!
+process: aSequenceOfCommands 
+	
+	aSequenceOfCommands = 'f' ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+	aSequenceOfCommands = 'b' ifTrue: [currentCoordinate := currentCoordinate - (0@1)].
+	aSequenceOfCommands = 'l' ifTrue: [
+		currentDirection = #East
+			ifTrue: [currentDirection := #North] 
+			ifFalse: [currentDirection := #West]
+		].
+	aSequenceOfCommands = 'r' ifTrue: [currentDirection := #East].
+	! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:36:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:36:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 17:36:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 17:36:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 17:36:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 17:36:15'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:37:52'!
+test07
+
+	| marsRover|
+	
+	marsRover := MarsRover at: 1@2 heading: #South.
+	
+	marsRover process: 'l'.
+	
+	self assert: (marsRover isAt: 1@2 heading: #East).! !
+
+!testRun: #MarsRoverTest #test07 stamp: 'gq 10/5/2021 17:37:54'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:40:22' prior: 50859810!
+process: aSequenceOfCommands 
+	
+	aSequenceOfCommands = 'f' ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+	aSequenceOfCommands = 'b' ifTrue: [currentCoordinate := currentCoordinate - (0@1)].
+	aSequenceOfCommands = 'l' ifTrue: [
+		currentDirection = #East
+			ifTrue: [currentDirection := #North].
+		currentDirection = #South
+			ifTrue: [currentDirection := #East].		
+		currentDirection = #North
+			ifTrue: [currentDirection := #West]
+		].
+	aSequenceOfCommands = 'r' ifTrue: [currentDirection := #East].
+	! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:40:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:40:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 17:40:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 17:40:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 17:40:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 17:40:22'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test07 stamp: 'gq 10/5/2021 17:40:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 17:40:22'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:43:28' prior: 50859851!
+process: aSequenceOfCommands
+	
+	
+	
+	aSequenceOfCommands = 'f' ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+	aSequenceOfCommands = 'b' ifTrue: [currentCoordinate := currentCoordinate - (0@1)].
+	aSequenceOfCommands = 'l' ifTrue: [
+		|xxx|
+		currentDirection = #East
+			ifTrue: [xxx := #North].
+		currentDirection = #South
+			ifTrue: [xxx := #East].		
+		currentDirection = #North
+			ifTrue: [xxx := #West].
+		currentDirection := xxx.
+		].
+	aSequenceOfCommands = 'r' ifTrue: [currentDirection := #East].
+	! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:44:09' prior: 50859889!
+process: aSequenceOfCommands
+	
+	
+	
+	aSequenceOfCommands = 'f' ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+	aSequenceOfCommands = 'b' ifTrue: [currentCoordinate := currentCoordinate - (0@1)].
+	aSequenceOfCommands = 'l' ifTrue: [
+		|aNewDirection|
+		currentDirection = #East
+			ifTrue: [aNewDirection := #North].
+		currentDirection = #South
+			ifTrue: [aNewDirection := #East].		
+		currentDirection = #North
+			ifTrue: [aNewDirection := #West].
+		currentDirection := aNewDirection.
+		].
+	aSequenceOfCommands = 'r' ifTrue: [currentDirection := #East].
+	! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:44:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:44:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 17:44:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 17:44:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 17:44:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 17:44:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'gq 10/5/2021 17:44:10'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:44:38'!
+test08
+
+	| marsRover|
+	
+	marsRover := MarsRover at: 1@2 heading: #West.
+	
+	marsRover process: 'l'.
+	
+	self assert: (marsRover isAt: 1@2 heading: #South).! !
+
+!testRun: #MarsRoverTest #test08 stamp: 'gq 10/5/2021 17:44:39'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:45:11' prior: 50859909!
+process: aSequenceOfCommands
+	
+	
+	
+	aSequenceOfCommands = 'f' ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+	aSequenceOfCommands = 'b' ifTrue: [currentCoordinate := currentCoordinate - (0@1)].
+	aSequenceOfCommands = 'l' ifTrue: [
+		|aNewDirection|
+		currentDirection = #East
+			ifTrue: [aNewDirection := #North].
+		currentDirection = #South
+			ifTrue: [aNewDirection := #East].		
+		currentDirection = #North
+			ifTrue: [aNewDirection := #West].
+		currentDirection = #West
+			ifTrue: [aNewDirection := #South].
+		currentDirection := aNewDirection.
+		].
+	aSequenceOfCommands = 'r' ifTrue: [currentDirection := #East].
+	! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:45:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:45:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 17:45:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 17:45:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 17:45:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 17:45:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'gq 10/5/2021 17:45:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'gq 10/5/2021 17:45:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:46:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:46:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 17:46:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 17:46:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 17:46:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 17:46:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'gq 10/5/2021 17:46:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'gq 10/5/2021 17:46:53'!
+PASSED!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:49:17'!
+rotateLeft
+
+	|aNewDirection|
+		currentDirection = #East
+			ifTrue: [aNewDirection := #North].
+		currentDirection = #South
+			ifTrue: [aNewDirection := #East].		
+		currentDirection = #North
+			ifTrue: [aNewDirection := #West].
+		currentDirection = #West
+			ifTrue: [aNewDirection := #South].
+		currentDirection := aNewDirection! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:49:17' prior: 50859957!
+process: aSequenceOfCommands
+	
+	
+	
+	aSequenceOfCommands = 'f' ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+	aSequenceOfCommands = 'b' ifTrue: [currentCoordinate := currentCoordinate - (0@1)].
+	aSequenceOfCommands = 'l' ifTrue: [
+		self rotateLeft.
+		].
+	aSequenceOfCommands = 'r' ifTrue: [currentDirection := #East].
+	! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:49:38' prior: 50860031!
+process: aSequenceOfCommands
+	
+	
+	
+	aSequenceOfCommands = 'f' ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+	aSequenceOfCommands = 'b' ifTrue: [currentCoordinate := currentCoordinate - (0@1)].
+	aSequenceOfCommands = 'l' ifTrue: [self rotateLeft].
+	aSequenceOfCommands = 'r' ifTrue: [currentDirection := #East].
+	! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:49:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:49:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 17:49:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 17:49:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 17:49:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 17:49:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'gq 10/5/2021 17:49:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'gq 10/5/2021 17:49:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:49:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:49:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 17:49:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 17:49:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 17:49:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 17:49:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'gq 10/5/2021 17:49:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'gq 10/5/2021 17:49:53'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:52:02' prior: 50859763!
+test05
+
+	| marsRover|
+	
+	marsRover := MarsRover at: 1@2 heading: #East.
+	
+	marsRover process: 'r'.
+	
+	self assert: (marsRover isAt: 1@2 heading: #South).! !
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 17:52:03'!
+FAILURE!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:29:37' prior: 50860096!
+test05
+
+	| marsRover|
+	
+	marsRover := MarsRover at: 1@2 heading: #North.
+	
+	marsRover process: 'r'.
+	
+	self assert: (marsRover isAt: 1@2 heading: #East).! !
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 17:52:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:52:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:52:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 17:52:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 17:52:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 17:52:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 17:52:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'gq 10/5/2021 17:52:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'gq 10/5/2021 17:52:28'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:52:37'!
+test09
+
+	| marsRover|
+	
+	marsRover := MarsRover at: 1@2 heading: #East.
+	
+	marsRover process: 'r'.
+	
+	self assert: (marsRover isAt: 1@2 heading: #South).! !
+
+!testRun: #MarsRoverTest #test09 stamp: 'gq 10/5/2021 17:52:43'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:55:14' prior: 50860045!
+process: aSequenceOfCommands
+	
+	
+	
+	aSequenceOfCommands = 'f' ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+	aSequenceOfCommands = 'b' ifTrue: [currentCoordinate := currentCoordinate - (0@1)].
+	aSequenceOfCommands = 'l' ifTrue: [self rotateLeft].
+	aSequenceOfCommands = 'r' ifTrue: [
+		currentDirection = #East 
+			ifTrue: [currentDirection := #South]
+			ifFalse: [currentDirection := #East]
+		].
+	! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:55:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:55:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 17:55:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 17:55:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 17:55:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 17:55:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'gq 10/5/2021 17:55:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'gq 10/5/2021 17:55:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'gq 10/5/2021 17:55:15'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:55:34'!
+test10
+
+	| marsRover|
+	
+	marsRover := MarsRover at: 1@2 heading: #South.
+	
+	marsRover process: 'r'.
+	
+	self assert: (marsRover isAt: 1@2 heading: #West).! !
+
+!testRun: #MarsRoverTest #test10 stamp: 'gq 10/5/2021 17:55:35'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:58:38' prior: 50860147!
+process: aSequenceOfCommands
+	
+	
+	
+	aSequenceOfCommands = 'f' ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+	aSequenceOfCommands = 'b' ifTrue: [currentCoordinate := currentCoordinate - (0@1)].
+	aSequenceOfCommands = 'l' ifTrue: [self rotateLeft].
+	aSequenceOfCommands = 'r' ifTrue: [
+		|aNewDirection|
+		currentDirection = #East ifTrue: [aNewDirection := #South].
+		currentDirection = #South ifTrue: [aNewDirection := #West].
+		currentDirection = #North ifTrue: [aNewDirection := #East].
+		
+		currentDirection := aNewDirection
+		].
+	! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:58:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:58:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 17:58:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 17:58:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 17:58:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 17:58:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'gq 10/5/2021 17:58:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'gq 10/5/2021 17:58:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'gq 10/5/2021 17:58:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'gq 10/5/2021 17:58:38'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:58:54'!
+test11
+
+	| marsRover|
+	
+	marsRover := MarsRover at: 1@2 heading: #West.
+	
+	marsRover process: 'r'.
+	
+	self assert: (marsRover isAt: 1@2 heading: #North).! !
+
+!testRun: #MarsRoverTest #test11 stamp: 'gq 10/5/2021 17:58:55'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:59:11' prior: 50860195!
+process: aSequenceOfCommands
+	
+	
+	
+	aSequenceOfCommands = 'f' ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+	aSequenceOfCommands = 'b' ifTrue: [currentCoordinate := currentCoordinate - (0@1)].
+	aSequenceOfCommands = 'l' ifTrue: [self rotateLeft].
+	aSequenceOfCommands = 'r' ifTrue: [
+		|aNewDirection|
+		currentDirection = #East ifTrue: [aNewDirection := #South].
+		currentDirection = #South ifTrue: [aNewDirection := #West].
+		currentDirection = #North ifTrue: [aNewDirection := #East].
+		currentDirection = #West ifTrue: [aNewDirection := #North].
+		
+		currentDirection := aNewDirection
+		].
+	! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:59:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:59:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 17:59:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 17:59:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 17:59:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 17:59:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'gq 10/5/2021 17:59:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'gq 10/5/2021 17:59:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'gq 10/5/2021 17:59:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'gq 10/5/2021 17:59:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'gq 10/5/2021 17:59:13'!
+PASSED!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:59:31'!
+rotateRight
+
+	|aNewDirection|
+		currentDirection = #East ifTrue: [aNewDirection := #South].
+		currentDirection = #South ifTrue: [aNewDirection := #West].
+		currentDirection = #North ifTrue: [aNewDirection := #East].
+		currentDirection = #West ifTrue: [aNewDirection := #North].
+		
+		currentDirection := aNewDirection! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:59:31' prior: 50860249!
+process: aSequenceOfCommands
+	
+	
+	
+	aSequenceOfCommands = 'f' ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+	aSequenceOfCommands = 'b' ifTrue: [currentCoordinate := currentCoordinate - (0@1)].
+	aSequenceOfCommands = 'l' ifTrue: [self rotateLeft].
+	aSequenceOfCommands = 'r' ifTrue: [
+		self rotateRight
+		].
+	! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 17:59:38' prior: 50860309!
+process: aSequenceOfCommands
+	
+	
+	
+	aSequenceOfCommands = 'f' ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+	aSequenceOfCommands = 'b' ifTrue: [currentCoordinate := currentCoordinate - (0@1)].
+	aSequenceOfCommands = 'l' ifTrue: [self rotateLeft].
+	aSequenceOfCommands = 'r' ifTrue: [self rotateRight].
+	! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 17:59:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 17:59:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 17:59:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 17:59:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 17:59:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 17:59:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'gq 10/5/2021 17:59:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'gq 10/5/2021 17:59:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'gq 10/5/2021 17:59:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'gq 10/5/2021 17:59:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'gq 10/5/2021 17:59:39'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 18:02:09'!
+test12
+
+	| marsRover|
+	
+	marsRover := MarsRover at: 1@2 heading: #West.
+	
+	marsRover process: 'f'.
+	
+	self assert: (marsRover isAt: 0@2 heading: #West).! !
+
+!testRun: #MarsRoverTest #test12 stamp: 'gq 10/5/2021 18:02:09'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 18:05:45' prior: 50860323!
+process: aSequenceOfCommands
+	
+	
+	
+	aSequenceOfCommands = 'f' ifTrue: [
+		currentDirection = #West ifTrue: [currentCoordinate := currentCoordinate + (-1@0)]. 
+		currentDirection = #North ifTrue: [currentCoordinate := currentCoordinate + (0@1)]
+		].
+	aSequenceOfCommands = 'b' ifTrue: [currentCoordinate := currentCoordinate - (0@1)].
+	aSequenceOfCommands = 'l' ifTrue: [self rotateLeft].
+	aSequenceOfCommands = 'r' ifTrue: [self rotateRight].
+	! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 18:05:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 18:05:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 18:05:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 18:05:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 18:05:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 18:05:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'gq 10/5/2021 18:05:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'gq 10/5/2021 18:05:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'gq 10/5/2021 18:05:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'gq 10/5/2021 18:05:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'gq 10/5/2021 18:05:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'gq 10/5/2021 18:05:46'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 18:06:34'!
+test13
+
+	| marsRover|
+	
+	marsRover := MarsRover at: 1@2 heading: #East.
+	
+	marsRover process: 'f'.
+	
+	self assert: (marsRover isAt: 2@2 heading: #East).! !
+
+!testRun: #MarsRoverTest #test13 stamp: 'gq 10/5/2021 18:06:36'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 18:08:00' prior: 50860372!
+process: aSequenceOfCommands
+	
+	
+	
+	aSequenceOfCommands = 'f' ifTrue: [
+		currentDirection = #West ifTrue: [currentCoordinate := currentCoordinate + (-1@0)]. 
+		currentDirection = #North ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+		currentDirection = #East ifTrue: [currentCoordinate := currentCoordinate + (1@0)]
+		].
+	aSequenceOfCommands = 'b' ifTrue: [currentCoordinate := currentCoordinate - (0@1)].
+	aSequenceOfCommands = 'l' ifTrue: [self rotateLeft].
+	aSequenceOfCommands = 'r' ifTrue: [self rotateRight].
+	! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 18:08:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 18:08:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 18:08:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 18:08:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 18:08:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 18:08:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'gq 10/5/2021 18:08:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'gq 10/5/2021 18:08:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'gq 10/5/2021 18:08:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'gq 10/5/2021 18:08:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'gq 10/5/2021 18:08:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'gq 10/5/2021 18:08:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'gq 10/5/2021 18:08:00'!
+PASSED!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 18:08:17' prior: 50860428!
+process: aSequenceOfCommands
+	
+	
+	
+	aSequenceOfCommands = 'f' ifTrue: [
+		currentDirection = #North ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+		currentDirection = #West ifTrue: [currentCoordinate := currentCoordinate + (-1@0)]. 
+		currentDirection = #East ifTrue: [currentCoordinate := currentCoordinate + (1@0)]
+		].
+	aSequenceOfCommands = 'b' ifTrue: [currentCoordinate := currentCoordinate - (0@1)].
+	aSequenceOfCommands = 'l' ifTrue: [self rotateLeft].
+	aSequenceOfCommands = 'r' ifTrue: [self rotateRight].
+	! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 18:08:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 18:08:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 18:08:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 18:08:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 18:08:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 18:08:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'gq 10/5/2021 18:08:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'gq 10/5/2021 18:08:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'gq 10/5/2021 18:08:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'gq 10/5/2021 18:08:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'gq 10/5/2021 18:08:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'gq 10/5/2021 18:08:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'gq 10/5/2021 18:08:18'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 18:08:48'!
+test14
+
+	| marsRover|
+	
+	marsRover := MarsRover at: 1@2 heading: #South.
+	
+	marsRover process: 'f'.
+	
+	self assert: (marsRover isAt: 1@1 heading: #South).! !
+
+!testRun: #MarsRoverTest #test14 stamp: 'gq 10/5/2021 18:08:48'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 18:09:22' prior: 50860478!
+process: aSequenceOfCommands
+	
+	
+	
+	aSequenceOfCommands = 'f' ifTrue: [
+		currentDirection = #North ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+		currentDirection = #West ifTrue: [currentCoordinate := currentCoordinate + (-1@0)]. 
+		currentDirection = #East ifTrue: [currentCoordinate := currentCoordinate + (1@0)].
+		currentDirection = #South ifTrue: [currentCoordinate := currentCoordinate + (0@-1)]
+		].
+	aSequenceOfCommands = 'b' ifTrue: [currentCoordinate := currentCoordinate - (0@1)].
+	aSequenceOfCommands = 'l' ifTrue: [self rotateLeft].
+	aSequenceOfCommands = 'r' ifTrue: [self rotateRight].
+	! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 18:09:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 18:09:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 18:09:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 18:09:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 18:09:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 18:09:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'gq 10/5/2021 18:09:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'gq 10/5/2021 18:09:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'gq 10/5/2021 18:09:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'gq 10/5/2021 18:09:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'gq 10/5/2021 18:09:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'gq 10/5/2021 18:09:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'gq 10/5/2021 18:09:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'gq 10/5/2021 18:09:23'!
+PASSED!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 18:09:55' prior: 50860539!
+process: aSequenceOfCommands
+	
+	
+	
+	aSequenceOfCommands = 'f' ifTrue: [
+		currentDirection = #North ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+		currentDirection = #East ifTrue: [currentCoordinate := currentCoordinate + (1@0)].
+		currentDirection = #South ifTrue: [currentCoordinate := currentCoordinate + (0@-1)].
+		currentDirection = #West ifTrue: [currentCoordinate := currentCoordinate + (-1@0)] 
+		].
+	aSequenceOfCommands = 'b' ifTrue: [currentCoordinate := currentCoordinate - (0@1)].
+	aSequenceOfCommands = 'l' ifTrue: [self rotateLeft].
+	aSequenceOfCommands = 'r' ifTrue: [self rotateRight].
+	! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 18:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 18:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 18:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 18:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 18:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 18:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'gq 10/5/2021 18:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'gq 10/5/2021 18:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'gq 10/5/2021 18:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'gq 10/5/2021 18:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'gq 10/5/2021 18:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'gq 10/5/2021 18:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'gq 10/5/2021 18:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'gq 10/5/2021 18:09:56'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 18:12:01'!
+test15
+
+	| marsRover|
+	
+	marsRover := MarsRover at: 1@2 heading: #North.
+	
+	marsRover process: 'b'.
+	
+	self assert: (marsRover isAt: 1@1 heading: #North).! !
+
+!testRun: #MarsRoverTest #test15 stamp: 'gq 10/5/2021 18:12:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 18:12:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 18:12:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 18:12:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 18:12:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 18:12:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 18:12:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'gq 10/5/2021 18:12:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'gq 10/5/2021 18:12:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'gq 10/5/2021 18:12:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'gq 10/5/2021 18:12:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'gq 10/5/2021 18:12:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'gq 10/5/2021 18:12:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'gq 10/5/2021 18:12:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'gq 10/5/2021 18:12:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15 stamp: 'gq 10/5/2021 18:12:03'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 18:12:44' prior: 50860649!
+test15
+
+	| marsRover|
+	
+	marsRover := MarsRover at: 1@2 heading: #East.
+	
+	marsRover process: 'b'.
+	
+	self assert: (marsRover isAt: 0@2 heading: #East).! !
+
+!testRun: #MarsRoverTest #test15 stamp: 'gq 10/5/2021 18:12:45'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 18:15:32' prior: 50860594!
+process: aSequenceOfCommands
+	
+	
+	
+	aSequenceOfCommands = 'f' ifTrue: [
+		currentDirection = #North ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+		currentDirection = #East ifTrue: [currentCoordinate := currentCoordinate + (1@0)].
+		currentDirection = #South ifTrue: [currentCoordinate := currentCoordinate + (0@-1)].
+		currentDirection = #West ifTrue: [currentCoordinate := currentCoordinate + (-1@0)] 
+		].
+	aSequenceOfCommands = 'b' ifTrue: [
+		currentDirection = #East ifTrue: [currentCoordinate := currentCoordinate + (-1@0)].
+		currentDirection = #North ifTrue: [currentCoordinate := currentCoordinate - (0@1)].
+		].
+	aSequenceOfCommands = 'l' ifTrue: [self rotateLeft].
+	aSequenceOfCommands = 'r' ifTrue: [self rotateRight].
+	! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 18:15:35' prior: 50860705!
+process: aSequenceOfCommands
+	
+	
+	
+	aSequenceOfCommands = 'f' ifTrue: [
+		currentDirection = #North ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+		currentDirection = #East ifTrue: [currentCoordinate := currentCoordinate + (1@0)].
+		currentDirection = #South ifTrue: [currentCoordinate := currentCoordinate + (0@-1)].
+		currentDirection = #West ifTrue: [currentCoordinate := currentCoordinate + (-1@0)] 
+		].
+	aSequenceOfCommands = 'b' ifTrue: [
+		currentDirection = #East ifTrue: [currentCoordinate := currentCoordinate + (-1@0)].
+		currentDirection = #North ifTrue: [currentCoordinate := currentCoordinate - (0@1)]
+		].
+	aSequenceOfCommands = 'l' ifTrue: [self rotateLeft].
+	aSequenceOfCommands = 'r' ifTrue: [self rotateRight].
+	! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 18:15:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 18:15:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 18:15:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 18:15:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 18:15:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 18:15:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'gq 10/5/2021 18:15:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'gq 10/5/2021 18:15:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'gq 10/5/2021 18:15:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'gq 10/5/2021 18:15:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'gq 10/5/2021 18:15:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'gq 10/5/2021 18:15:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'gq 10/5/2021 18:15:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'gq 10/5/2021 18:15:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15 stamp: 'gq 10/5/2021 18:15:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 18:15:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 18:15:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 18:15:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 18:15:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 18:15:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 18:15:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'gq 10/5/2021 18:15:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'gq 10/5/2021 18:15:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'gq 10/5/2021 18:15:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'gq 10/5/2021 18:15:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'gq 10/5/2021 18:15:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'gq 10/5/2021 18:15:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'gq 10/5/2021 18:15:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'gq 10/5/2021 18:15:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15 stamp: 'gq 10/5/2021 18:15:38'!
+PASSED!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'gq 10/5/2021 18:15:44' prior: 50860732!
+process: aSequenceOfCommands
+	
+	
+	
+	aSequenceOfCommands = 'f' ifTrue: [
+		currentDirection = #North ifTrue: [currentCoordinate := currentCoordinate + (0@1)].
+		currentDirection = #East ifTrue: [currentCoordinate := currentCoordinate + (1@0)].
+		currentDirection = #South ifTrue: [currentCoordinate := currentCoordinate + (0@-1)].
+		currentDirection = #West ifTrue: [currentCoordinate := currentCoordinate + (-1@0)] 
+		].
+	aSequenceOfCommands = 'b' ifTrue: [
+		currentDirection = #East ifTrue: [currentCoordinate := currentCoordinate + (-1@0)].
+		currentDirection = #North ifTrue: [currentCoordinate := currentCoordinate + (0@-1)]
+		].
+	aSequenceOfCommands = 'l' ifTrue: [self rotateLeft].
+	aSequenceOfCommands = 'r' ifTrue: [self rotateRight].
+	! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'gq 10/5/2021 18:15:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'gq 10/5/2021 18:15:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'gq 10/5/2021 18:15:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'gq 10/5/2021 18:15:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'gq 10/5/2021 18:15:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'gq 10/5/2021 18:15:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'gq 10/5/2021 18:15:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'gq 10/5/2021 18:15:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'gq 10/5/2021 18:15:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'gq 10/5/2021 18:15:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'gq 10/5/2021 18:15:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'gq 10/5/2021 18:15:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'gq 10/5/2021 18:15:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'gq 10/5/2021 18:15:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15 stamp: 'gq 10/5/2021 18:15:45'!
+PASSED!
+
+----End fileIn of /home/gonzalo/Documents/facultad/isw1/rover/Packages/TerseGuide.pck.st----!
+
+----QUIT----(5 October 2021 23:16:39) CuisUniversity-4532.image priorSource: 16895429!

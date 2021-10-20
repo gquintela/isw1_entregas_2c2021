@@ -1,0 +1,4394 @@
+
+
+----QUIT----(9 March 2021 14:58:42) CuisUniversity-4532.image priorSource: 13044060!
+
+----STARTUP---- (9 March 2021 14:58:43) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4532.image!
+
+
+----QUIT----(9 March 2021 14:58:43) CuisUniversity-4532.image priorSource: 16885479!
+
+----STARTUP---- (18 October 2021 19:39:38) as /home/juli/Documentos/Facu/Inge1/CuisUniversity/CuisUniversity-4532.image!
+
+
+----End fileIn of /home/juli/Documentos/Facu/Inge1/CuisUniversity/Portfolio-Solucion.st----!
+
+TestCase subclass: #TransferTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferTest category: 'Portfolio-Solucion' stamp: 'JD 10/18/2021 19:59:50'!
+TestCase subclass: #TransferTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferTest methodsFor: 'no messages' stamp: 'JD 10/18/2021 20:09:37'!
+test01
+	
+	| aReceptiveAccount |
+	
+	aReceptiveAccount := aReceptiveAccount new.
+	
+	self should: [aReceptiveAccount transfer: 50 to: aReceptiveAccount] 
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = ReceptiveAccount cannotTransferToItselfErrorDescription ]! !
+
+!testRun: #TransferTest #test01 stamp: 'JD 10/18/2021 20:09:54'!
+ERROR!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'JD 10/18/2021 20:10:16' prior: 50860066!
+test01
+	
+	| aReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	self should: [aReceptiveAccount transfer: 50 to: aReceptiveAccount] 
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = ReceptiveAccount cannotTransferToItselfErrorDescription ]! !
+
+!testRun: #TransferTest #test01 stamp: 'JD 10/18/2021 20:10:18'!
+ERROR!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'JD 10/18/2021 20:11:10'!
+transfer: aSmallInteger to: aReceptiveAccount 
+	self shouldBeImplemented.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'JD 10/18/2021 20:14:22' prior: 50860097!
+transfer: aTransferAmount to: aTransferReceiver
+	
+	^ self error: self class cannotTransferToItselfErrorDescription! !
+
+!testRun: #TransferTest #test01 stamp: 'JD 10/18/2021 20:14:23'!
+ERROR!
+!ReceptiveAccount class methodsFor: 'as yet unclassified' stamp: 'JD 10/18/2021 20:14:37'!
+cannotTransferToItselfErrorDescription
+	self shouldBeImplemented.! !
+!ReceptiveAccount class methodsFor: 'as yet unclassified' stamp: 'JD 10/18/2021 20:22:06' prior: 50860112!
+cannotTransferToItselfErrorDescription
+	
+	^ 'The emitter and the receiver of a transfer cannot be the same'! !
+
+!testRun: #TransferTest #test01 stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #TransferTest #test01 stamp: 'JD 10/18/2021 20:22:10'!
+PASSED!
+
+!testRun: #TransferTest #test01 stamp: 'JD 10/18/2021 20:22:21'!
+PASSED!
+
+!testRun: #TransferTest #test01 stamp: 'JD 10/18/2021 20:22:21'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/18/2021 20:50:49'!
+test08
+	
+	| aReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	self should: [aReceptiveAccount transfer: 50 to: aReceptiveAccount] 
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = ReceptiveAccount cannotTransferToItselfErrorDescription ]! !
+
+!classRemoval: #TransferTest stamp: 'JD 10/18/2021 20:50:52'!
+TestCase subclass: #TransferTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'JD 10/18/2021 20:50:58'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/18/2021 20:55:54'!
+test09
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	
+	self should: [anEmitterReceptiveAccount transfer: -50 to: aReceiverReceptiveAccount] 
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = ReceptiveAccount cannotTransferANegativeAmount ]! !
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'JD 10/18/2021 20:56:01'!
+ERROR!
+!ReceptiveAccount class methodsFor: 'as yet unclassified' stamp: 'JD 10/18/2021 20:56:08'!
+cannotTransferANegativeAmount
+	self shouldBeImplemented.! !
+!ReceptiveAccount class methodsFor: 'as yet unclassified' stamp: 'JD 10/18/2021 20:56:26' prior: 50860343!
+cannotTransferANegativeAmount
+	
+	^ 'Cannot transfer a negative amount'! !
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'JD 10/18/2021 20:56:27'!
+FAILURE!
+!ReceptiveAccount class methodsFor: 'as yet unclassified' stamp: 'JD 10/18/2021 20:56:55'!
+cannotTransferANegativeAmountErrorDescription
+	
+	^ 'Cannot transfer a negative amount'! !
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JD 10/18/2021 20:56:55' prior: 50860326!
+test09
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	
+	self should: [anEmitterReceptiveAccount transfer: -50 to: aReceiverReceptiveAccount] 
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = ReceptiveAccount cannotTransferANegativeAmountErrorDescription ]! !
+
+!methodRemoval: ReceptiveAccount class #cannotTransferANegativeAmount stamp: 'JD 10/18/2021 20:56:55'!
+cannotTransferANegativeAmount
+	
+	^ 'Cannot transfer a negative amount'!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'JD 10/18/2021 20:58:45' prior: 50860103!
+transfer: aTransferAmount to: aTransferReceiver
+	
+	self assert: aTransferAmount < 0 description: [self error: self class cannotTransferANegativeAmountErrorDescription ].
+	^ self error: self class cannotTransferToItselfErrorDescription! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'JD 10/18/2021 20:59:00' prior: 50860385!
+transfer: aTransferAmount to: aTransferReceiver
+	
+	self assert: aTransferAmount < 0 description: [self error: self class cannotTransferANegativeAmountErrorDescription ].
+	self error: self class cannotTransferToItselfErrorDescription! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/18/2021 20:59:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'JD 10/18/2021 20:59:01'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'JD 10/18/2021 20:59:01'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'JD 10/18/2021 20:59:13' prior: 50860396!
+transfer: aTransferAmount to: aTransferReceiver
+	
+	self assert: aTransferAmount > 0 description: [self error: self class cannotTransferANegativeAmountErrorDescription ].
+	self error: self class cannotTransferToItselfErrorDescription! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'JD 10/18/2021 20:59:14'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/18/2021 21:01:45' prior: 50860364!
+test09
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	self should: [anEmitterReceptiveAccount transfer: -50 to: aReceiverReceptiveAccount] 
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = ReceptiveAccount cannotTransferANegativeAmountErrorDescription ]! !
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'JD 10/18/2021 21:01:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/18/2021 21:01:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/18/2021 21:01:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/18/2021 21:01:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/18/2021 21:01:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/18/2021 21:01:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/18/2021 21:01:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/18/2021 21:01:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'JD 10/18/2021 21:01:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'JD 10/18/2021 21:01:46'!
+PASSED!
+!ReceptiveAccount class methodsFor: 'as yet unclassified' stamp: 'JD 10/18/2021 21:32:24'!
+cannotTransferANonPositiveAmountErrorDescription
+	
+	^ 'Cannot transfer a negative amount'! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'JD 10/18/2021 21:32:24' prior: 50860496!
+transfer: aTransferAmount to: aTransferReceiver
+	
+	self assert: aTransferAmount > 0 description: [self error: self class cannotTransferANonPositiveAmountErrorDescription ].
+	self error: self class cannotTransferToItselfErrorDescription! !
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JD 10/18/2021 21:32:24' prior: 50860596!
+test09
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	self should: [anEmitterReceptiveAccount transfer: -50 to: aReceiverReceptiveAccount] 
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = ReceptiveAccount cannotTransferANonPositiveAmountErrorDescription ]! !
+
+!methodRemoval: ReceptiveAccount class #cannotTransferANegativeAmountErrorDescription stamp: 'JD 10/18/2021 21:32:24'!
+cannotTransferANegativeAmountErrorDescription
+	
+	^ 'Cannot transfer a negative amount'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/18/2021 21:33:56'!
+test10
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	anEmitterReceptiveAccount transfer: 50 to: aReceiverReceptiveAccount.
+	
+	self assert: -50 equals: anEmitterReceptiveAccount balance! !
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'JD 10/18/2021 21:34:04'!
+ERROR!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'JD 10/18/2021 21:36:28' prior: 50860654!
+transfer: aTransferAmount to: aTransferReceiver
+	
+	self assert: aTransferAmount > 0 description: [self error: self class cannotTransferANonPositiveAmountErrorDescription ].
+	self assert: self ~= aTransferReceiver description: [self error: self class cannotTransferToItselfErrorDescription].
+	
+	Withdraw register: aTransferAmount on: self.! !
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'JD 10/18/2021 21:36:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/18/2021 21:36:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/18/2021 21:36:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/18/2021 21:36:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/18/2021 21:36:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/18/2021 21:36:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/18/2021 21:36:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/18/2021 21:36:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'JD 10/18/2021 21:36:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'JD 10/18/2021 21:36:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'JD 10/18/2021 21:36:32'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/18/2021 21:36:48'!
+test11
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	anEmitterReceptiveAccount transfer: 50 to: aReceiverReceptiveAccount.
+	
+	self assert: 50 equals: aReceiverReceptiveAccount balance! !
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'JD 10/18/2021 21:36:50'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'JD 10/18/2021 21:37:11' prior: 50860704!
+transfer: aTransferAmount to: aTransferReceiver
+	
+	self assert: aTransferAmount > 0 description: [self error: self class cannotTransferANonPositiveAmountErrorDescription ].
+	self assert: self ~= aTransferReceiver description: [self error: self class cannotTransferToItselfErrorDescription].
+	
+	Withdraw register: aTransferAmount on: self.
+	Deposit register: aTransferAmount on: aTransferReceiver ! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/18/2021 21:37:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/18/2021 21:37:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/18/2021 21:37:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/18/2021 21:37:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/18/2021 21:37:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/18/2021 21:37:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/18/2021 21:37:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'JD 10/18/2021 21:37:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'JD 10/18/2021 21:37:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'JD 10/18/2021 21:37:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'JD 10/18/2021 21:37:13'!
+PASSED!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JD 10/18/2021 21:46:45'!
+Object subclass: #Transfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/18/2021 21:46:40' prior: 50860218!
+test08
+	
+	| aReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	self should: [Transfer register: 50 from: aReceptiveAccount to: aReceptiveAccount] 
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Transfer cannotTransferToItselfErrorDescription ]! !
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'JD 10/18/2021 21:46:52'!
+ERROR!
+!Transfer class methodsFor: 'no messages' stamp: 'JD 10/18/2021 21:48:06'!
+register: aTransferAmount from: aTransferEmitter to: aTransferReceiver
+	
+	self assert: aTransferAmount > 0 description: [self error: self class cannotTransferANonPositiveAmountErrorDescription ].
+	self assert: self ~= aTransferReceiver description: [self error: self class cannotTransferToItselfErrorDescription].
+	
+	Withdraw register: aTransferAmount on: aTransferEmitter.
+	Deposit register: aTransferAmount on: aTransferReceiver ! !
+
+----SNAPSHOT----(18 October 2021 22:17:53) CuisUniversity-4532.image priorSource: 16885703!
+
+----QUIT----(18 October 2021 22:18:15) CuisUniversity-4532.image priorSource: 16934770!
+
+----STARTUP---- (19 October 2021 18:04:14) as /home/juli/Documentos/Facu/Inge1/CuisUniversity/CuisUniversity-4532.image!
+
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 18:29:10' prior: 50860846!
+register: aTransferAmount from: aTransferEmitter to: aTransferReceiver
+	
+	^ self new initializeFor: aTransferAmount from: aTransferEmitter to: aTransferReceiver ! !
+!Transfer methodsFor: 'no messages' stamp: 'JD 10/19/2021 18:30:17'!
+initializeFor: aTransferAmount from: aTransferEmitter to: aTransferReceiver 
+
+	self assert: aTransferAmount > 0 description: [self error: self class cannotTransferANonPositiveAmountErrorDescription ].
+	self assert: self ~= aTransferReceiver description: [self error: self class cannotTransferToItselfErrorDescription].
+
+	Withdraw register: aTransferAmount on: aTransferEmitter.
+	Deposit register: aTransferAmount on: aTransferReceiver.! !
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'JD 10/19/2021 18:30:32'!
+FAILURE!
+
+!methodRemoval: ReceptiveAccount #transfer:to: stamp: 'JD 10/19/2021 18:31:00'!
+transfer: aTransferAmount to: aTransferReceiver
+	
+	self assert: aTransferAmount > 0 description: [self error: self class cannotTransferANonPositiveAmountErrorDescription ].
+	self assert: self ~= aTransferReceiver description: [self error: self class cannotTransferToItselfErrorDescription].
+	
+	Withdraw register: aTransferAmount on: self.
+	Deposit register: aTransferAmount on: aTransferReceiver !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 18:31:45'!
+cannotTransferANonPositiveAmountErrorDescription
+	
+	^ 'Cannot transfer a negative amount'! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 18:31:54' prior: 50860915!
+cannotTransferANonPositiveAmountErrorDescription
+	
+	^ 'Cannot transfer a negative amount'! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 18:32:01'!
+cannotTransferToItselfErrorDescription
+	
+	^ 'The emitter and the receiver of a transfer cannot be the same'! !
+
+!methodRemoval: ReceptiveAccount class #cannotTransferToItselfErrorDescription stamp: 'JD 10/19/2021 18:32:09'!
+cannotTransferToItselfErrorDescription
+	
+	^ 'The emitter and the receiver of a transfer cannot be the same'!
+
+!methodRemoval: ReceptiveAccount class #cannotTransferANonPositiveAmountErrorDescription stamp: 'JD 10/19/2021 18:32:10'!
+cannotTransferANonPositiveAmountErrorDescription
+	
+	^ 'Cannot transfer a negative amount'!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 18:32:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'JD 10/19/2021 18:32:27'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'JD 10/19/2021 18:32:27'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'JD 10/19/2021 18:32:27'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'JD 10/19/2021 18:32:27'!
+ERROR!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 18:33:42' prior: 50860665!
+test09
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	self should: [Transfer register: -50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount] 
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Transfer cannotTransferANonPositiveAmountErrorDescription ]! !
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'JD 10/19/2021 18:33:43'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'JD 10/19/2021 18:33:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'JD 10/19/2021 18:33:43'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'JD 10/19/2021 18:33:43'!
+ERROR!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 18:34:14' prior: 50860688!
+test10
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	Transfer register: 50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount.
+
+	self assert: -50 equals: anEmitterReceptiveAccount balance! !
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'JD 10/19/2021 18:34:16'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'JD 10/19/2021 18:34:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'JD 10/19/2021 18:34:16'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'JD 10/19/2021 18:34:31'!
+FAILURE!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 18:35:47' prior: 50860881!
+initializeFor: aTransferAmount from: aTransferEmitter to: aTransferReceiver 
+
+	self assert: aTransferAmount > 0 description: [self error: self class cannotTransferANonPositiveAmountErrorDescription ].
+	self assert: aTransferEmitter ~= aTransferReceiver description: [self error: self class cannotTransferToItselfErrorDescription].
+
+	Withdraw register: aTransferAmount on: aTransferEmitter.
+	Deposit register: aTransferAmount on: aTransferReceiver.! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'JD 10/19/2021 18:35:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'JD 10/19/2021 18:35:49'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'JD 10/19/2021 18:35:49'!
+ERROR!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 18:36:23' prior: 50860754!
+test11
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	Transfer register: 50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount.
+	
+	self assert: 50 equals: aReceiverReceptiveAccount balance! !
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'JD 10/19/2021 18:36:24'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 18:38:19'!
+test08test08CanNotTransferToItself
+	
+	| aReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	self should: [Transfer register: 50 from: aReceptiveAccount to: aReceptiveAccount] 
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Transfer cannotTransferToItselfErrorDescription ]! !
+
+!methodRemoval: ReceptiveAccountTest #test08 stamp: 'JD 10/19/2021 18:38:19'!
+test08
+	
+	| aReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	self should: [Transfer register: 50 from: aReceptiveAccount to: aReceptiveAccount] 
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Transfer cannotTransferToItselfErrorDescription ]!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 18:38:27'!
+test08CanNotTransferToItself
+	
+	| aReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	self should: [Transfer register: 50 from: aReceptiveAccount to: aReceptiveAccount] 
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Transfer cannotTransferToItselfErrorDescription ]! !
+
+!methodRemoval: ReceptiveAccountTest #test08test08CanNotTransferToItself stamp: 'JD 10/19/2021 18:38:27'!
+test08test08CanNotTransferToItself
+	
+	| aReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	self should: [Transfer register: 50 from: aReceptiveAccount to: aReceptiveAccount] 
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Transfer cannotTransferToItselfErrorDescription ]!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 18:39:03'!
+test09CanNotTransferANonPositiveAmount
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	self should: [Transfer register: -50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount] 
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Transfer cannotTransferANonPositiveAmountErrorDescription ]! !
+
+!methodRemoval: ReceptiveAccountTest #test09 stamp: 'JD 10/19/2021 18:39:03'!
+test09
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	self should: [Transfer register: -50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount] 
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Transfer cannotTransferANonPositiveAmountErrorDescription ]!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 18:40:33'!
+test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	Transfer register: 50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount.
+
+	self assert: -50 equals: anEmitterReceptiveAccount balance! !
+
+!methodRemoval: ReceptiveAccountTest #test10 stamp: 'JD 10/19/2021 18:40:33'!
+test10
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	Transfer register: 50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount.
+
+	self assert: -50 equals: anEmitterReceptiveAccount balance!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 18:41:05'!
+test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	Transfer register: 50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount.
+	
+	self assert: 50 equals: aReceiverReceptiveAccount balance! !
+
+!methodRemoval: ReceptiveAccountTest #test11 stamp: 'JD 10/19/2021 18:41:05'!
+test11
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	Transfer register: 50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount.
+	
+	self assert: 50 equals: aReceiverReceptiveAccount balance!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 18:51:32'!
+test12
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount aTransfer |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	aTransfer := Transfer register: 50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount.
+	
+	self assert: aTransfer source oppositeEnd equals: aTransfer destination ! !
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 18:51:40'!
+ERROR!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 18:51:53'!
+source
+	self shouldBeImplemented.! !
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JD 10/19/2021 18:52:12'!
+Object subclass: #Transfer
+	instanceVariableNames: 'source'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 18:52:10' prior: 50861657!
+source
+
+	^ source! !
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 18:52:14'!
+ERROR!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JD 10/19/2021 18:53:51'!
+Object subclass: #Transfer
+	instanceVariableNames: 'source destination'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 18:53:47' prior: 50861273!
+initializeFor: aTransferAmount from: aTransferEmitter to: aTransferReceiver 
+
+	self assert: aTransferAmount > 0 description: [self error: self class cannotTransferANonPositiveAmountErrorDescription ].
+	self assert: aTransferEmitter ~= aTransferReceiver description: [self error: self class cannotTransferToItselfErrorDescription].
+
+	source := Withdraw register: aTransferAmount on: aTransferEmitter.
+	destination := Deposit register: aTransferAmount on: aTransferReceiver.! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CanNotTransferToItself stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CanNotTransferANonPositiveAmount stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 18:53:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 18:53:55'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 18:53:55'!
+ERROR!
+
+!classDefinition: #Xx category: 'Portfolio-Solucion' stamp: 'JD 10/19/2021 19:03:48'!
+Object subclass: #Xx
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Yy category: 'Portfolio-Solucion' stamp: 'JD 10/19/2021 19:03:53'!
+Object subclass: #Yy
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 19:03:37' prior: 50861683!
+initializeFor: aTransferAmount from: aTransferEmitter to: aTransferReceiver 
+
+	self assert: aTransferAmount > 0 description: [self error: self class cannotTransferANonPositiveAmountErrorDescription ].
+	self assert: aTransferEmitter ~= aTransferReceiver description: [self error: self class cannotTransferToItselfErrorDescription].
+
+	source := Xx register: aTransferAmount.
+	destination := Yy register: aTransferAmount.
+	source oppositeEnd: destination.
+	destination oppositeEnd: source.! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 19:05:11' prior: 50861819!
+initializeFor: aTransferAmount from: aTransferEmitter to: aTransferReceiver 
+
+	self assert: aTransferAmount > 0 description: [self error: self class cannotTransferANonPositiveAmountErrorDescription ].
+	self assert: aTransferEmitter ~= aTransferReceiver description: [self error: self class cannotTransferToItselfErrorDescription].
+	
+	Withdraw register: aTransferAmount on: aTransferEmitter.
+	Deposit register: aTransferAmount on: aTransferEmitter.
+	
+	source := Xx register: aTransferAmount.
+	destination := Yy register: aTransferAmount.
+	source oppositeEnd: destination.
+	destination oppositeEnd: source.! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CanNotTransferToItself stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CanNotTransferANonPositiveAmount stamp: 'JD 10/19/2021 19:05:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 19:05:13'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 19:05:13'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 19:05:13'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 19:05:20'!
+ERROR!
+!Xx class methodsFor: 'instance creation' stamp: 'JD 10/19/2021 19:05:34'!
+register: aSmallInteger 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeRegister: aSmallInteger ! !
+!Xx class methodsFor: 'instance creation' stamp: 'JD 10/19/2021 19:06:15' prior: 50861966!
+register: aTransferAmount 
+
+	^ self new initializeFor: aTransferAmount ! !
+!Xx class methodsFor: 'instance creation' stamp: 'JD 10/19/2021 19:06:17' prior: 50861975!
+register: aTransferAmount 
+
+	^ self new initializeFor: aTransferAmount ! !
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 19:06:18'!
+ERROR!
+
+!classDefinition: #Xx category: 'Portfolio-Solucion' stamp: 'JD 10/19/2021 19:06:32'!
+Object subclass: #Xx
+	instanceVariableNames: 'transferAmount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Xx methodsFor: 'initialization' stamp: 'JD 10/19/2021 19:06:32'!
+initializeFor: aTransferAmount 
+	self shouldBeImplemented.
+	transferAmount := aTransferAmount.! !
+
+!classDefinition: #Xx category: 'Portfolio-Solucion' stamp: 'JD 10/19/2021 19:06:59'!
+Object subclass: #Xx
+	instanceVariableNames: 'transferAmount value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Xx methodsFor: 'initialization' stamp: 'JD 10/19/2021 19:06:54' prior: 50861997!
+initializeFor: aTransferAmount
+
+	value := aTransferAmount.! !
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 19:07:00'!
+ERROR!
+!Yy class methodsFor: 'instance creation' stamp: 'JD 10/19/2021 19:07:15'!
+register: aSmallInteger 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeRegister: aSmallInteger ! !
+!Yy class methodsFor: 'instance creation' stamp: 'JD 10/19/2021 19:07:55' prior: 50862019!
+register: aTransferAmount
+	
+	^ self new initializeFor: aTransferAmount! !
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 19:07:56'!
+ERROR!
+
+!classDefinition: #Yy category: 'Portfolio-Solucion' stamp: 'JD 10/19/2021 19:08:03'!
+Object subclass: #Yy
+	instanceVariableNames: 'transferAmount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Yy methodsFor: 'initialization' stamp: 'JD 10/19/2021 19:08:03'!
+initializeFor: aTransferAmount 
+	self shouldBeImplemented.
+	transferAmount := aTransferAmount.! !
+
+!classDefinition: #Yy category: 'Portfolio-Solucion' stamp: 'JD 10/19/2021 19:08:18'!
+Object subclass: #Yy
+	instanceVariableNames: 'transferAmount value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Yy methodsFor: 'initialization' stamp: 'JD 10/19/2021 19:08:17' prior: 50862044!
+initializeFor: aTransferAmount 
+
+	value := aTransferAmount! !
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 19:08:19'!
+ERROR!
+!Xx methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 19:08:27'!
+oppositeEnd: aYy 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Xx category: 'Portfolio-Solucion' stamp: 'JD 10/19/2021 19:08:44'!
+Object subclass: #Xx
+	instanceVariableNames: 'transferAmount value oppositeEnd'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Xx methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 19:08:43' prior: 50862066!
+oppositeEnd: aYy 
+	
+	^ oppositeEnd! !
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 19:08:45'!
+ERROR!
+!Yy methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 19:08:53'!
+oppositeEnd: aXx 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Yy category: 'Portfolio-Solucion' stamp: 'JD 10/19/2021 19:09:03'!
+Object subclass: #Yy
+	instanceVariableNames: 'transferAmount value oppositeEnd'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Yy methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 19:09:02' prior: 50862086!
+oppositeEnd: aXx 
+	
+	^ oppositeEnd! !
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 19:09:04'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 19:09:33'!
+FAILURE!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 19:10:01' prior: 50861838!
+initializeFor: aTransferAmount from: aTransferEmitter to: aTransferReceiver 
+
+	self assert: aTransferAmount > 0 description: [self error: self class cannotTransferANonPositiveAmountErrorDescription ].
+	self assert: aTransferEmitter ~= aTransferReceiver description: [self error: self class cannotTransferToItselfErrorDescription].
+	
+	Withdraw register: aTransferAmount on: aTransferEmitter.
+	Deposit register: aTransferAmount on: aTransferReceiver.
+	
+	source := Xx register: aTransferAmount.
+	destination := Yy register: aTransferAmount.
+	source oppositeEnd: destination.
+	destination oppositeEnd: source.! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CanNotTransferToItself stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CanNotTransferANonPositiveAmount stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 19:10:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 19:10:02'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 19:10:02'!
+ERROR!
+!Xx methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 19:10:09'!
+oppositeEnd
+	self shouldBeImplemented.
+	^oppositeEnd! !
+!Xx methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 19:10:15' prior: 50862237!
+oppositeEnd
+
+	^ oppositeEnd! !
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 19:10:18'!
+ERROR!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 19:10:29'!
+destination
+	self shouldBeImplemented.
+	^destination! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 19:10:35' prior: 50862248!
+destination
+
+	^ destination! !
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 19:10:36'!
+FAILURE!
+
+aTransfer source oppositeEnd!
+
+aTransfer source!
+!Xx methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 19:12:06' prior: 50862078!
+oppositeEnd: aYy 
+	
+	oppositeEnd := aYy! !
+!Yy methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 19:12:18' prior: 50862098!
+oppositeEnd: aXx 
+	
+	oppositeEnd := aXx ! !
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CanNotTransferToItself stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CanNotTransferANonPositiveAmount stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 19:12:21'!
+PASSED!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 20:46:45' prior: 50862111!
+initializeFor: aTransferAmount from: aTransferEmitter to: aTransferReceiver 
+
+	self assert: aTransferAmount > 0 description: [self error: self class cannotTransferANonPositiveAmountErrorDescription ].
+	self assert: aTransferEmitter ~= aTransferReceiver description: [self error: self class cannotTransferToItselfErrorDescription].
+	
+	Withdraw register: aTransferAmount on: aTransferEmitter.
+	Deposit register: aTransferAmount on: aTransferReceiver.
+	
+	Xx register: self on: aTransferEmitter. 
+	Yy register: self on: aTransferReceiver! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 20:47:24' prior: 50862377!
+initializeFor: aTransferAmount from: aTransferEmitter to: aTransferReceiver 
+
+	self assert: aTransferAmount > 0 description: [self error: self class cannotTransferANonPositiveAmountErrorDescription ].
+	self assert: aTransferEmitter ~= aTransferReceiver description: [self error: self class cannotTransferToItselfErrorDescription].
+	
+	Withdraw register: aTransferAmount on: aTransferEmitter.
+	Deposit register: aTransferAmount on: aTransferReceiver.
+	
+	source := Xx register: self on: aTransferEmitter. 
+	destination := Yy register: self on: aTransferReceiver! !
+
+!methodRemoval: Xx #oppositeEnd: stamp: 'JD 10/19/2021 20:48:00'!
+oppositeEnd: aYy 
+	
+	oppositeEnd := aYy!
+
+!methodRemoval: Yy #oppositeEnd: stamp: 'JD 10/19/2021 20:48:02'!
+oppositeEnd: aXx 
+	
+	oppositeEnd := aXx !
+!Xx class methodsFor: 'instance creation' stamp: 'JD 10/19/2021 20:54:25'!
+register: aTransfer on: aTransferEmitter 
+
+	| anXx |
+	anXx := self for: aTransfer.
+	aTransferEmitter register: anXx.
+	
+	^ anXx! !
+!Xx class methodsFor: 'instance creation' stamp: 'JD 10/19/2021 20:54:30' prior: 50862424!
+register: aTransfer on: aTransferEmitter 
+
+	| anXx |
+
+	anXx := self for: aTransfer.
+	aTransferEmitter register: anXx.
+	
+	^ anXx! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 20:59:12' prior: 50862397!
+initializeFor: aTransferAmount from: aTransferEmitter to: aTransferReceiver 
+
+	self assert: aTransferAmount > 0 description: [self error: self class cannotTransferANonPositiveAmountErrorDescription ].
+	self assert: aTransferEmitter ~= aTransferReceiver description: [self error: self class cannotTransferToItselfErrorDescription].
+	
+	source := Xx register: self on: aTransferEmitter. 
+	destination := Yy register: self on: aTransferReceiver! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CanNotTransferToItself stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CanNotTransferANonPositiveAmount stamp: 'JD 10/19/2021 20:59:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 20:59:15'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 20:59:15'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 20:59:15'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 20:59:32'!
+ERROR!
+!Xx class methodsFor: 'instance creation' stamp: 'JD 10/19/2021 20:59:43'!
+for: aTransfer 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aTransfer ! !
+!Xx class methodsFor: 'instance creation' stamp: 'JD 10/19/2021 21:00:26' prior: 50862561!
+for: aTransfer 
+
+	^ self new initializeFor: aTransfer ! !
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:00:27'!
+ERROR!
+!Yy class methodsFor: 'instance creation' stamp: 'JD 10/19/2021 21:00:35'!
+register: aTransfer on: aReceptiveAccount 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeRegister: aTransfer on: aReceptiveAccount ! !
+!Yy class methodsFor: 'instance creation' stamp: 'JD 10/19/2021 21:00:55' prior: 50862578!
+register: aTransfer on: aTransferEmitter 
+
+	| anYy |
+
+	anYy := self for: aTransfer.
+	aTransferEmitter register: anYy.
+	
+	^ anYy! !
+!Yy class methodsFor: 'instance creation' stamp: 'JD 10/19/2021 21:01:06' prior: 50862588!
+register: aTransfer on: aTransferReceiver
+
+	| anYy |
+
+	anYy := self for: aTransfer.
+	aTransferReceiver register: anYy.
+	
+	^ anYy! !
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:01:08'!
+ERROR!
+!Yy class methodsFor: 'instance creation' stamp: 'JD 10/19/2021 21:01:14'!
+for: aTransfer 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aTransfer ! !
+!Yy class methodsFor: 'instance creation' stamp: 'JD 10/19/2021 21:01:20' prior: 50862606!
+for: aTransfer 
+
+	^ self new initializeFor: aTransfer ! !
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:01:22'!
+ERROR!
+
+!classDefinition: #Xx category: 'Portfolio-Solucion' stamp: 'JD 10/19/2021 21:01:53'!
+Object subclass: #Xx
+	instanceVariableNames: 'transferAmount transfer oppositeEnd'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Xx methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:01:53' prior: 50862010!
+initializeFor: aTransferAmount
+
+	transfer := aTransferAmount.! !
+!Xx methodsFor: 'initialization' stamp: 'JD 10/19/2021 21:02:05' prior: 50862631!
+initializeFor: aTransfer
+
+	transfer := aTransfer.! !
+!Xx methodsFor: 'initialization' stamp: 'JD 10/19/2021 21:02:07' prior: 50862636!
+initializeFor: aTransfer
+
+	transfer := aTransfer! !
+
+!classDefinition: #Yy category: 'Portfolio-Solucion' stamp: 'JD 10/19/2021 21:02:34'!
+Object subclass: #Yy
+	instanceVariableNames: 'transferAmount transfer oppositeEnd'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Yy methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:02:34' prior: 50862057!
+initializeFor: aTransferAmount 
+
+	transfer := aTransferAmount! !
+!Yy methodsFor: 'initialization' stamp: 'JD 10/19/2021 21:02:40' prior: 50862654!
+initializeFor: aTransfer
+
+	transfer := aTransfer! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CanNotTransferToItself stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CanNotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:02:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:02:44'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:02:44'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 21:02:44'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 21:02:46'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:02:59'!
+ERROR!
+!Xx methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:03:12'!
+affectBalance: aSmallInteger 
+	self shouldBeImplemented.! !
+!Xx methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:03:58' prior: 50862772!
+affectBalance: aBalance 
+	
+	^ aBalance - transfer value! !
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:03:59'!
+ERROR!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JD 10/19/2021 21:04:48'!
+Object subclass: #Transfer
+	instanceVariableNames: 'source destination value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:04:47' prior: 50862438!
+initializeFor: aTransferAmount from: aTransferEmitter to: aTransferReceiver 
+
+	self assert: aTransferAmount > 0 description: [self error: self class cannotTransferANonPositiveAmountErrorDescription ].
+	self assert: aTransferEmitter ~= aTransferReceiver description: [self error: self class cannotTransferToItselfErrorDescription].
+	
+	value := aTransferAmount.
+	source := Xx register: self on: aTransferEmitter. 
+	destination := Yy register: self on: aTransferReceiver! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CanNotTransferToItself stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CanNotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:04:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:04:54'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:04:54'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 21:04:54'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:04:55'!
+ERROR!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:05:54' overrides: 16881508!
+value
+
+	^ value! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CanNotTransferToItself stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CanNotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:05:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:05:55'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 21:05:55'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:06:04'!
+ERROR!
+!Yy methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:06:10'!
+affectBalance: aSmallInteger 
+	self shouldBeImplemented.! !
+!Yy methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:06:31' prior: 50863029!
+affectBalance: aBalance 
+	
+	^ aBalance + transfer value! !
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:06:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 21:06:41'!
+FAILURE!
+
+ aTransfer source oppositeEnd!
+
+aTransfer source!
+!Xx methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:11:26' prior: 50862242!
+oppositeEnd
+
+	^ transfer oppositeEndOf: self! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CanNotTransferToItself stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CanNotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:11:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 21:11:40'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 21:11:40'!
+ERROR!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:12:01'!
+oppositeEndOf: aXx 
+	self shouldBeImplemented.! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:12:26' prior: 50863157!
+oppositeEndOf: aXx 
+	
+	^ destination! !
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 21:12:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CanNotTransferToItself stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CanNotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 21:12:31'!
+PASSED!
+
+Object subclass: #Xx
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Xx category: 'Portfolio-Solucion' stamp: 'JD 10/19/2021 21:16:09'!
+Object subclass: #Xx
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #Yy
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Yy category: 'Portfolio-Solucion' stamp: 'JD 10/19/2021 21:16:16'!
+Object subclass: #Yy
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CanNotTransferToItself stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CanNotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 21:16:23'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 21:18:08'!
+test13
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount aTransfer |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	aTransfer := Transfer register: 50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount.
+	
+	self assert: aTransfer destination oppositeEnd equals: aTransfer source ! !
+
+!testRun: #ReceptiveAccountTest #test13 stamp: 'JD 10/19/2021 21:18:10'!
+ERROR!
+!Yy methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:18:15'!
+oppositeEnd
+	self shouldBeImplemented.! !
+!Yy methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:18:31' prior: 50863417!
+oppositeEnd
+	
+	^ transfer oppositeEndOf: self! !
+
+!testRun: #ReceptiveAccountTest #test13 stamp: 'JD 10/19/2021 21:18:37'!
+FAILURE!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:21:05' prior: 50863162!
+oppositeEndOf: aXx 
+	
+	(aXx isKindOf: Xx) 
+		ifTrue: [^destination]
+		ifFalse: [^source]! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CanNotTransferToItself stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CanNotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13 stamp: 'JD 10/19/2021 21:21:11'!
+PASSED!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:22:52' prior: 50863430!
+oppositeEndOf: aXx 
+	
+	^ aXx zz: self! !
+!Xx methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:23:53'!
+zz
+
+	^ transfer oppositeEndOfAnXx! !
+!Yy methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:24:06'!
+zz
+
+	^ transfer oppositeEndOfAnYy! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:24:24'!
+oppositeEndOfAnXx 
+
+	^ destination! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:24:31'!
+oppositeEndOfAnYy 
+
+	^ source! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CanNotTransferToItself stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CanNotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 21:24:37'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test13 stamp: 'JD 10/19/2021 21:24:37'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 21:24:39'!
+ERROR!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CanNotTransferToItself stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CanNotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:24:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 21:24:53'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test13 stamp: 'JD 10/19/2021 21:24:53'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 21:24:56'!
+ERROR!
+!Xx methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:25:40' prior: 50863048!
+oppositeEnd
+
+	^ transfer destination! !
+!Yy methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:25:47' prior: 50863422!
+oppositeEnd
+	
+	^ transfer source! !
+
+!methodRemoval: Transfer #oppositeEndOfAnYy stamp: 'JD 10/19/2021 21:25:54'!
+oppositeEndOfAnYy 
+
+	^ source!
+
+!methodRemoval: Transfer #oppositeEndOfAnXx stamp: 'JD 10/19/2021 21:25:56'!
+oppositeEndOfAnXx 
+
+	^ destination!
+
+!methodRemoval: Transfer #oppositeEndOf: stamp: 'JD 10/19/2021 21:25:58'!
+oppositeEndOf: aXx 
+	
+	^ aXx zz: self!
+
+!methodRemoval: Yy #zz stamp: 'JD 10/19/2021 21:26:13'!
+zz
+
+	^ transfer oppositeEndOfAnYy!
+
+!methodRemoval: Xx #zz stamp: 'JD 10/19/2021 21:26:15'!
+zz
+
+	^ transfer oppositeEndOfAnXx!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CanNotTransferToItself stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CanNotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13 stamp: 'JD 10/19/2021 21:26:39'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 21:27:38'!
+test12CanNavigateFromSourceToDestinationOfATransfer
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount aTransfer |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	aTransfer := Transfer register: 50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount.
+	
+	self assert: aTransfer source oppositeEnd equals: aTransfer destination ! !
+
+!methodRemoval: ReceptiveAccountTest #test12 stamp: 'JD 10/19/2021 21:27:38'!
+test12
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount aTransfer |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	aTransfer := Transfer register: 50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount.
+	
+	self assert: aTransfer source oppositeEnd equals: aTransfer destination !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 21:28:00'!
+test13CanNavigateFromDestinationToSourceOfATransfer
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount aTransfer |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	aTransfer := Transfer register: 50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount.
+	
+	self assert: aTransfer destination oppositeEnd equals: aTransfer source ! !
+
+!methodRemoval: ReceptiveAccountTest #test13 stamp: 'JD 10/19/2021 21:28:00'!
+test13
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount aTransfer |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	aTransfer := Transfer register: 50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount.
+	
+	self assert: aTransfer destination oppositeEnd equals: aTransfer source !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 21:28:11'!
+test08CannotTransferToItself
+	
+	| aReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	self should: [Transfer register: 50 from: aReceptiveAccount to: aReceptiveAccount] 
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Transfer cannotTransferToItselfErrorDescription ]! !
+
+!methodRemoval: ReceptiveAccountTest #test08CanNotTransferToItself stamp: 'JD 10/19/2021 21:28:11'!
+test08CanNotTransferToItself
+	
+	| aReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	self should: [Transfer register: 50 from: aReceptiveAccount to: aReceptiveAccount] 
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Transfer cannotTransferToItselfErrorDescription ]!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 21:28:16'!
+test09CannotTransferANonPositiveAmount
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	self should: [Transfer register: -50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount] 
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Transfer cannotTransferANonPositiveAmountErrorDescription ]! !
+
+!methodRemoval: ReceptiveAccountTest #test09CanNotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:28:16'!
+test09CanNotTransferANonPositiveAmount
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	self should: [Transfer register: -50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount] 
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Transfer cannotTransferANonPositiveAmountErrorDescription ]!
+
+!testRun: #ReceptiveAccountTest #test12CanNavigateFromSourceToDestinationOfATransfer stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CannotTransferToItself stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CannotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CanNavigateFromSourceToDestinationOfATransfer stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13CanNavigateFromDestinationToSourceOfATransfer stamp: 'JD 10/19/2021 21:28:26'!
+PASSED!
+
+Object subclass: #EndpointTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #EndpointTransfer category: 'Portfolio-Solucion' stamp: 'JD 10/19/2021 21:30:50'!
+Object subclass: #EndpointTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+EndpointTransfer subclass: #Xx
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Xx category: 'Portfolio-Solucion' stamp: 'JD 10/19/2021 21:31:10'!
+EndpointTransfer subclass: #Xx
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+EndpointTransfer subclass: #Yy
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Yy category: 'Portfolio-Solucion' stamp: 'JD 10/19/2021 21:31:18'!
+EndpointTransfer subclass: #Yy
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRenamed: #Xx as: #SourceTransfer stamp: 'JD 10/19/2021 21:32:13'!
+Smalltalk renameClassNamed: #Xx as: #SourceTransfer!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:32:13' prior: 50862794!
+initializeFor: aTransferAmount from: aTransferEmitter to: aTransferReceiver 
+
+	self assert: aTransferAmount > 0 description: [self error: self class cannotTransferANonPositiveAmountErrorDescription ].
+	self assert: aTransferEmitter ~= aTransferReceiver description: [self error: self class cannotTransferToItselfErrorDescription].
+	
+	value := aTransferAmount.
+	source := SourceTransfer register: self on: aTransferEmitter. 
+	destination := Yy register: self on: aTransferReceiver! !
+
+!classRenamed: #Yy as: #DestinationTransfer stamp: 'JD 10/19/2021 21:32:28'!
+Smalltalk renameClassNamed: #Yy as: #DestinationTransfer!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:32:28' prior: 50864179!
+initializeFor: aTransferAmount from: aTransferEmitter to: aTransferReceiver 
+
+	self assert: aTransferAmount > 0 description: [self error: self class cannotTransferANonPositiveAmountErrorDescription ].
+	self assert: aTransferEmitter ~= aTransferReceiver description: [self error: self class cannotTransferToItselfErrorDescription].
+	
+	value := aTransferAmount.
+	source := SourceTransfer register: self on: aTransferEmitter. 
+	destination := DestinationTransfer register: self on: aTransferReceiver! !
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CannotTransferToItself stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CannotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CanNavigateFromSourceToDestinationOfATransfer stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13CanNavigateFromDestinationToSourceOfATransfer stamp: 'JD 10/19/2021 21:32:40'!
+PASSED!
+!EndpointTransfer methodsFor: 'no messages' stamp: 'JD 10/19/2021 21:33:03'!
+affectBalance: aBalance
+
+	self subclassResponsibility ! !
+!EndpointTransfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:33:08'!
+initializeFor: aTransfer
+
+	self subclassResponsibility ! !
+!EndpointTransfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:33:13'!
+oppositeEnd
+	self subclassResponsibility ! !
+!EndpointTransfer methodsFor: 'as yet unclassified' stamp: 'JD 10/19/2021 21:33:14' prior: 50864342!
+oppositeEnd
+
+	self subclassResponsibility ! !
+!EndpointTransfer class methodsFor: 'instance creation' stamp: 'JD 10/19/2021 21:33:40'!
+for: aTransfer 
+
+	^ self new initializeFor: aTransfer ! !
+
+!methodRemoval: DestinationTransfer class #for: stamp: 'JD 10/19/2021 21:33:40'!
+for: aTransfer 
+
+	^ self new initializeFor: aTransfer !
+
+!methodRemoval: SourceTransfer class #for: stamp: 'JD 10/19/2021 21:33:54'!
+for: aTransfer 
+
+	^ self new initializeFor: aTransfer !
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CannotTransferToItself stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CannotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CanNavigateFromSourceToDestinationOfATransfer stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13CanNavigateFromDestinationToSourceOfATransfer stamp: 'JD 10/19/2021 21:34:01'!
+PASSED!
+
+!methodRemoval: SourceTransfer class #register: stamp: 'JD 10/19/2021 21:34:29'!
+register: aTransferAmount 
+
+	^ self new initializeFor: aTransferAmount !
+
+!methodRemoval: DestinationTransfer class #register: stamp: 'JD 10/19/2021 21:34:34'!
+register: aTransferAmount
+	
+	^ self new initializeFor: aTransferAmount!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CannotTransferToItself stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CannotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CanNavigateFromSourceToDestinationOfATransfer stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13CanNavigateFromDestinationToSourceOfATransfer stamp: 'JD 10/19/2021 21:34:36'!
+PASSED!
+!EndpointTransfer class methodsFor: 'instance creation' stamp: 'JD 10/19/2021 21:34:50'!
+register: aTransfer on: aTransferReceiver
+
+	| anYy |
+
+	anYy := self for: aTransfer.
+	aTransferReceiver register: anYy.
+	
+	^ anYy! !
+
+!methodRemoval: DestinationTransfer class #register:on: stamp: 'JD 10/19/2021 21:34:50'!
+register: aTransfer on: aTransferReceiver
+
+	| anYy |
+
+	anYy := self for: aTransfer.
+	aTransferReceiver register: anYy.
+	
+	^ anYy!
+
+!methodRemoval: SourceTransfer class #register:on: stamp: 'JD 10/19/2021 21:34:54'!
+register: aTransfer on: aTransferEmitter 
+
+	| anXx |
+
+	anXx := self for: aTransfer.
+	aTransferEmitter register: anXx.
+	
+	^ anXx!
+!EndpointTransfer class methodsFor: 'instance creation' stamp: 'JD 10/19/2021 21:36:01' prior: 50864599!
+register: aTransfer on: aReceptiveAccount
+
+	| anEndpointTransfer |
+
+	anEndpointTransfer := self for: aTransfer.
+	aReceptiveAccount register: anEndpointTransfer.
+	
+	^ anEndpointTransfer! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CannotTransferToItself stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CannotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CanNavigateFromSourceToDestinationOfATransfer stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13CanNavigateFromDestinationToSourceOfATransfer stamp: 'JD 10/19/2021 21:36:02'!
+PASSED!
+
+EndpointTransfer subclass: #DestinationTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #DestinationTransfer category: 'Portfolio-Solucion' stamp: 'JD 10/19/2021 21:36:45'!
+EndpointTransfer subclass: #DestinationTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+EndpointTransfer subclass: #SourceTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #SourceTransfer category: 'Portfolio-Solucion' stamp: 'JD 10/19/2021 21:36:49'!
+EndpointTransfer subclass: #SourceTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #EndpointTransfer
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #EndpointTransfer category: 'Portfolio-Solucion' stamp: 'JD 10/19/2021 21:36:52'!
+Object subclass: #EndpointTransfer
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!methodRemoval: EndpointTransfer #initializeFor: stamp: 'JD 10/19/2021 21:37:14'!
+initializeFor: aTransfer
+
+	self subclassResponsibility !
+!EndpointTransfer methodsFor: 'initialization' stamp: 'JD 10/19/2021 21:37:18'!
+initializeFor: aTransfer
+
+	transfer := aTransfer! !
+
+!methodRemoval: SourceTransfer #initializeFor: stamp: 'JD 10/19/2021 21:37:18'!
+initializeFor: aTransfer
+
+	transfer := aTransfer!
+
+!methodRemoval: DestinationTransfer #initializeFor: stamp: 'JD 10/19/2021 21:37:21'!
+initializeFor: aTransfer
+
+	transfer := aTransfer!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CannotTransferToItself stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CannotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CanNavigateFromSourceToDestinationOfATransfer stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13CanNavigateFromDestinationToSourceOfATransfer stamp: 'JD 10/19/2021 21:37:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CannotTransferToItself stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CannotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CanNavigateFromSourceToDestinationOfATransfer stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13CanNavigateFromDestinationToSourceOfATransfer stamp: 'JD 10/19/2021 21:41:02'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 21:46:04'!
+assertThatRegister: aTransferAmount from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount shouldRaiseErrorWithDescription: anErrorDescription
+
+	self should: [Transfer register: aTransferAmount from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount] 
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = anErrorDescription]! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 21:46:56' prior: 50863963!
+test08CannotTransferToItself
+	
+	| aReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	self assertThatRegister: 50 from: aReceptiveAccount to: aReceptiveAccount shouldRaiseErrorWithDescription: Transfer cannotTransferToItselfErrorDescription.
+! !
+
+!testRun: #ReceptiveAccountTest #test08CannotTransferToItself stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CannotTransferToItself stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CannotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CanNavigateFromSourceToDestinationOfATransfer stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13CanNavigateFromDestinationToSourceOfATransfer stamp: 'JD 10/19/2021 21:46:59'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 21:47:39' prior: 50863991!
+test09CannotTransferANonPositiveAmount
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	self assertThatRegister: -50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount shouldRaiseErrorWithDescription: Transfer cannotTransferANonPositiveAmountErrorDescription.! !
+
+!testRun: #ReceptiveAccountTest #test09CannotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CannotTransferToItself stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CannotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CanNavigateFromSourceToDestinationOfATransfer stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13CanNavigateFromDestinationToSourceOfATransfer stamp: 'JD 10/19/2021 21:47:40'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 21:50:56'!
+createATransfer
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	^ Transfer register: 50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 21:51:10' prior: 50863905!
+test12CanNavigateFromSourceToDestinationOfATransfer
+
+	| aTransfer |
+	aTransfer := self createATransfer.
+	
+	self assert: aTransfer source oppositeEnd equals: aTransfer destination ! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 21:51:14' prior: 50865287!
+test12CanNavigateFromSourceToDestinationOfATransfer
+
+	| aTransfer |
+
+	aTransfer := self createATransfer.
+	
+	self assert: aTransfer source oppositeEnd equals: aTransfer destination ! !
+
+!testRun: #ReceptiveAccountTest #test12CanNavigateFromSourceToDestinationOfATransfer stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CannotTransferToItself stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CannotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CanNavigateFromSourceToDestinationOfATransfer stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13CanNavigateFromDestinationToSourceOfATransfer stamp: 'JD 10/19/2021 21:51:16'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 21:51:22' prior: 50863934!
+test13CanNavigateFromDestinationToSourceOfATransfer
+
+	| aTransfer |
+
+	aTransfer := self createATransfer.
+	
+	self assert: aTransfer destination oppositeEnd equals: aTransfer source ! !
+
+!testRun: #ReceptiveAccountTest #test13CanNavigateFromDestinationToSourceOfATransfer stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08CannotTransferToItself stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09CannotTransferANonPositiveAmount stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CanNavigateFromSourceToDestinationOfATransfer stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13CanNavigateFromDestinationToSourceOfATransfer stamp: 'JD 10/19/2021 21:51:24'!
+PASSED!
+
+----SNAPSHOT----(19 October 2021 21:54:25) CuisUniversity-4532.image priorSource: 16934863!
+
+----SNAPSHOT----(19 October 2021 21:57:36) CuisUniversity-4532.image priorSource: 17084361!

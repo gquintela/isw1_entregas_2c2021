@@ -221,24 +221,6 @@ TestCase subclass: #ReceptiveAccountTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 21:46:04'!
-assertThatRegister: aTransferAmount from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount shouldRaiseErrorWithDescription: anErrorDescription
-
-	self should: [Transfer register: aTransferAmount from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount] 
-		raise:  Error - MessageNotUnderstood 
-		withExceptionDo: [ :anError |
-			self assert: anError messageText = anErrorDescription]! !
-
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 21:50:56'!
-createATransfer
-	
-	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
-	
-	anEmitterReceptiveAccount := ReceptiveAccount new.
-	aReceiverReceptiveAccount := ReceptiveAccount new.
-	
-	^ Transfer register: 50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount! !
-
 !ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:19:48'!
 test01ReceptiveAccountHaveZeroAsBalanceWhenCreated 
 
@@ -322,8 +304,220 @@ test07AccountKnowsItsTransactions
 	self assert: (account1 transactions includes: deposit1).
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 21:46:56'!
-test08CannotTransferToItself
+
+!classDefinition: #ReportTest category: 'Portfolio-Solucion'!
+TestCase subclass: #ReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!ReportTest methodsFor: 'account summary tests' stamp: 'JD 10/22/2021 21:45:11'!
+test01CanCalculateTheAccountSummaryOfAnEmptyReceptiveAccount
+	
+	| aReceptiveAccount anExpectedAccountSummary |
+	
+	aReceptiveAccount := self createAnEmptyReceptiveAccount.
+	anExpectedAccountSummary := OrderedCollection with: 'Balance = 0'.
+
+	self assertThatAccountSummaryFor: aReceptiveAccount is: anExpectedAccountSummary 
+! !
+
+!ReportTest methodsFor: 'account summary tests' stamp: 'JD 10/22/2021 21:44:10'!
+test02CanCalculateTheAccountSummaryOfAReceptiveAccountWithADeposit
+	
+	| aReceptiveAccount expectedAccountSummary |
+	
+	aReceptiveAccount := self createAReceptiveAccountWithADepositOf100.
+	expectedAccountSummary := OrderedCollection with: 'Depósito por 100.' with: 'Balance = 100'.
+
+	self assertThatAccountSummaryFor: aReceptiveAccount is: expectedAccountSummary! !
+
+!ReportTest methodsFor: 'account summary tests' stamp: 'JD 10/22/2021 21:46:34'!
+test03CanCalculateTheAccountSummaryOfAnEmptyReceptiveAWithdraw
+	
+	| aReceptiveAccount anExpectedAccountSummary |
+	
+	aReceptiveAccount := self createAReceptiveAccountWithAWithdrawOf100.
+	anExpectedAccountSummary := OrderedCollection with: 'Extracción por 100.' with: 'Balance = -100'.
+
+	self assertThatAccountSummaryFor: aReceptiveAccount is: anExpectedAccountSummary! !
+
+!ReportTest methodsFor: 'account summary tests' stamp: 'JD 10/22/2021 21:59:04'!
+test04CanCalculateTheAccountSummaryOfATransferEmitterReceptiveAccount
+	
+	| aTransferEmitter anExpectedAccountSummary |
+	
+	aTransferEmitter := self createATransferEmitterOf100.
+	anExpectedAccountSummary := (OrderedCollection with: 'Salida por transferencia de 100.' with: 'Balance = -100').
+
+	self assertThatAccountSummaryFor: aTransferEmitter is: anExpectedAccountSummary! !
+
+!ReportTest methodsFor: 'account summary tests' stamp: 'JD 10/22/2021 22:00:18'!
+test05CanCalculateTheAccountSummaryOfATransferReceiverReceptiveAccount
+	
+	| aTransferReceiver anExpectedAccountSummary |
+	
+	aTransferReceiver := self createATransferReceiverOf100.
+	anExpectedAccountSummary := (OrderedCollection with: 'Entrada por transferencia de 100.' with: 'Balance = 100').
+
+	self assertThatAccountSummaryFor: aTransferReceiver is: anExpectedAccountSummary! !
+
+!ReportTest methodsFor: 'account summary tests' stamp: 'JD 10/22/2021 21:55:10'!
+test06CanCalculateTheAccountSummaryOfAnEmptyPortfolio
+	
+	| anExpectedAccountSummary anEmptyPortfolio |
+	
+	anEmptyPortfolio := Portfolio new.
+	anExpectedAccountSummary := OrderedCollection with: 'Balance = 0'.
+	
+	self assertThatAccountSummaryFor: anEmptyPortfolio is: anExpectedAccountSummary! !
+
+!ReportTest methodsFor: 'account summary tests' stamp: 'JD 10/22/2021 21:52:54'!
+test07CanCalculateTheAccountSummaryOfAPortfolioWithAReceptiveAccount
+	
+	| aPortfolio aReceptiveAccount anExpectedAccountSummary |
+	
+	aReceptiveAccount := self createAReceptiveAccountWithADepositOf100.
+	aPortfolio := Portfolio with: aReceptiveAccount.
+	anExpectedAccountSummary := OrderedCollection with: 'Depósito por 100.' with: 'Balance = 100'.
+
+	self assertThatAccountSummaryFor: aPortfolio is: anExpectedAccountSummary! !
+
+
+!ReportTest methodsFor: 'transfer net tests' stamp: 'JD 10/22/2021 21:29:06'!
+test08TransferNetOfAnEmptyReceptiveAccountIsZero
+	
+	self assertThatTransferNetFor: self createAnEmptyReceptiveAccount is: 0
+	! !
+
+!ReportTest methodsFor: 'transfer net tests' stamp: 'JD 10/22/2021 21:58:36'!
+test09EmitingATransferDecreasesTheTransferNet
+	
+	| aTransferEmitter |
+	
+	aTransferEmitter := self createATransferEmitterOf100.
+	
+	self assertThatTransferNetFor: aTransferEmitter is: -100! !
+
+!ReportTest methodsFor: 'transfer net tests' stamp: 'JD 10/22/2021 22:00:02'!
+test10ReceivingATransferIncreasesTransferNet
+	
+	| aTransferReceiver |
+	
+	aTransferReceiver := self createATransferReceiverOf100.
+	
+	self assertThatTransferNetFor: aTransferReceiver is: 100! !
+
+!ReportTest methodsFor: 'transfer net tests' stamp: 'JD 10/22/2021 21:34:45'!
+test11TransferNetIsTheDifferenceBetweenTheReceivedAndEmittedTransfers
+	
+	| aReceptiveAccount anotherReceptiveAccount |
+	
+	aReceptiveAccount := self createAnEmptyReceptiveAccount.
+	anotherReceptiveAccount := self createAnEmptyReceptiveAccount.
+	Transfer register: 100 from: aReceptiveAccount to: anotherReceptiveAccount.
+	Transfer register: 10 from: anotherReceptiveAccount to: aReceptiveAccount.
+
+	self assertThatTransferNetFor: aReceptiveAccount is: -90
+	! !
+
+!ReportTest methodsFor: 'transfer net tests' stamp: 'JD 10/22/2021 21:31:21'!
+test12DepositDoesNotAffectTransferNet
+	
+	| aReceptiveAccount |
+	
+	aReceptiveAccount := self createAReceptiveAccountWithADepositOf100.
+	
+	self assertThatTransferNetFor: aReceptiveAccount is: 0! !
+
+!ReportTest methodsFor: 'transfer net tests' stamp: 'JD 10/22/2021 21:32:00'!
+test13WithdrawDoesNotAffectTransferNet
+	
+	| aReceptiveAccount |
+	
+	aReceptiveAccount := self createAReceptiveAccountWithAWithdrawOf100.
+	
+	self assertThatTransferNetFor: aReceptiveAccount is: 0
+	! !
+
+
+!ReportTest methodsFor: 'assertions' stamp: 'JD 10/22/2021 21:41:35'!
+assertThatAccountSummaryFor: anAccount is: anExpectedAccountSummary
+	
+	| anAccountSummaryCalculator |
+	
+	anAccountSummaryCalculator := AccountSummaryCalculator for: anAccount.
+	
+	self assert: anExpectedAccountSummary equals: anAccountSummaryCalculator calculate! !
+
+!ReportTest methodsFor: 'assertions' stamp: 'JD 10/22/2021 21:28:36'!
+assertThatTransferNetFor: aReceptiveAccount is: aTransferNetAmount
+	
+	| aTransferNetCalculator |
+	
+	aTransferNetCalculator := TransferNetCalculator for: aReceptiveAccount.
+	self assert: aTransferNetAmount equals: aTransferNetCalculator calculate
+	! !
+
+
+!ReportTest methodsFor: 'creations' stamp: 'JD 10/22/2021 21:26:18'!
+createAReceptiveAccountWithADepositOf100
+	
+	| aReceptiveAccount |
+	
+	aReceptiveAccount := self createAnEmptyReceptiveAccount.
+	Deposit register: 100 on: aReceptiveAccount.
+	
+	^ aReceptiveAccount ! !
+
+!ReportTest methodsFor: 'creations' stamp: 'JD 10/22/2021 21:24:58'!
+createAReceptiveAccountWithAWithdrawOf100
+	
+	|  aReceptiveAccount |
+	
+	aReceptiveAccount := self createAnEmptyReceptiveAccount.
+	Withdraw register: 100 on: aReceptiveAccount.
+
+	^ aReceptiveAccount ! !
+
+!ReportTest methodsFor: 'creations' stamp: 'JD 10/22/2021 21:58:36'!
+createATransferEmitterOf100
+
+	| aTransferEmitter aTransferReceiver |
+	
+	aTransferEmitter := self createAnEmptyReceptiveAccount.
+	aTransferReceiver := self createAnEmptyReceptiveAccount.
+	Transfer register: 100 from: aTransferEmitter to: aTransferReceiver.
+
+	^ aTransferEmitter ! !
+
+!ReportTest methodsFor: 'creations' stamp: 'JD 10/22/2021 21:59:35'!
+createATransferReceiverOf100
+	
+	| aTransferEmitter aTransferReceiver |
+	
+	aTransferEmitter := self createAnEmptyReceptiveAccount.
+	aTransferReceiver := self createAnEmptyReceptiveAccount.
+	Transfer register: 100 from: aTransferEmitter to: aTransferReceiver.
+	
+	^ aTransferReceiver! !
+
+!ReportTest methodsFor: 'creations' stamp: 'JD 10/22/2021 21:22:41'!
+createAnEmptyReceptiveAccount
+
+	^ ReceptiveAccount new! !
+
+
+!classDefinition: #TransferTest category: 'Portfolio-Solucion'!
+TestCase subclass: #TransferTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferTest methodsFor: 'transfer tests' stamp: 'JD 10/20/2021 17:13:05'!
+test01CannotTransferToItself
 	
 	| aReceptiveAccount |
 	
@@ -332,8 +526,8 @@ test08CannotTransferToItself
 	self assertThatRegister: 50 from: aReceptiveAccount to: aReceptiveAccount shouldRaiseErrorWithDescription: Transfer cannotTransferToItselfErrorDescription.
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 21:47:39'!
-test09CannotTransferANonPositiveAmount
+!TransferTest methodsFor: 'transfer tests' stamp: 'JD 10/20/2021 17:13:10'!
+test02CannotTransferANonPositiveAmount
 	
 	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
 	
@@ -342,8 +536,8 @@ test09CannotTransferANonPositiveAmount
 	
 	self assertThatRegister: -50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount shouldRaiseErrorWithDescription: Transfer cannotTransferANonPositiveAmountErrorDescription.! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 18:40:33'!
-test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter
+!TransferTest methodsFor: 'transfer tests' stamp: 'JD 10/20/2021 17:13:17'!
+test03ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter
 	
 	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
 	
@@ -354,8 +548,8 @@ test10ATransferDecreasesTheBalanceOfTheReceptiveAccountEmitter
 
 	self assert: -50 equals: anEmitterReceptiveAccount balance! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 18:41:05'!
-test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver
+!TransferTest methodsFor: 'transfer tests' stamp: 'JD 10/20/2021 17:13:24'!
+test04ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver
 	
 	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
 	
@@ -366,8 +560,8 @@ test11ATransferIncreasesTheBalanceOfTheReceptiveAccountReceiver
 	
 	self assert: 50 equals: aReceiverReceptiveAccount balance! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 21:51:14'!
-test12CanNavigateFromSourceToDestinationOfATransfer
+!TransferTest methodsFor: 'transfer tests' stamp: 'JD 10/20/2021 17:13:29'!
+test05CanNavigateFromSourceToDestinationOfATransfer
 
 	| aTransfer |
 
@@ -375,14 +569,34 @@ test12CanNavigateFromSourceToDestinationOfATransfer
 	
 	self assert: aTransfer source oppositeEnd equals: aTransfer destination ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JD 10/19/2021 21:51:22'!
-test13CanNavigateFromDestinationToSourceOfATransfer
+!TransferTest methodsFor: 'transfer tests' stamp: 'JD 10/20/2021 17:13:34'!
+test06CanNavigateFromDestinationToSourceOfATransfer
 
 	| aTransfer |
 
 	aTransfer := self createATransfer.
 	
 	self assert: aTransfer destination oppositeEnd equals: aTransfer source ! !
+
+
+!TransferTest methodsFor: 'creation' stamp: 'JD 10/20/2021 17:12:10'!
+createATransfer
+	
+	| anEmitterReceptiveAccount aReceiverReceptiveAccount |
+	
+	anEmitterReceptiveAccount := ReceptiveAccount new.
+	aReceiverReceptiveAccount := ReceptiveAccount new.
+	
+	^ Transfer register: 50 from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount! !
+
+
+!TransferTest methodsFor: 'assertions' stamp: 'JD 10/20/2021 17:12:13'!
+assertThatRegister: aTransferAmount from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount shouldRaiseErrorWithDescription: anErrorDescription
+
+	self should: [Transfer register: aTransferAmount from: anEmitterReceptiveAccount to: aReceiverReceptiveAccount] 
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = anErrorDescription]! !
 
 
 !classDefinition: #Account category: 'Portfolio-Solucion'!
@@ -423,6 +637,12 @@ transactions
 !Account methodsFor: 'composition' stamp: 'HAW 5/25/2019 12:24:04'!
 addedTo: aPortfolio
 
+	self subclassResponsibility ! !
+
+
+!Account methodsFor: 'visitor accepting' stamp: 'JD 10/22/2021 20:18:45'!
+accept: aVisitor 
+	
 	self subclassResponsibility ! !
 
 
@@ -537,25 +757,32 @@ signalCanNotAddAccount
 	
 	self error: self class canNotAddAccountErrorMessage! !
 
+
+!Portfolio methodsFor: 'visitor accepting' stamp: 'JD 10/22/2021 20:16:18'!
+accept: aVisitor 
+	
+	accounts do: [ :anAccount | anAccount accept: aVisitor]! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Portfolio class' category: 'Portfolio-Solucion'!
 Portfolio class
 	instanceVariableNames: ''!
 
-!Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:48:55'!
+!Portfolio class methodsFor: 'error messages' stamp: 'HAW 5/25/2019 11:48:55'!
 canNotAddAccountErrorMessage
 	
 	^'Can not add repeated account to a portfolio'! !
 
-!Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:18:21'!
+
+!Portfolio class methodsFor: 'instance creation' stamp: 'HAW 5/25/2019 11:18:21'!
 with: anAccount
 
 	^self new 
 		add: anAccount;
 		yourself! !
 
-!Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:23:59'!
+!Portfolio class methodsFor: 'instance creation' stamp: 'HAW 5/25/2019 11:23:59'!
 with: anAccount with: anotherAccount
 
 	^self new 
@@ -620,6 +847,12 @@ addedTo: aPortfolio
 	
 	! !
 
+
+!ReceptiveAccount methodsFor: 'visitor accepting' stamp: 'JD 10/22/2021 18:51:18'!
+accept: aVisitor
+
+	transactions do: [ :aTransaction | aTransaction accept: aVisitor]! !
+
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
 Object subclass: #AccountTransaction
@@ -669,6 +902,11 @@ initializeFor: aValue
 	value := aValue ! !
 
 
+!Deposit methodsFor: 'value' stamp: 'JD 10/22/2021 18:54:04'!
+accept: aVisitor
+
+	aVisitor visitDeposit: self! !
+
 !Deposit methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:38'!
 value
 
@@ -716,6 +954,12 @@ affectBalance: aBalance
 
 	^aBalance - value! !
 
+
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'JD 10/22/2021 19:27:08'!
+accept: aVisitor 
+	
+	^ aVisitor visitWithdraw: self! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Withdraw class' category: 'Portfolio-Solucion'!
@@ -751,6 +995,11 @@ affectBalance: aBalance
 oppositeEnd
 
 	self subclassResponsibility ! !
+
+!EndpointTransfer methodsFor: 'opposite end' stamp: 'JD 10/22/2021 19:54:42'!
+value
+	
+	^ transfer value! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -792,6 +1041,12 @@ oppositeEnd
 	
 	^ transfer source! !
 
+
+!DestinationTransfer methodsFor: 'as yet unclassified' stamp: 'JD 10/22/2021 19:53:23'!
+accept: aVisitor 
+	
+	aVisitor visitDestinationTransfer: self! !
+
 
 !classDefinition: #SourceTransfer category: 'Portfolio-Solucion'!
 EndpointTransfer subclass: #SourceTransfer
@@ -810,6 +1065,148 @@ affectBalance: aBalance
 oppositeEnd
 
 	^ transfer destination! !
+
+
+!SourceTransfer methodsFor: 'as yet unclassified' stamp: 'JD 10/22/2021 19:49:06'!
+accept: aVisitor 
+	
+	aVisitor visitSourceTransfer: self! !
+
+
+!classDefinition: #ReportCalculator category: 'Portfolio-Solucion'!
+Object subclass: #ReportCalculator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!ReportCalculator methodsFor: 'visit' stamp: 'JD 10/22/2021 21:18:44'!
+visitDeposit: aDeposit
+
+	self subclassResponsibility ! !
+
+!ReportCalculator methodsFor: 'visit' stamp: 'JD 10/22/2021 21:18:49'!
+visitDestinationTransfer: aDestinationTransfer 
+
+	self subclassResponsibility ! !
+
+!ReportCalculator methodsFor: 'visit' stamp: 'JD 10/22/2021 21:18:56'!
+visitSourceTransfer: aSourceTransfer 
+
+	self subclassResponsibility ! !
+
+!ReportCalculator methodsFor: 'visit' stamp: 'JD 10/22/2021 21:19:01'!
+visitWithdraw: aWithdraw 
+
+	self subclassResponsibility ! !
+
+
+!ReportCalculator methodsFor: 'calculate' stamp: 'JD 10/22/2021 21:18:16'!
+calculate
+
+	self subclassResponsibility ! !
+
+
+!ReportCalculator methodsFor: 'initialization' stamp: 'JD 10/22/2021 21:18:37'!
+initializeFor: anAccount
+
+	self subclassResponsibility ! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'ReportCalculator class' category: 'Portfolio-Solucion'!
+ReportCalculator class
+	instanceVariableNames: ''!
+
+!ReportCalculator class methodsFor: 'instance creation' stamp: 'JD 10/22/2021 21:19:43'!
+for: anAccount 
+	
+	^ self new initializeFor: anAccount! !
+
+
+!classDefinition: #AccountSummaryCalculator category: 'Portfolio-Solucion'!
+ReportCalculator subclass: #AccountSummaryCalculator
+	instanceVariableNames: 'account transactionsSummary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!AccountSummaryCalculator methodsFor: 'visit' stamp: 'JD 10/22/2021 19:30:40'!
+visitDeposit: aDeposit
+	
+	transactionsSummary add: ('Depósito por ', aDeposit value asString, '.')! !
+
+!AccountSummaryCalculator methodsFor: 'visit' stamp: 'JD 10/22/2021 19:54:07'!
+visitDestinationTransfer: aDestinationTransfer 
+	
+	transactionsSummary add: ('Entrada por transferencia de ', aDestinationTransfer value asString, '.')! !
+
+!AccountSummaryCalculator methodsFor: 'visit' stamp: 'JD 10/22/2021 19:50:12'!
+visitSourceTransfer: aSourceTransfer 
+
+	transactionsSummary add: ('Salida por transferencia de ', aSourceTransfer value asString, '.')! !
+
+!AccountSummaryCalculator methodsFor: 'visit' stamp: 'JD 10/22/2021 19:30:33'!
+visitWithdraw: aWithdraw 
+
+	transactionsSummary add: ('Extracción por ', aWithdraw value asString, '.')! !
+
+
+!AccountSummaryCalculator methodsFor: 'initialization' stamp: 'JD 10/20/2021 17:45:54'!
+initializeFor: anAccount
+	
+	account := anAccount! !
+
+
+!AccountSummaryCalculator methodsFor: 'calculate' stamp: 'JD 10/22/2021 21:16:34'!
+calculate
+	
+	| balanceSummary |
+
+	transactionsSummary := OrderedCollection new.
+	account accept: self.
+	balanceSummary := OrderedCollection with: ('Balance = ', (account balance asString)).
+	
+	^ transactionsSummary, balanceSummary! !
+
+
+!classDefinition: #TransferNetCalculator category: 'Portfolio-Solucion'!
+ReportCalculator subclass: #TransferNetCalculator
+	instanceVariableNames: 'account transferNet'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferNetCalculator methodsFor: 'initialization' stamp: 'JD 10/22/2021 20:31:53'!
+initializeFor: anAccount 
+
+	account := anAccount! !
+
+
+!TransferNetCalculator methodsFor: 'visit' stamp: 'JD 10/22/2021 20:58:59'!
+visitDeposit: aDeposit! !
+
+!TransferNetCalculator methodsFor: 'visit' stamp: 'JD 10/22/2021 21:11:56'!
+visitDestinationTransfer: aDestinationTransfer 
+	
+	transferNet := transferNet + aDestinationTransfer value! !
+
+!TransferNetCalculator methodsFor: 'visit' stamp: 'JD 10/22/2021 21:11:56'!
+visitSourceTransfer: aSourceTransfer 
+	
+	transferNet := transferNet - aSourceTransfer value! !
+
+!TransferNetCalculator methodsFor: 'visit' stamp: 'JD 10/22/2021 20:59:21'!
+visitWithdraw: aWithdraw! !
+
+
+!TransferNetCalculator methodsFor: 'calculate' stamp: 'JD 10/22/2021 21:16:54'!
+calculate
+	
+	transferNet := 0.
+	account accept: self.
+	
+	^ transferNet! !
 
 
 !classDefinition: #Transfer category: 'Portfolio-Solucion'!

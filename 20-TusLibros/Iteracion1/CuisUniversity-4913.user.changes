@@ -1,0 +1,2677 @@
+
+
+----QUIT----(13 October 2021 15:20:10) CuisUniversity-4913.image priorSource: 14638157!
+
+----STARTUP---- (13 October 2021 15:20:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4913.image!
+
+
+----QUIT----(13 October 2021 15:20:10) CuisUniversity-4913.image priorSource: 18661767!
+
+----STARTUP---- (13 October 2021 15:21:02) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4913.image!
+
+
+----QUIT----(13 October 2021 15:21:02) CuisUniversity-4913.image priorSource: 18661997!
+
+----QUIT----(13 October 2021 15:26:07) CuisUniversity-4913.image priorSource: 14638157!
+
+----STARTUP---- (13 October 2021 15:26:08) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4913.image!
+
+
+----QUIT----(13 October 2021 15:26:08) CuisUniversity-4913.image priorSource: 18661767!
+
+----STARTUP---- (28 October 2021 20:55:59) as /home/equipo/Escritorio/linux64 (1)/linux64/CuisUniversity-4913.image!
+
+
+TestCase subclass: #TusLibrosTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TusLibrosTest category: 'TusLibros' stamp: 'FR 10/28/2021 21:00:22'!
+TestCase subclass: #TusLibrosTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'FR 10/28/2021 21:01:42'!
+Object subclass: #Cart
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosTest methodsFor: 'no messages' stamp: 'FR 10/28/2021 21:01:36'!
+test01
+
+	|anEmptyCart|
+	
+	anEmptyCart := Cart new.
+	
+	self assert: anEmptyCart isEmpty! !
+
+!testRun: #TusLibrosTest #test01 stamp: 'FR 10/28/2021 21:01:45'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'FR 10/28/2021 21:02:03'!
+isEmpty
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'FR 10/28/2021 21:02:18' prior: 50914870!
+isEmpty
+	
+	^ true! !
+
+!testRun: #TusLibrosTest #test01 stamp: 'FR 10/28/2021 21:02:21'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01 stamp: 'FR 10/28/2021 21:02:21'!
+PASSED!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'FR 10/28/2021 21:02:27' prior: 50914862!
+test01
+
+	| anEmptyCart |
+	
+	anEmptyCart := Cart new.
+	
+	self assert: anEmptyCart isEmpty! !
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'FR 10/28/2021 21:03:05'!
+test01ANewCartIsEmpty
+
+	| anEmptyCart |
+	
+	anEmptyCart := Cart new.
+	
+	self assert: anEmptyCart isEmpty! !
+
+!methodRemoval: TusLibrosTest #test01 stamp: 'FR 10/28/2021 21:03:05'!
+test01
+
+	| anEmptyCart |
+	
+	anEmptyCart := Cart new.
+	
+	self assert: anEmptyCart isEmpty!
+
+!classDefinition: #TusLibros category: 'TusLibros' stamp: 'FR 10/28/2021 21:18:15'!
+Object subclass: #TusLibros
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'FR 10/28/2021 21:18:04'!
+test02
+
+	| aCart aBookInTheCatalogToAdd aCatalog tusLibros |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := OrderedCollection with: aBookInTheCatalogToAdd.
+	tusLibros := TusLibros with: aCatalog.
+	
+	aCart := Cart for: tusLibros.	
+	aCart addToCart: aBookInTheCatalogToAdd.
+	
+	self assert: aCart includes: aBookInTheCatalogToAdd! !
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'FR 10/28/2021 21:18:27' prior: 50914907!
+test02
+
+	| aCart aBookInTheCatalogToAdd aCatalog tusLibros |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := OrderedCollection with: aBookInTheCatalogToAdd.
+	tusLibros := TusLibros with: aCatalog.
+	
+	aCart := Cart for: tusLibros.	
+	aCart addToCart: aBookInTheCatalogToAdd.
+	
+	self assert: (aCart includes: aBookInTheCatalogToAdd)! !
+
+!testRun: #TusLibrosTest #test02 stamp: 'FR 10/28/2021 21:18:31'!
+ERROR!
+!TusLibros class methodsFor: 'instance creation' stamp: 'FR 10/28/2021 21:18:42'!
+with: anOrderedCollection 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWith: anOrderedCollection ! !
+!TusLibros class methodsFor: 'instance creation' stamp: 'FR 10/28/2021 21:19:03' prior: 50914937!
+with: aCatalog 
+
+	^ self new initializeWith: aCatalog ! !
+
+!testRun: #TusLibrosTest #test02 stamp: 'FR 10/28/2021 21:19:06'!
+ERROR!
+
+!classDefinition: #TusLibros category: 'TusLibros' stamp: 'FR 10/28/2021 21:19:42'!
+Object subclass: #TusLibros
+	instanceVariableNames: 'catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibros methodsFor: 'initialization' stamp: 'FR 10/28/2021 21:19:42'!
+initializeWith: aCatalog 
+	self shouldBeImplemented.
+	catalog := aCatalog.! !
+!TusLibros methodsFor: 'initialization' stamp: 'FR 10/28/2021 21:19:49' prior: 50914960!
+initializeWith: aCatalog 
+	
+	catalog := aCatalog.! !
+
+!testRun: #TusLibrosTest #test02 stamp: 'FR 10/28/2021 21:19:52'!
+ERROR!
+!Cart class methodsFor: 'instance creation' stamp: 'FR 10/28/2021 21:20:04'!
+for: aTusLibros 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aTusLibros ! !
+!Cart class methodsFor: 'instance creation' stamp: 'FR 10/28/2021 21:21:01' prior: 50914973!
+for: aPublisher 
+
+	^self new initializeFor: aPublisher ! !
+
+!testRun: #TusLibrosTest #test02 stamp: 'FR 10/28/2021 21:21:04'!
+ERROR!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'FR 10/28/2021 21:21:23'!
+Object subclass: #Cart
+	instanceVariableNames: 'publisher'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'initialization' stamp: 'FR 10/28/2021 21:21:23'!
+initializeFor: aPublisher 
+	self shouldBeImplemented.
+	publisher := aPublisher.! !
+!Cart methodsFor: 'initialization' stamp: 'FR 10/28/2021 21:21:33' prior: 50914994!
+initializeFor: aPublisher 
+	
+	publisher := aPublisher.! !
+!Cart methodsFor: 'initialization' stamp: 'FR 10/28/2021 21:21:36' prior: 50915000!
+initializeFor: aPublisher 
+	
+	publisher := aPublisher! !
+
+!testRun: #TusLibrosTest #test02 stamp: 'FR 10/28/2021 21:21:38'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'FR 10/28/2021 21:22:35'!
+addToCart: aString 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'FR 10/28/2021 21:23:30'!
+Object subclass: #Cart
+	instanceVariableNames: 'publisher contents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'FR 10/28/2021 21:23:28' prior: 50915012!
+addToCart: aBookToAdd
+
+	contents add: aBookToAdd
+	
+	! !
+
+!testRun: #TusLibrosTest #test02 stamp: 'FR 10/28/2021 21:23:34'!
+ERROR!
+!Cart methodsFor: 'initialization' stamp: 'FR 10/28/2021 21:24:03' prior: 50915005!
+initializeFor: aPublisher 
+	
+	publisher := aPublisher.
+	contents := OrderedCollection new! !
+
+!testRun: #TusLibrosTest #test02 stamp: 'FR 10/28/2021 21:24:41'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'FR 10/28/2021 21:24:49'!
+includes: aString 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'FR 10/28/2021 21:25:18' prior: 50915039!
+includes: aBook 
+
+	^ contents includes: aBook ! !
+
+!testRun: #TusLibrosTest #test02 stamp: 'FR 10/28/2021 21:25:20'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'FR 10/28/2021 21:25:20'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02 stamp: 'FR 10/28/2021 21:25:20'!
+PASSED!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'FR 10/28/2021 21:26:48'!
+test02CanAddABookFromTheCatalogToTheCart
+
+	| aCart aBookInTheCatalogToAdd aCatalog tusLibros |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := OrderedCollection with: aBookInTheCatalogToAdd.
+	tusLibros := TusLibros with: aCatalog.
+	
+	aCart := Cart for: tusLibros.	
+	aCart addToCart: aBookInTheCatalogToAdd.
+	
+	self assert: (aCart includes: aBookInTheCatalogToAdd)! !
+
+!methodRemoval: TusLibrosTest #test02 stamp: 'FR 10/28/2021 21:26:48'!
+test02
+
+	| aCart aBookInTheCatalogToAdd aCatalog tusLibros |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := OrderedCollection with: aBookInTheCatalogToAdd.
+	tusLibros := TusLibros with: aCatalog.
+	
+	aCart := Cart for: tusLibros.	
+	aCart addToCart: aBookInTheCatalogToAdd.
+	
+	self assert: (aCart includes: aBookInTheCatalogToAdd)!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'FR 10/28/2021 21:29:01'!
+test03CannotAddABookNotPresentInTheCatalogToTheCart
+
+	| aCart aBookInTheCatalogToAdd aCatalog tusLibros |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := OrderedCollection with: aBookInTheCatalogToAdd.
+	tusLibros := TusLibros with: aCatalog.
+	
+	aCart := Cart for: tusLibros.	
+	aCart addToCart: aBookInTheCatalogToAdd.
+	
+	self assert: (aCart includes: aBookInTheCatalogToAdd)! !
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'FR 10/28/2021 21:30:19' prior: 50915083!
+test03CannotAddABookNotPresentInTheCatalogToTheCart
+
+	| aCart aBookInTheCatalogToAdd aCatalog tusLibros |
+	
+	aCatalog := OrderedCollection new.
+	tusLibros := TusLibros with: aCatalog.
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCart := Cart for: tusLibros.	
+	aCart addToCart: aBookInTheCatalogToAdd.
+	
+	self deny: (aCart includes: aBookInTheCatalogToAdd)! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'FR 10/28/2021 21:30:35' prior: 50915044!
+includes: aBook 
+
+	^ true! !
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'FR 10/28/2021 21:30:39'!
+FAILURE!
+
+----SNAPSHOT----(28 October 2021 21:31:00) CuisUniversity-4913.image priorSource: 18661997!
+
+----SNAPSHOT----(29 October 2021 18:33:17) CuisUniversity-4913.image priorSource: 18671029!
+
+----STARTUP---- (29 October 2021 18:40:38) as /home/gonzalo/Documents/facultad/isw1/tusLibrosCuis/CuisUniversity-4913.image!
+
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 18:41:17'!
+FAILURE!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 18:41:17'!
+FAILURE!
+
+Object subclass: #Cart
+	instanceVariableNames: 'catalog contents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'gq 10/29/2021 18:44:34'!
+Object subclass: #Cart
+	instanceVariableNames: 'catalog contents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibros methodsFor: 'initialization' stamp: 'gq 10/29/2021 18:45:35'!
+newCart
+
+	^Cart with: catalog! !
+!Cart class methodsFor: 'instance creation' stamp: 'gq 10/29/2021 18:46:23' prior: 50914981!
+for: aCatalog
+
+	^self new initializeFor: aCatalog ! !
+!Cart methodsFor: 'initialization' stamp: 'gq 10/29/2021 18:47:13' prior: 50915031!
+initializeFor: aCatalog 
+	
+	catalog := aCatalog.
+	contents := OrderedCollection new! !
+!Cart class methodsFor: 'instance creation' stamp: 'gq 10/29/2021 18:48:47'!
+with: aCatalog
+
+	^self new initializeFor: aCatalog ! !
+
+!methodRemoval: Cart class #for: stamp: 'gq 10/29/2021 18:48:47'!
+for: aCatalog
+
+	^self new initializeFor: aCatalog !
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 18:49:01'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 18:49:01'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 18:49:01'!
+ERROR!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 18:49:01'!
+ERROR!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 18:50:51' prior: 50914889!
+test01ANewCartIsEmpty
+
+	| anEmptyCart tusLibros |
+	
+	tusLibros := TusLibros with: OrderedCollection new.
+	anEmptyCart := tusLibros newCart.
+	
+	self assert: anEmptyCart isEmpty! !
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 18:50:52'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 18:50:52'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 18:50:52'!
+ERROR!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 18:50:52'!
+ERROR!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 18:51:41' prior: 50915056!
+test02CanAddABookFromTheCatalogToTheCart
+
+	| aCart aBookInTheCatalogToAdd aCatalog tusLibros |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := OrderedCollection with: aBookInTheCatalogToAdd.
+	tusLibros := TusLibros with: aCatalog.
+	
+	aCart := tusLibros newCart.	
+	aCart addToCart: aBookInTheCatalogToAdd.
+	
+	self assert: (aCart includes: aBookInTheCatalogToAdd)! !
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 18:51:42'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 18:51:42'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 18:51:42'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 18:51:42'!
+ERROR!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 18:51:42'!
+ERROR!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 18:52:05' prior: 50915099!
+test03CannotAddABookNotPresentInTheCatalogToTheCart
+
+	| aCart aBookInTheCatalogToAdd aCatalog tusLibros |
+	
+	aCatalog := OrderedCollection new.
+	tusLibros := TusLibros with: aCatalog.
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCart := tusLibros newCart.	
+	aCart addToCart: aBookInTheCatalogToAdd.
+	
+	self deny: (aCart includes: aBookInTheCatalogToAdd)! !
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 18:52:06'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 18:52:49' prior: 50915113!
+includes: aBook 
+
+	^ contents includes: aBook! !
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 18:52:53'!
+FAILURE!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 18:58:36' prior: 50915240!
+test03CannotAddABookNotPresentInTheCatalogToTheCart
+
+	| aCart aBookInTheCatalogToAdd aCatalog tusLibros |
+	
+	aCatalog := OrderedCollection new.
+	tusLibros := TusLibros with: aCatalog.
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCart := tusLibros newCart.	
+	
+	self 
+		should: [aCart addToCart: aBookInTheCatalogToAdd]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anException | anException = Cart errorMessageCannotAddABookNotPresentInTheCatalog ].
+	self deny: (aCart includes: aBookInTheCatalogToAdd)! !
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 18:58:42'!
+FAILURE!
+!Cart class methodsFor: 'instance creation' stamp: 'gq 10/29/2021 18:59:59'!
+errorMessageCannotAddABookNotPresentInTheCatalog
+	
+	^'Cannot add a book not present in the catalog.'! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:05:33' prior: 50915024!
+addToCart: aBookToAdd
+
+	self assert: (catalog includes: aBookToAdd) description: [self error: Cart errorMessageCannotAddABookNotPresentInTheCatalog].
+	contents add: aBookToAdd
+	
+	! !
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 19:05:35'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:05:35'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 19:05:35'!
+PASSED!
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:06:21'!
+raiseErrorCannotAddAddABookNotPresentInTheCatalog
+
+	^ self error: Cart errorMessageCannotAddABookNotPresentInTheCatalog! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:06:22' prior: 50915297!
+addToCart: aBookToAdd
+
+	self assert: (catalog includes: aBookToAdd) description: [self raiseErrorCannotAddAddABookNotPresentInTheCatalog].
+	contents add: aBookToAdd
+	
+	! !
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 19:06:31'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:06:31'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 19:06:31'!
+PASSED!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:07:48' prior: 50915208!
+test02CanAddABookFromTheCatalogToTheCart
+
+	| aCart aBookInTheCatalogToAdd aCatalog tusLibros |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := OrderedCollection with: aBookInTheCatalogToAdd.
+	tusLibros := TusLibros with: aCatalog.
+	
+	aCart := tusLibros newCart.	
+	aCart addToCart: aBookInTheCatalogToAdd.
+	
+	self assert: (aCart includes: aBookInTheCatalogToAdd).
+	self deny: aCart isEmpty! !
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:07:49'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:08:17' prior: 50914874!
+isEmpty
+	
+	^ contents isEmpty ! !
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 19:08:18'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:08:18'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 19:08:18'!
+PASSED!
+
+----End fileIn of /home/gonzalo/Documents/facultad/isw1/tusLibrosCuis/Packages/TerseGuide.pck.st----!
+!TusLibros methodsFor: 'initialization' stamp: 'gq 10/29/2021 19:15:49'!
+createCart
+
+	^Cart with: catalog! !
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:15:49' prior: 50915341!
+test02CanAddABookFromTheCatalogToTheCart
+
+	| aCart aBookInTheCatalogToAdd aCatalog tusLibros |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := OrderedCollection with: aBookInTheCatalogToAdd.
+	tusLibros := TusLibros with: aCatalog.
+	
+	aCart := tusLibros createCart.	
+	aCart addToCart: aBookInTheCatalogToAdd.
+	
+	self assert: (aCart includes: aBookInTheCatalogToAdd).
+	self deny: aCart isEmpty! !
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:15:49' prior: 50915267!
+test03CannotAddABookNotPresentInTheCatalogToTheCart
+
+	| aCart aBookInTheCatalogToAdd aCatalog tusLibros |
+	
+	aCatalog := OrderedCollection new.
+	tusLibros := TusLibros with: aCatalog.
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCart := tusLibros createCart.	
+	
+	self 
+		should: [aCart addToCart: aBookInTheCatalogToAdd]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anException | anException = Cart errorMessageCannotAddABookNotPresentInTheCatalog ].
+	self deny: (aCart includes: aBookInTheCatalogToAdd)! !
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:15:49' prior: 50915186!
+test01ANewCartIsEmpty
+
+	| anEmptyCart tusLibros |
+	
+	tusLibros := TusLibros with: OrderedCollection new.
+	anEmptyCart := tusLibros createCart.
+	
+	self assert: anEmptyCart isEmpty! !
+
+!methodRemoval: TusLibros #newCart stamp: 'gq 10/29/2021 19:15:49'!
+newCart
+
+	^Cart with: catalog!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:34:25'!
+test04CanAddManyBooksCopiesFromTheCatalogToTheCart
+
+	| aCart aBookInTheCatalogToAdd aCatalog tusLibros |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := OrderedCollection with: aBookInTheCatalogToAdd.
+	tusLibros := TusLibros with: aCatalog.
+	
+	aCart := tusLibros createCart.	
+	aCart addToCart: aBookInTheCatalogToAdd quantity: 5.
+	
+	self assert: 5 equals: (aCart occurrencesOf: aBookInTheCatalogToAdd).! !
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:34:33'!
+ERROR!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'gq 10/29/2021 19:38:33'!
+Object subclass: #Cart
+	instanceVariableNames: 'catalog contents xxx'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:38:28'!
+addToCart: aBookToAdd quantity: aBookToAddQuantity
+
+	self assert: (catalog includes: aBookToAdd) description: [self raiseErrorCannotAddAddABookNotPresentInTheCatalog].
+	contents add: aBookToAdd.
+	xxx at: aBookToAdd put: aBookToAddQuantity 
+	! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:38:55' prior: 50918379!
+addToCart: aBookToAdd quantity: aBookToAddQuantity
+
+	xxx at: aBookToAdd put: aBookToAddQuantity 
+	! !
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 19:38:57'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:38:57'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 19:38:57'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:38:57'!
+ERROR!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:38:57'!
+ERROR!
+!Cart methodsFor: 'initialization' stamp: 'gq 10/29/2021 19:39:20' prior: 50915158!
+initializeFor: aCatalog 
+	
+	catalog := aCatalog.
+	contents := OrderedCollection new.
+	xxx := Dictionary new.! !
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 19:39:22'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:39:22'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 19:39:22'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:39:22'!
+ERROR!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:39:22'!
+ERROR!
+!Cart methodsFor: 'initialization' stamp: 'gq 10/29/2021 19:40:59'!
+ocurrencesOf: aBook
+
+	^xxx occurrencesOf: aBook ! !
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 19:41:00'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:41:00'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 19:41:00'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:41:00'!
+ERROR!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:41:00'!
+ERROR!
+!Cart methodsFor: 'initialization' stamp: 'gq 10/29/2021 19:41:23'!
+occurrencesOf: aBook
+
+	^xxx occurrencesOf: aBook ! !
+
+!methodRemoval: Cart #ocurrencesOf: stamp: 'gq 10/29/2021 19:41:23'!
+ocurrencesOf: aBook
+
+	^xxx occurrencesOf: aBook !
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 19:41:25'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:41:25'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 19:41:25'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:41:25'!
+FAILURE!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:41:25'!
+FAILURE!
+!Cart methodsFor: 'initialization' stamp: 'gq 10/29/2021 19:42:15' prior: 50918459!
+occurrencesOf: aBook
+
+	^xxx keyAtValue: aBook ! !
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 19:42:17'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:42:17'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 19:42:17'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:42:17'!
+ERROR!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:42:17'!
+ERROR!
+!Cart methodsFor: 'initialization' stamp: 'gq 10/29/2021 19:43:03' prior: 50918485!
+occurrencesOf: aBook
+
+	^xxx at: aBook ! !
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 19:43:04'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:43:04'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 19:43:04'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:43:04'!
+PASSED!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:44:10' prior: 50918305!
+test02CanAddABookFromTheCatalogToTheCart
+
+	| aCart aBookInTheCatalogToAdd aCatalog tusLibros |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := OrderedCollection with: aBookInTheCatalogToAdd.
+	tusLibros := TusLibros with: aCatalog.
+	
+	aCart := tusLibros createCart.	
+	aCart addToCart: aBookInTheCatalogToAdd quantity: 1.
+	
+	self assert: (aCart includes: aBookInTheCatalogToAdd).
+	self deny: aCart isEmpty! !
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:44:13'!
+FAILURE!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:44:13'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:44:55' prior: 50915258!
+includes: aBook 
+
+	^ xxx includes: aBook! !
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:44:58'!
+FAILURE!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:44:58'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:46:29' prior: 50918549!
+includes: aBook 
+
+	^ xxx includesKey: aBook! !
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 19:46:30'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:46:30'!
+FAILURE!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 19:46:30'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:46:30'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:46:30'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:47:42' prior: 50915360!
+isEmpty
+	
+	^ xxx isEmpty ! !
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 19:47:43'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:47:43'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 19:47:43'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:47:43'!
+PASSED!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:48:13' prior: 50918321!
+test03CannotAddABookNotPresentInTheCatalogToTheCart
+
+	| aCart aBookInTheCatalogToAdd aCatalog tusLibros |
+	
+	aCatalog := OrderedCollection new.
+	tusLibros := TusLibros with: aCatalog.
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCart := tusLibros createCart.	
+	
+	self 
+		should: [aCart addToCart: aBookInTheCatalogToAdd quantity: 1]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anException | anException = Cart errorMessageCannotAddABookNotPresentInTheCatalog ].
+	self deny: (aCart includes: aBookInTheCatalogToAdd)! !
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 19:48:18'!
+FAILURE!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 19:48:18'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:49:02' prior: 50918390!
+addToCart: aBookToAdd quantity: aBookToAddQuantity
+
+	self assert: (catalog includes: aBookToAdd) description: [self raiseErrorCannotAddAddABookNotPresentInTheCatalog].
+	xxx at: aBookToAdd put: aBookToAddQuantity 
+	! !
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 19:49:04'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:49:04'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 19:49:04'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:49:04'!
+PASSED!
+
+!methodRemoval: Cart #addToCart: stamp: 'gq 10/29/2021 19:49:40'!
+addToCart: aBookToAdd
+
+	self assert: (catalog includes: aBookToAdd) description: [self raiseErrorCannotAddAddABookNotPresentInTheCatalog].
+	contents add: aBookToAdd
+	
+	!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:49:44'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 19:49:44'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:49:44'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 19:49:44'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:49:44'!
+PASSED!
+
+Object subclass: #Cart
+	instanceVariableNames: 'catalog xxx'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'gq 10/29/2021 19:50:24'!
+Object subclass: #Cart
+	instanceVariableNames: 'catalog xxx'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 19:50:28'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:50:28'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 19:50:28'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:50:28'!
+PASSED!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'gq 10/29/2021 19:50:43'!
+Object subclass: #Cart
+	instanceVariableNames: 'catalog contents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:50:43' prior: 50918507!
+occurrencesOf: aBook
+
+	^contents at: aBook ! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:50:43' prior: 50918628!
+addToCart: aBookToAdd quantity: aBookToAddQuantity
+
+	self assert: (catalog includes: aBookToAdd) description: [self raiseErrorCannotAddAddABookNotPresentInTheCatalog].
+	contents at: aBookToAdd put: aBookToAddQuantity 
+	! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:50:43' prior: 50918583!
+isEmpty
+	
+	^ contents isEmpty ! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:50:43' prior: 50918561!
+includes: aBook 
+
+	^ contents includesKey: aBook! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:50:43' prior: 50918414!
+initializeFor: aCatalog 
+	
+	catalog := aCatalog.
+	contents := OrderedCollection new.
+	contents := Dictionary new.! !
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 19:50:50'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:50:50'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 19:50:50'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:50:50'!
+PASSED!
+
+----SNAPSHOT----(29 October 2021 19:50:58) CuisUniversity-4913.image priorSource: 18671122!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:56:36'!
+test05CanListAnEmptyCart
+
+	| aCart aCatalog tusLibros |
+	
+	aCatalog := OrderedCollection new.
+	tusLibros := TusLibros with: aCatalog.
+	
+	aCart := tusLibros createCart.	
+	
+	self assert: '' equals: aCart listCart
+	
+	! !
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 19:56:41'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:56:55'!
+listCart
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 19:57:02' prior: 50918767!
+listCart
+	^''! !
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 19:57:04'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 19:57:04'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:57:04'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 19:57:04'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 19:57:04'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 19:57:04'!
+PASSED!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 20:05:32'!
+test06CanListBooksFromACart
+
+	| aCart aCatalog tusLibros aBookInTheCatalogToAdd anotherBookInTheCatalogToAdd |
+	
+	aBookInTheCatalogToAdd := 'ISBN_1'.
+	anotherBookInTheCatalogToAdd := 'ISBN_2'.
+	aCatalog := OrderedCollection with: aBookInTheCatalogToAdd with: anotherBookInTheCatalogToAdd.
+	tusLibros := TusLibros with: aCatalog.
+	
+	aCart := tusLibros createCart.		
+	aCart addToCart: aBookInTheCatalogToAdd quantity: 1.
+	aCart addToCart: anotherBookInTheCatalogToAdd quantity: 2.
+	
+	self assert: aBookInTheCatalogToAdd,'|1|',anotherBookInTheCatalogToAdd,'|2' equals: aCart listCart
+	
+	! !
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:05:43'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 20:13:46' prior: 50918771!
+listCart
+	
+	|aBookList|
+	
+	aBookList := ''.
+	contents keysDo: [:aBook |
+		aBookList := aBookList,'|',aBook,'|',contents at: aBook
+	].
+
+	^aBookList! !
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:13:48'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:13:48'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:13:48'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:13:48'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:13:48'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:13:48'!
+ERROR!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:13:48'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 20:14:04' prior: 50918819!
+listCart
+	
+	|aBookList|
+	
+	aBookList := ''.
+	contents keysDo: [:aBook |
+		aBookList := aBookList,'|',aBook,'|',(contents at: aBook)
+	].
+
+	^aBookList! !
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:14:06'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:14:06'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:14:06'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:14:06'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:14:06'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:14:06'!
+ERROR!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:14:06'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 20:14:18' prior: 50918849!
+listCart
+	
+	|aBookList|
+	
+	aBookList := ''.
+	contents keysDo: [:aBook |
+		aBookList := aBookList,'|',aBook,'|',(contents at: aBook) asString
+	].
+
+	^aBookList! !
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:14:19'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:14:19'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:14:19'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:14:19'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:14:19'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:14:19'!
+FAILURE!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:14:19'!
+FAILURE!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 20:14:46' prior: 50918794!
+test06CanListBooksFromACart
+
+	| aCart aCatalog tusLibros aBookInTheCatalogToAdd anotherBookInTheCatalogToAdd |
+	
+	aBookInTheCatalogToAdd := 'ISBN_1'.
+	anotherBookInTheCatalogToAdd := 'ISBN_2'.
+	aCatalog := OrderedCollection with: aBookInTheCatalogToAdd with: anotherBookInTheCatalogToAdd.
+	tusLibros := TusLibros with: aCatalog.
+	
+	aCart := tusLibros createCart.		
+	aCart addToCart: aBookInTheCatalogToAdd quantity: 1.
+	aCart addToCart: anotherBookInTheCatalogToAdd quantity: 2.
+	
+	self assert: '|',aBookInTheCatalogToAdd,'|1|',anotherBookInTheCatalogToAdd,'|2' equals: aCart listCart
+	
+	! !
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:14:47'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:14:47'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:14:47'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:14:47'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:14:47'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:14:47'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:14:47'!
+PASSED!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 20:18:13'!
+test07CannotAddANonPositiveBookQuantity
+
+	| aCart aBookInTheCatalogToAdd aCatalog tusLibros |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := OrderedCollection with: aBookInTheCatalogToAdd.
+	tusLibros := TusLibros with: aCatalog.
+	aCart := tusLibros createCart.	
+	
+	self 
+		should: [aCart addToCart: aBookInTheCatalogToAdd quantity: -6]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anException | anException = Cart errorMessageCannotAddANonPositiveBookQuantity ].
+	self deny: (aCart includes: aBookInTheCatalogToAdd)! !
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:18:15'!
+FAILURE!
+!Cart class methodsFor: 'instance creation' stamp: 'gq 10/29/2021 20:18:52'!
+errorMessageCannotAddANonPositiveBookQuantity
+	
+	^'Cannot add a non positive book quantity.'! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 20:19:08'!
+raiseErrorCannotAddANonPositiveBookQuantity
+
+	^ self error: Cart errorMessageCannotAddANonPositiveBookQuantity! !
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:19:13'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:19:13'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:19:13'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:19:13'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:19:13'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:19:13'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:19:13'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:19:13'!
+FAILURE!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:19:13'!
+FAILURE!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:19:23'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:19:23'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:19:23'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:19:23'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:19:23'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:19:23'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:19:23'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:19:23'!
+FAILURE!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:19:23'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 20:21:47' prior: 50918713!
+addToCart: aBookToAdd quantity: aBookToAddQuantity
+
+	self assert: (catalog includes: aBookToAdd) description: [self raiseErrorCannotAddAddABookNotPresentInTheCatalog].
+	self assert: (catalog includes: aBookToAdd) description: [self raiseErrorCannotAddANonPositiveBookQuantity].
+	contents at: aBookToAdd put: aBookToAddQuantity 
+	! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 20:22:32' prior: 50919050!
+addToCart: aBookToAdd quantity: aBookToAddQuantity
+
+	self assert: (catalog includes: aBookToAdd) description: [self raiseErrorCannotAddAddABookNotPresentInTheCatalog].
+	self assert: (aBookToAddQuantity > 0) description: [self raiseErrorCannotAddANonPositiveBookQuantity].
+	contents at: aBookToAdd put: aBookToAddQuantity 
+	! !
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:22:33'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:22:33'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:22:33'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:22:33'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:22:33'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:22:33'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:22:33'!
+PASSED!
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 20:22:47'!
+raiseErrorCannotAddABookNotPresentInTheCatalog
+
+	^ self error: Cart errorMessageCannotAddABookNotPresentInTheCatalog! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'gq 10/29/2021 20:22:47' prior: 50919064!
+addToCart: aBookToAdd quantity: aBookToAddQuantity
+
+	self assert: (catalog includes: aBookToAdd) description: [self raiseErrorCannotAddABookNotPresentInTheCatalog].
+	self assert: (aBookToAddQuantity > 0) description: [self raiseErrorCannotAddANonPositiveBookQuantity].
+	contents at: aBookToAdd put: aBookToAddQuantity 
+	! !
+
+!methodRemoval: Cart #raiseErrorCannotAddAddABookNotPresentInTheCatalog stamp: 'gq 10/29/2021 20:22:47'!
+raiseErrorCannotAddAddABookNotPresentInTheCatalog
+
+	^ self error: Cart errorMessageCannotAddABookNotPresentInTheCatalog!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:22:50'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:22:50'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:22:50'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:22:50'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:22:50'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:22:50'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:22:50'!
+PASSED!
+
+----SNAPSHOT----(29 October 2021 20:26:35) CuisUniversity-4913.image priorSource: 18787242!
+!Cart methodsFor: 'initialization' stamp: 'gq 10/29/2021 20:27:02' prior: 50918732!
+initializeFor: aCatalog 
+	
+	catalog := aCatalog.
+	contents := Dictionary new.! !
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:27:04'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:27:04'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:27:04'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:27:04'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:27:04'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:27:04'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:27:04'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:29:26'!
+createACartOfTusLibrosWithCatalog: aCatalog
+	| anEmptyCart tusLibros |
+	
+	tusLibros := TusLibros with: aCatalog.
+	^tusLibros createCart.! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:29:41' prior: 50919181!
+createACartOfTusLibrosWithCatalog: aCatalog
+
+	| tusLibros |
+	
+	tusLibros := TusLibros with: aCatalog.
+	
+	^tusLibros createCart.! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:30:44' prior: 50918341!
+test01ANewCartIsEmpty
+
+	| anEmptyCart |
+	
+	anEmptyCart := self createACartOfTusLibrosWithCatalog: OrderedCollection new.
+	
+	self assert: anEmptyCart isEmpty! !
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:30:46'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:30:46'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:30:46'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:30:46'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:30:46'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:30:46'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:30:46'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:30:46'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:31:47' prior: 50918526!
+test02CanAddABookFromTheCatalogToTheCart
+
+	| aCart aBookInTheCatalogToAdd aCatalog tusLibros |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := OrderedCollection with: aBookInTheCatalogToAdd.
+
+	aCart := self createACartOfTusLibrosWithCatalog: aCatalog.
+	aCart addToCart: aBookInTheCatalogToAdd quantity: 1.
+	
+	self assert: (aCart includes: aBookInTheCatalogToAdd).
+	self deny: aCart isEmpty! !
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:31:57'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:31:57'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:31:57'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:31:57'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:31:57'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:31:57'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:31:57'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:31:57'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:32:07' prior: 50919230!
+test02CanAddABookFromTheCatalogToTheCart
+
+	| aCart aBookInTheCatalogToAdd aCatalog |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := OrderedCollection with: aBookInTheCatalogToAdd.
+
+	aCart := self createACartOfTusLibrosWithCatalog: aCatalog.
+	aCart addToCart: aBookInTheCatalogToAdd quantity: 1.
+	
+	self assert: (aCart includes: aBookInTheCatalogToAdd).
+	self deny: aCart isEmpty! !
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:32:07'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:32:07'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:32:07'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:32:07'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:32:07'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:32:07'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:32:07'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:32:07'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:33:01' prior: 50918601!
+test03CannotAddABookNotPresentInTheCatalogToTheCart
+
+	| anEmptyCart aBookInTheCatalogToAdd |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	anEmptyCart := self createACartOfTusLibrosWithCatalog: OrderedCollection new.
+	
+	self 
+		should: [anEmptyCart addToCart: aBookInTheCatalogToAdd quantity: 1]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anException | anException = Cart errorMessageCannotAddABookNotPresentInTheCatalog ].
+	self deny: (anEmptyCart includes: aBookInTheCatalogToAdd)! !
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:33:05'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:33:05'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:33:05'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:33:05'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:33:05'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:33:05'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:33:05'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:33:05'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:33:28' prior: 50918353!
+test04CanAddManyBooksCopiesFromTheCatalogToTheCart
+
+	| aCart aBookInTheCatalogToAdd aCatalog |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := OrderedCollection with: aBookInTheCatalogToAdd.
+	
+	aCart := self createACartOfTusLibrosWithCatalog: aCatalog.
+	aCart addToCart: aBookInTheCatalogToAdd quantity: 5.
+	
+	self assert: 5 equals: (aCart occurrencesOf: aBookInTheCatalogToAdd).! !
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:33:31'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:33:31'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:33:31'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:33:31'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:33:31'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:33:31'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:33:31'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:33:31'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:34:15' prior: 50918755!
+test05CanListAnEmptyCart
+
+	| anEmptyCart |
+	
+	anEmptyCart := self createACartOfTusLibrosWithCatalog: OrderedCollection new.
+	
+	self assert: '' equals: anEmptyCart listCart
+	
+	! !
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:34:20'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:34:20'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:34:20'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:34:21'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:34:21'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:34:21'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:34:21'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:34:21'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:35:12' prior: 50918911!
+test06CanListBooksFromACart
+
+	| aCart aCatalog aBookInTheCatalogToAdd anotherBookInTheCatalogToAdd |
+	
+	aBookInTheCatalogToAdd := 'ISBN_1'.
+	anotherBookInTheCatalogToAdd := 'ISBN_2'.
+	aCatalog := OrderedCollection with: aBookInTheCatalogToAdd with: anotherBookInTheCatalogToAdd.
+	
+	aCart := self createACartOfTusLibrosWithCatalog: aCatalog.
+	aCart addToCart: aBookInTheCatalogToAdd quantity: 1.
+	aCart addToCart: anotherBookInTheCatalogToAdd quantity: 2.
+	
+	self assert: '|',aBookInTheCatalogToAdd,'|1|',anotherBookInTheCatalogToAdd,'|2' equals: aCart listCart
+	
+	! !
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:35:14'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:35:14'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:35:14'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:35:14'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:35:14'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:35:14'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:35:14'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:35:14'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:36:00' prior: 50918955!
+test07CannotAddANonPositiveBookQuantity
+
+	| anEmptyCart aBookInTheCatalogToAdd aCatalog tusLibros |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := OrderedCollection with: aBookInTheCatalogToAdd.
+	tusLibros := TusLibros with: aCatalog.
+	anEmptyCart := self createACartOfTusLibrosWithCatalog: aCatalog.	
+	
+	self 
+		should: [anEmptyCart addToCart: aBookInTheCatalogToAdd quantity: -6]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anException | anException = Cart errorMessageCannotAddANonPositiveBookQuantity ].
+	self deny: (anEmptyCart includes: aBookInTheCatalogToAdd)! !
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:36:08'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:36:08'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:36:08'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:36:08'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:36:08'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:36:08'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:36:08'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:36:08'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:36:17' prior: 50919484!
+test07CannotAddANonPositiveBookQuantity
+
+	| anEmptyCart aBookInTheCatalogToAdd aCatalog |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := OrderedCollection with: aBookInTheCatalogToAdd.
+	anEmptyCart := self createACartOfTusLibrosWithCatalog: aCatalog.	
+	
+	self 
+		should: [anEmptyCart addToCart: aBookInTheCatalogToAdd quantity: -6]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anException | anException = Cart errorMessageCannotAddANonPositiveBookQuantity ].
+	self deny: (anEmptyCart includes: aBookInTheCatalogToAdd)! !
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:36:18'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:36:18'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:36:18'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:36:18'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:36:18'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:36:18'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:36:18'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:36:18'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:37:11'!
+createAnEmptyCatalog
+
+	^ OrderedCollection new! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:37:11' prior: 50919196!
+test01ANewCartIsEmpty
+
+	| anEmptyCart |
+	
+	anEmptyCart := self createACartOfTusLibrosWithCatalog: self createAnEmptyCatalog.
+	
+	self assert: anEmptyCart isEmpty! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:37:11' prior: 50919402!
+test05CanListAnEmptyCart
+
+	| anEmptyCart |
+	
+	anEmptyCart := self createACartOfTusLibrosWithCatalog: self createAnEmptyCatalog.
+	
+	self assert: '' equals: anEmptyCart listCart
+	
+	! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:37:11' prior: 50919314!
+test03CannotAddABookNotPresentInTheCatalogToTheCart
+
+	| anEmptyCart aBookInTheCatalogToAdd |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	anEmptyCart := self createACartOfTusLibrosWithCatalog: self createAnEmptyCatalog.
+	
+	self 
+		should: [anEmptyCart addToCart: aBookInTheCatalogToAdd quantity: 1]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anException | anException = Cart errorMessageCannotAddABookNotPresentInTheCatalog ].
+	self deny: (anEmptyCart includes: aBookInTheCatalogToAdd)! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:38:23'!
+createACatalogWith: aBookInTheCatalogToAdd
+
+	^ OrderedCollection with: aBookInTheCatalogToAdd! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:38:23' prior: 50919360!
+test04CanAddManyBooksCopiesFromTheCatalogToTheCart
+
+	| aCart aBookInTheCatalogToAdd aCatalog |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := self createACatalogWith: aBookInTheCatalogToAdd.
+	
+	aCart := self createACartOfTusLibrosWithCatalog: aCatalog.
+	aCart addToCart: aBookInTheCatalogToAdd quantity: 5.
+	
+	self assert: 5 equals: (aCart occurrencesOf: aBookInTheCatalogToAdd).! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:38:23' prior: 50919532!
+test07CannotAddANonPositiveBookQuantity
+
+	| anEmptyCart aBookInTheCatalogToAdd aCatalog |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := self createACatalogWith: aBookInTheCatalogToAdd.
+	anEmptyCart := self createACartOfTusLibrosWithCatalog: aCatalog.	
+	
+	self 
+		should: [anEmptyCart addToCart: aBookInTheCatalogToAdd quantity: -6]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anException | anException = Cart errorMessageCannotAddANonPositiveBookQuantity ].
+	self deny: (anEmptyCart includes: aBookInTheCatalogToAdd)! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:38:23' prior: 50919272!
+test02CanAddABookFromTheCatalogToTheCart
+
+	| aCart aBookInTheCatalogToAdd aCatalog |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := self createACatalogWith: aBookInTheCatalogToAdd.
+
+	aCart := self createACartOfTusLibrosWithCatalog: aCatalog.
+	aCart addToCart: aBookInTheCatalogToAdd quantity: 1.
+	
+	self assert: (aCart includes: aBookInTheCatalogToAdd).
+	self deny: aCart isEmpty! !
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:38:30'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:38:30'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:38:30'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:38:30'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:38:30'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:38:30'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:38:30'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:38:30'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:39:24' prior: 50919600!
+test03CannotAddABookNotPresentInTheCatalogToTheCart
+
+	| anEmptyCart aBookNotInTheCatalogToAdd |
+	
+	aBookNotInTheCatalogToAdd := 'New book'.
+	anEmptyCart := self createACartOfTusLibrosWithCatalog: self createAnEmptyCatalog.
+	
+	self 
+		should: [anEmptyCart addToCart: aBookNotInTheCatalogToAdd quantity: 1]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anException | anException = Cart errorMessageCannotAddABookNotPresentInTheCatalog ].
+	self deny: (anEmptyCart includes: aBookNotInTheCatalogToAdd)! !
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:39:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:39:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:39:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:39:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:39:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:39:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:39:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:39:26'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:44:38'!
+assertThatAdd: aBookToAdd withAQuantityOf: aBookToAddQuantity to: aCart shouldRaiseErrorWithDescription: anErrorDescription
+
+	self 
+		should: [aCart addToCart: aBookToAdd quantity: aBookToAddQuantity]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anException | anException = anErrorDescription ].! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:45:37' prior: 50919639!
+test07CannotAddANonPositiveBookQuantity
+
+	| anEmptyCart aBookInTheCatalogToAdd aCatalog |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := self createACatalogWith: aBookInTheCatalogToAdd.
+	anEmptyCart := self createACartOfTusLibrosWithCatalog: aCatalog.	
+	
+	self assertThatAdd: aBookInTheCatalogToAdd withAQuantityOf: -6 to: anEmptyCart shouldRaiseErrorWithDescription: Cart errorMessageCannotAddANonPositiveBookQuantity.
+	self deny: (anEmptyCart includes: aBookInTheCatalogToAdd)! !
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:45:39'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:45:39'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:45:39'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:45:39'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:45:39'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:45:39'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:45:39'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:45:39'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:46:19' prior: 50919701!
+test03CannotAddABookNotPresentInTheCatalogToTheCart
+
+	| anEmptyCart aBookNotInTheCatalogToAdd |
+	
+	aBookNotInTheCatalogToAdd := 'New book'.
+	anEmptyCart := self createACartOfTusLibrosWithCatalog: self createAnEmptyCatalog.
+		
+	self assertThatAdd: aBookNotInTheCatalogToAdd withAQuantityOf: 1 to: anEmptyCart shouldRaiseErrorWithDescription: Cart errorMessageCannotAddABookNotPresentInTheCatalog.
+	self deny: (anEmptyCart includes: aBookNotInTheCatalogToAdd)! !
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:46:20'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:46:20'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:46:20'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:46:20'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:46:20'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:46:20'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:46:20'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:46:20'!
+PASSED!
+
+----SNAPSHOT----(29 October 2021 20:50:52) CuisUniversity-4913.image priorSource: 18799973!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:51:16' prior: 50919659!
+test02CanAddABookFromTheCatalogToTheCart
+
+	| aCart aBookInTheCatalogToAdd aCatalog |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := self createACatalogWith: aBookInTheCatalogToAdd.
+	aCart := self createACartOfTusLibrosWithCatalog: aCatalog.
+	
+	aCart addToCart: aBookInTheCatalogToAdd quantity: 1.
+	
+	self assert: (aCart includes: aBookInTheCatalogToAdd).
+	self deny: aCart isEmpty! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:51:16' prior: 50919624!
+test04CanAddManyBooksCopiesFromTheCatalogToTheCart
+
+	| aCart aBookInTheCatalogToAdd aCatalog |
+	
+	aBookInTheCatalogToAdd := 'New book'.
+	aCatalog := self createACatalogWith: aBookInTheCatalogToAdd.
+	aCart := self createACartOfTusLibrosWithCatalog: aCatalog.
+	
+	aCart addToCart: aBookInTheCatalogToAdd quantity: 5.
+	
+	self assert: 5 equals: (aCart occurrencesOf: aBookInTheCatalogToAdd).! !
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:51:24'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:51:24'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:51:24'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:51:24'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:51:24'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:51:24'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:51:24'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:51:24'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:51:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:51:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:51:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:51:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:51:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:51:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:51:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:51:26'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:54:18'!
+createACatalogWith: aBookToAdd with: anotherBookToAdd
+
+	^ OrderedCollection with: aBookToAdd with: anotherBookToAdd! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:54:53' prior: 50919437!
+test06CanListBooksFromACart
+
+	| aCart aCatalog aBookInTheCatalogToAdd anotherBookInTheCatalogToAdd |
+	
+	aBookInTheCatalogToAdd := 'ISBN_1'.
+	anotherBookInTheCatalogToAdd := 'ISBN_2'.
+	aCatalog := self createACatalogWith: aBookInTheCatalogToAdd with: anotherBookInTheCatalogToAdd.
+	
+	aCart := self createACartOfTusLibrosWithCatalog: aCatalog.
+	aCart addToCart: aBookInTheCatalogToAdd quantity: 1.
+	aCart addToCart: anotherBookInTheCatalogToAdd quantity: 2.
+	
+	self assert: '|',aBookInTheCatalogToAdd,'|1|',anotherBookInTheCatalogToAdd,'|2' equals: aCart listCart
+	
+	! !
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:54:54'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:54:54'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:54:54'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:54:54'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:54:54'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:54:54'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:54:54'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:54:54'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:56:59'!
+aBook
+
+	^'ISBN_1'! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:57:03'!
+anotherBook
+
+	^'ISBN_2'! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:58:39' prior: 50919852!
+test02CanAddABookFromTheCatalogToTheCart
+
+	| aCart  aCatalog |
+
+	aCatalog := self createACatalogWith: self aBook.
+	aCart := self createACartOfTusLibrosWithCatalog: aCatalog.
+	
+	aCart addToCart: self aBook quantity: 1.
+	
+	self assert: (aCart includes: self aBook).
+	self deny: aCart isEmpty! !
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:58:40'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:58:40'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:58:40'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:58:40'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:58:40'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:58:40'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:58:40'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:58:40'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:58:56' prior: 50919805!
+test03CannotAddABookNotPresentInTheCatalogToTheCart
+
+	| anEmptyCart |
+	
+	anEmptyCart := self createACartOfTusLibrosWithCatalog: self createAnEmptyCatalog.
+		
+	self assertThatAdd: self aBook withAQuantityOf: 1 to: anEmptyCart shouldRaiseErrorWithDescription: Cart errorMessageCannotAddABookNotPresentInTheCatalog.
+	self deny: (anEmptyCart includes: self aBook)! !
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:58:57'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:58:57'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:58:57'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:58:57'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:58:57'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:58:57'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:58:57'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:58:57'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:59:09' prior: 50919867!
+test04CanAddManyBooksCopiesFromTheCatalogToTheCart
+
+	| aCart  aCatalog |
+	
+	aCatalog := self createACatalogWith: self aBook.
+	aCart := self createACartOfTusLibrosWithCatalog: aCatalog.
+	
+	aCart addToCart: self aBook quantity: 5.
+	
+	self assert: 5 equals: (aCart occurrencesOf: self aBook).! !
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:59:10'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:59:10'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:59:10'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:59:10'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:59:10'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:59:10'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:59:10'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:59:10'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:59:43' prior: 50919942!
+test06CanListBooksFromACart
+
+	| aCart aCatalog   |
+	
+
+
+	aCatalog := self createACatalogWith: self aBook with: self anotherBook.
+	
+	aCart := self createACartOfTusLibrosWithCatalog: aCatalog.
+	aCart addToCart: self aBook quantity: 1.
+	aCart addToCart: self anotherBook quantity: 2.
+	
+	self assert: '|',self aBook,'|1|',self anotherBook,'|2' equals: aCart listCart
+	
+	! !
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:59:44'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:59:44'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:59:44'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:59:44'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:59:44'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:59:44'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:59:44'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:59:44'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 20:59:49' prior: 50920115!
+test06CanListBooksFromACart
+
+	| aCart aCatalog   |
+	
+	aCatalog := self createACatalogWith: self aBook with: self anotherBook.
+	
+	aCart := self createACartOfTusLibrosWithCatalog: aCatalog.
+	aCart addToCart: self aBook quantity: 1.
+	aCart addToCart: self anotherBook quantity: 2.
+	
+	self assert: '|',self aBook,'|1|',self anotherBook,'|2' equals: aCart listCart
+	
+	! !
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:59:50'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 20:59:50'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:59:50'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 20:59:50'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 20:59:50'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 20:59:50'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 20:59:50'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 20:59:50'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:00:19' prior: 50919760!
+test07CannotAddANonPositiveBookQuantity
+
+	| anEmptyCart aCatalog |
+	
+	aCatalog := self createACatalogWith: self aBook.
+	anEmptyCart := self createACartOfTusLibrosWithCatalog: aCatalog.	
+	
+	self assertThatAdd: self aBook withAQuantityOf: -6 to: anEmptyCart shouldRaiseErrorWithDescription: Cart errorMessageCannotAddANonPositiveBookQuantity.
+	self deny: (anEmptyCart includes: self aBook)! !
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 21:00:20'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 21:00:20'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:00:20'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 21:00:20'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:00:20'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 21:00:20'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 21:00:20'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 21:00:20'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:02:09' prior: 50919996!
+test02CanAddABookFromTheCatalogToTheCart
+
+	| aCart aCatalog |
+
+	aCatalog := self createACatalogWith: self aBook.
+	aCart := self createACartOfTusLibrosWithCatalog: aCatalog.
+	
+	aCart addToCart: self aBook quantity: 1.
+	
+	self assert: (aCart includes: self aBook).
+	self deny: aCart isEmpty! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:03:24' prior: 50920156!
+test06CanListBooksFromACart
+
+	| aCart aCatalog   |
+	
+	aCatalog := self createACatalogWith: self aBook with: self anotherBook.
+	aCart := self createACartOfTusLibrosWithCatalog: aCatalog.
+	aCart addToCart: self aBook quantity: 1.
+	aCart addToCart: self anotherBook quantity: 2.
+	
+	self assert: '|',self aBook,'|1|',self anotherBook,'|2' equals: aCart listCart
+	
+	! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:06:04'!
+assertThatAddABookWithAQuantityOf: aBookToAddQuantity to: aCart shouldRaiseErrorWithDescription: anErrorDescription
+
+	self 
+		should: [aCart addToCart: self aBook quantity: aBookToAddQuantity]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anException | anException = anErrorDescription ].! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:06:05' prior: 50920197!
+test07CannotAddANonPositiveBookQuantity
+
+	| anEmptyCart aCatalog |
+	
+	aCatalog := self createACatalogWith: self aBook.
+	anEmptyCart := self createACartOfTusLibrosWithCatalog: aCatalog.	
+	
+	self assertThatAddABookWithAQuantityOf: -6 to: anEmptyCart shouldRaiseErrorWithDescription: Cart errorMessageCannotAddANonPositiveBookQuantity.
+	self deny: (anEmptyCart includes: self aBook)! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:06:22' prior: 50920035!
+test03CannotAddABookNotPresentInTheCatalogToTheCart
+
+	| anEmptyCart |
+	
+	anEmptyCart := self createACartOfTusLibrosWithCatalog: self createAnEmptyCatalog.
+		
+	self assertThatAddABookWithAQuantityOf: 1 to: anEmptyCart shouldRaiseErrorWithDescription: Cart errorMessageCannotAddABookNotPresentInTheCatalog.
+	self deny: (anEmptyCart includes: self aBook)! !
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 21:06:23'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 21:06:23'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:06:23'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 21:06:23'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:06:23'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 21:06:23'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 21:06:23'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 21:06:23'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:08:33'!
+createACatalogWithABook
+
+	^ OrderedCollection with: self aBook ! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:08:52' prior: 50920239!
+test02CanAddABookFromTheCatalogToTheCart
+
+	| aCart aCatalog |
+
+	aCatalog := self createACatalogWithABook.
+	aCart := self createACartOfTusLibrosWithCatalog: aCatalog.
+	
+	aCart addToCart: self aBook quantity: 1.
+	
+	self assert: (aCart includes: self aBook).
+	self deny: aCart isEmpty! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:09:04' prior: 50920076!
+test04CanAddManyBooksCopiesFromTheCatalogToTheCart
+
+	| aCart  aCatalog |
+	
+	aCatalog := self createACatalogWithABook.
+	aCart := self createACartOfTusLibrosWithCatalog: aCatalog.
+	
+	aCart addToCart: self aBook quantity: 5.
+	
+	self assert: 5 equals: (aCart occurrencesOf: self aBook).! !
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 21:09:06'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 21:09:14'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 21:09:14'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:09:14'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 21:09:14'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:09:14'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 21:09:14'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 21:09:14'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 21:09:14'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:09:33' prior: 50920278!
+test07CannotAddANonPositiveBookQuantity
+
+	| anEmptyCart aCatalog |
+	
+	aCatalog := self createACatalogWithABook.
+	anEmptyCart := self createACartOfTusLibrosWithCatalog: aCatalog.	
+	
+	self assertThatAddABookWithAQuantityOf: -6 to: anEmptyCart shouldRaiseErrorWithDescription: Cart errorMessageCannotAddANonPositiveBookQuantity.
+	self deny: (anEmptyCart includes: self aBook)! !
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 21:09:36'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 21:09:36'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:09:36'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 21:09:36'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:09:36'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 21:09:36'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 21:09:36'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 21:09:36'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:11:25'!
+createACatalogWithTwoDifferentBooks
+
+	^ OrderedCollection with: self aBook with: self anotherBook ! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:11:45' prior: 50920251!
+test06CanListBooksFromACart
+
+	| aCart aCatalog   |
+	
+	aCatalog := self createACatalogWithTwoDifferentBooks.
+	aCart := self createACartOfTusLibrosWithCatalog: aCatalog.
+	aCart addToCart: self aBook quantity: 1.
+	aCart addToCart: self anotherBook quantity: 2.
+	
+	self assert: '|',self aBook,'|1|',self anotherBook,'|2' equals: aCart listCart
+	
+	! !
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 21:11:45'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 21:11:45'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:11:45'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 21:11:45'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:11:45'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 21:11:45'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 21:11:45'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 21:11:45'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:15:53'!
+createACartOfTusLibrosWithACatalogWithABook
+
+	^ self createACartOfTusLibrosWithCatalog: self createACatalogWithABook
+	
+	! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:16:14' prior: 50920351!
+test04CanAddManyBooksCopiesFromTheCatalogToTheCart
+
+	| aCart  |
+
+	aCart := self createACartOfTusLibrosWithACatalogWithABook.
+	
+	aCart addToCart: self aBook quantity: 5.
+	
+	self assert: 5 equals: (aCart occurrencesOf: self aBook).! !
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:16:18'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 21:16:18'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:16:18'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 21:16:18'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:16:18'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 21:16:18'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 21:16:18'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 21:16:18'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:16:53' prior: 50920339!
+test02CanAddABookFromTheCatalogToTheCart
+
+	| aCart |
+
+	aCart := self createACartOfTusLibrosWithACatalogWithABook.
+
+	aCart addToCart: self aBook quantity: 1.
+	
+	self assert: (aCart includes: self aBook).
+	self deny: aCart isEmpty! !
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:16:54'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 21:16:54'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:16:54'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 21:16:54'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:16:54'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 21:16:54'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 21:16:54'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 21:16:54'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:17:20' prior: 50920439!
+test06CanListBooksFromACart
+
+	| aCart |
+	
+	aCart := self createACartOfTusLibrosWithACatalogWithABook.
+	aCart addToCart: self aBook quantity: 1.
+	aCart addToCart: self anotherBook quantity: 2.
+	
+	self assert: '|',self aBook,'|1|',self anotherBook,'|2' equals: aCart listCart
+	
+	! !
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 21:17:21'!
+ERROR!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:17:39' prior: 50920560!
+test06CanListBooksFromACart
+
+	| aCart aCatalog |
+	
+	aCatalog := self createACatalogWithTwoDifferentBooks.
+	aCart := self createACartOfTusLibrosWithCatalog: aCatalog.
+	aCart addToCart: self aBook quantity: 1.
+	aCart addToCart: self anotherBook quantity: 2.
+	
+	self assert: '|',self aBook,'|1|',self anotherBook,'|2' equals: aCart listCart
+	
+	! !
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 21:17:40'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 21:17:40'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:17:40'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 21:17:40'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:17:40'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 21:17:40'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 21:17:40'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 21:17:40'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:18:05' prior: 50920392!
+test07CannotAddANonPositiveBookQuantity
+
+	| anEmptyCart |
+	
+	anEmptyCart := self createACartOfTusLibrosWithACatalogWithABook.
+
+	
+	self assertThatAddABookWithAQuantityOf: -6 to: anEmptyCart shouldRaiseErrorWithDescription: Cart errorMessageCannotAddANonPositiveBookQuantity.
+	self deny: (anEmptyCart includes: self aBook)! !
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:18:07' prior: 50920615!
+test07CannotAddANonPositiveBookQuantity
+
+	| anEmptyCart |
+	
+	anEmptyCart := self createACartOfTusLibrosWithACatalogWithABook.
+
+	self assertThatAddABookWithAQuantityOf: -6 to: anEmptyCart shouldRaiseErrorWithDescription: Cart errorMessageCannotAddANonPositiveBookQuantity.
+	self deny: (anEmptyCart includes: self aBook)! !
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 21:18:07'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 21:18:07'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:18:07'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 21:18:07'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:18:07'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 21:18:07'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 21:18:07'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 21:18:07'!
+PASSED!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:19:24'!
+test07CanListAnEmptyCart
+
+	| anEmptyCart |
+	
+	anEmptyCart := self createACartOfTusLibrosWithCatalog: self createAnEmptyCatalog.
+	
+	self assert: '' equals: anEmptyCart listCart
+	
+	! !
+
+!methodRemoval: TusLibrosTest #test05CanListAnEmptyCart stamp: 'gq 10/29/2021 21:19:24'!
+test05CanListAnEmptyCart
+
+	| anEmptyCart |
+	
+	anEmptyCart := self createACartOfTusLibrosWithCatalog: self createAnEmptyCatalog.
+	
+	self assert: '' equals: anEmptyCart listCart
+	
+	!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:19:50'!
+test06CanListAnEmptyCart
+
+	| anEmptyCart |
+	
+	anEmptyCart := self createACartOfTusLibrosWithCatalog: self createAnEmptyCatalog.
+	
+	self assert: '' equals: anEmptyCart listCart
+	
+	! !
+
+!methodRemoval: TusLibrosTest #test07CanListAnEmptyCart stamp: 'gq 10/29/2021 21:19:50'!
+test07CanListAnEmptyCart
+
+	| anEmptyCart |
+	
+	anEmptyCart := self createACartOfTusLibrosWithCatalog: self createAnEmptyCatalog.
+	
+	self assert: '' equals: anEmptyCart listCart
+	
+	!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:19:58'!
+test07CanListBooksFromACart
+
+	| aCart aCatalog |
+	
+	aCatalog := self createACatalogWithTwoDifferentBooks.
+	aCart := self createACartOfTusLibrosWithCatalog: aCatalog.
+	aCart addToCart: self aBook quantity: 1.
+	aCart addToCart: self anotherBook quantity: 2.
+	
+	self assert: '|',self aBook,'|1|',self anotherBook,'|2' equals: aCart listCart
+	
+	! !
+
+!methodRemoval: TusLibrosTest #test06CanListBooksFromACart stamp: 'gq 10/29/2021 21:19:58'!
+test06CanListBooksFromACart
+
+	| aCart aCatalog |
+	
+	aCatalog := self createACatalogWithTwoDifferentBooks.
+	aCart := self createACartOfTusLibrosWithCatalog: aCatalog.
+	aCart addToCart: self aBook quantity: 1.
+	aCart addToCart: self anotherBook quantity: 2.
+	
+	self assert: '|',self aBook,'|1|',self anotherBook,'|2' equals: aCart listCart
+	
+	!
+!TusLibrosTest methodsFor: 'cart tests' stamp: 'gq 10/29/2021 21:20:09'!
+test05CannotAddANonPositiveBookQuantity
+
+	| anEmptyCart |
+	
+	anEmptyCart := self createACartOfTusLibrosWithACatalogWithABook.
+
+	self assertThatAddABookWithAQuantityOf: -6 to: anEmptyCart shouldRaiseErrorWithDescription: Cart errorMessageCannotAddANonPositiveBookQuantity.
+	self deny: (anEmptyCart includes: self aBook)! !
+
+!methodRemoval: TusLibrosTest #test07CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 21:20:09'!
+test07CannotAddANonPositiveBookQuantity
+
+	| anEmptyCart |
+	
+	anEmptyCart := self createACartOfTusLibrosWithACatalogWithABook.
+
+	self assertThatAddABookWithAQuantityOf: -6 to: anEmptyCart shouldRaiseErrorWithDescription: Cart errorMessageCannotAddANonPositiveBookQuantity.
+	self deny: (anEmptyCart includes: self aBook)!
+
+!testRun: #TusLibrosTest #test05CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 21:20:14'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01ANewCartIsEmpty stamp: 'gq 10/29/2021 21:20:14'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CanAddABookFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:20:14'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CannotAddABookNotPresentInTheCatalogToTheCart stamp: 'gq 10/29/2021 21:20:14'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CanAddManyBooksCopiesFromTheCatalogToTheCart stamp: 'gq 10/29/2021 21:20:14'!
+PASSED!
+
+!testRun: #TusLibrosTest #test05CannotAddANonPositiveBookQuantity stamp: 'gq 10/29/2021 21:20:14'!
+PASSED!
+
+!testRun: #TusLibrosTest #test06CanListAnEmptyCart stamp: 'gq 10/29/2021 21:20:14'!
+PASSED!
+
+!testRun: #TusLibrosTest #test07CanListBooksFromACart stamp: 'gq 10/29/2021 21:20:14'!
+PASSED!
+
+----SNAPSHOT----(29 October 2021 21:20:27) CuisUniversity-4913.image priorSource: 18822339!

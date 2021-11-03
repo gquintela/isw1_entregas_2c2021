@@ -1,0 +1,1850 @@
+
+
+----QUIT----(13 October 2021 15:20:10) CuisUniversity-4913.image priorSource: 14638157!
+
+----STARTUP---- (13 October 2021 15:20:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4913.image!
+
+
+----QUIT----(13 October 2021 15:20:10) CuisUniversity-4913.image priorSource: 18661767!
+
+----STARTUP---- (13 October 2021 15:21:02) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4913.image!
+
+
+----QUIT----(13 October 2021 15:21:02) CuisUniversity-4913.image priorSource: 18661997!
+
+----QUIT----(13 October 2021 15:26:07) CuisUniversity-4913.image priorSource: 14638157!
+
+----STARTUP---- (13 October 2021 15:26:08) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4913.image!
+
+
+----QUIT----(13 October 2021 15:26:08) CuisUniversity-4913.image priorSource: 18661767!
+
+----STARTUP---- (2 November 2021 18:00:44) as /home/juli/Documentos/Facu/Inge1/cuis-university/CuisUniversity-4913.image!
+
+
+----End fileIn of /home/juli/Documentos/Facu/Inge1/cuis-university/TusLibros-18.st----!
+
+Object subclass: #TusLibrosTestObjectsFactory
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TusLibrosTestObjectsFactory category: 'TusLibros' stamp: 'JD 11/2/2021 18:21:59'!
+Object subclass: #TusLibrosTestObjectsFactory
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'JD 11/2/2021 18:23:40'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'aTusLibrosTestObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'support' stamp: 'JD 11/2/2021 18:23:38' overrides: 16927572!
+setUp
+	
+	aTusLibrosTestObjectsFactory := TusLibrosTestObjectsFactory new! !
+!CartTest methodsFor: 'tests' stamp: 'JD 11/2/2021 18:24:49' prior: 50914968!
+test01NewCartsAreCreatedEmpty
+
+	self assert: aTusLibrosTestObjectsFactory createCart isEmpty! !
+!CartTest methodsFor: 'tests' stamp: 'JD 11/2/2021 18:24:55' prior: 50914946!
+test02CanNotAddItemsThatDoNotBelongToStore
+
+	| cart |
+	
+	cart := aTusLibrosTestObjectsFactory createCart.
+	
+	self 
+		should: [ cart add: self itemNotSellByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'JD 11/2/2021 18:24:58' prior: 50914973!
+test03AfterAddingAnItemTheCartIsNotEmptyAnymore
+
+	| cart |
+	
+	cart := aTusLibrosTestObjectsFactory createCart.
+	
+	cart add: self itemSellByTheStore.
+	self deny: cart isEmpty ! !
+!CartTest methodsFor: 'tests' stamp: 'JD 11/2/2021 18:25:01' prior: 50914933!
+test04CanNotAddNonPositiveNumberOfItems
+
+	| cart |
+	
+	cart := aTusLibrosTestObjectsFactory createCart.
+	
+	self 
+		should: [cart add: 0 of: self itemSellByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidQuantityErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'JD 11/2/2021 18:25:45' prior: 50914988!
+test05CanNotAddMoreThanOneItemNotSellByTheStore
+
+	| cart |
+	
+	cart := aTusLibrosTestObjectsFactory createCart.
+	
+	self 
+		should: [cart add: 2 of: self itemNotSellByTheStore  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'JD 11/2/2021 18:25:48' prior: 50915001!
+test06CartRemembersAddedItems
+
+	| cart |
+	
+	cart := aTusLibrosTestObjectsFactory createCart.
+	
+	cart add: self itemSellByTheStore.
+	self assert: (cart includes: self itemSellByTheStore)! !
+!CartTest methodsFor: 'tests' stamp: 'JD 11/2/2021 18:25:50' prior: 50914981!
+test07CartDoesNotHoldNotAddedItems
+
+	| cart |
+	
+	cart := aTusLibrosTestObjectsFactory createCart.
+	
+	self deny: (cart includes: self itemSellByTheStore)! !
+!CartTest methodsFor: 'tests' stamp: 'JD 11/2/2021 18:25:55' prior: 50914959!
+test08CartRemembersTheNumberOfAddedItems
+
+	| cart |
+	
+	cart := aTusLibrosTestObjectsFactory createCart.
+	
+	cart add: 2 of: self itemSellByTheStore.
+	self assert: (cart occurrencesOf: self itemSellByTheStore) = 2! !
+!TusLibrosTestObjectsFactory methodsFor: 'no messages' stamp: 'JD 11/2/2021 18:26:13'!
+createCart
+	
+	^Cart acceptingItemsOf: self defaultCatalog! !
+!TusLibrosTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 18:26:37'!
+defaultCatalog
+	
+	^ Array with: self itemSellByTheStore! !
+!TusLibrosTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 18:26:44'!
+itemNotSellByTheStore
+	
+	^'invalidBook'! !
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/2/2021 18:26:54'!
+ERROR!
+!TusLibrosTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 18:27:07'!
+itemSellByTheStore
+	
+	^ 'validBook'! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/2/2021 18:27:30'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/2/2021 18:27:30'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/2/2021 18:27:30'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/2/2021 18:27:30'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/2/2021 18:27:30'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/2/2021 18:27:30'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/2/2021 18:27:30'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/2/2021 18:27:30'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/2/2021 18:27:30'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'JD 11/2/2021 18:27:43' prior: 50915061!
+test02CanNotAddItemsThatDoNotBelongToStore
+
+	| cart |
+	
+	cart := aTusLibrosTestObjectsFactory createCart.
+	
+	self 
+		should: [ cart add: aTusLibrosTestObjectsFactory itemNotSellByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'JD 11/2/2021 18:27:47' prior: 50915074!
+test03AfterAddingAnItemTheCartIsNotEmptyAnymore
+
+	| cart |
+	
+	cart := aTusLibrosTestObjectsFactory createCart.
+	
+	cart add: aTusLibrosTestObjectsFactory itemSellByTheStore.
+	self deny: cart isEmpty ! !
+!CartTest methodsFor: 'tests' stamp: 'JD 11/2/2021 18:27:52' prior: 50915082!
+test04CanNotAddNonPositiveNumberOfItems
+
+	| cart |
+	
+	cart := aTusLibrosTestObjectsFactory createCart.
+	
+	self 
+		should: [cart add: 0 of: aTusLibrosTestObjectsFactory itemSellByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidQuantityErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'JD 11/2/2021 18:27:56' prior: 50915096!
+test05CanNotAddMoreThanOneItemNotSellByTheStore
+
+	| cart |
+	
+	cart := aTusLibrosTestObjectsFactory createCart.
+	
+	self 
+		should: [cart add: 2 of: aTusLibrosTestObjectsFactory itemNotSellByTheStore  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'JD 11/2/2021 18:28:01' prior: 50915110!
+test06CartRemembersAddedItems
+
+	| cart |
+	
+	cart := aTusLibrosTestObjectsFactory createCart.
+	
+	cart add: aTusLibrosTestObjectsFactory itemSellByTheStore.
+	self assert: (cart includes: aTusLibrosTestObjectsFactory itemSellByTheStore)! !
+!CartTest methodsFor: 'tests' stamp: 'JD 11/2/2021 18:28:04' prior: 50915119!
+test07CartDoesNotHoldNotAddedItems
+
+	| cart |
+	
+	cart := aTusLibrosTestObjectsFactory createCart.
+	
+	self deny: (cart includes: aTusLibrosTestObjectsFactory itemSellByTheStore)! !
+!CartTest methodsFor: 'tests' stamp: 'JD 11/2/2021 18:28:09' prior: 50915127!
+test08CartRemembersTheNumberOfAddedItems
+
+	| cart |
+	
+	cart := aTusLibrosTestObjectsFactory createCart.
+	
+	cart add: 2 of: aTusLibrosTestObjectsFactory itemSellByTheStore.
+	self assert: (cart occurrencesOf: aTusLibrosTestObjectsFactory itemSellByTheStore) = 2! !
+
+!methodRemoval: CartTest #createCart stamp: 'JD 11/2/2021 18:28:25'!
+createCart
+	
+	^Cart acceptingItemsOf: self defaultCatalog!
+
+!methodRemoval: CartTest #defaultCatalog stamp: 'JD 11/2/2021 18:28:25'!
+defaultCatalog
+	
+	^ Array with: self itemSellByTheStore!
+
+!methodRemoval: CartTest #itemNotSellByTheStore stamp: 'JD 11/2/2021 18:28:25'!
+itemNotSellByTheStore
+	
+	^'invalidBook'!
+
+!methodRemoval: CartTest #itemSellByTheStore stamp: 'JD 11/2/2021 18:28:25'!
+itemSellByTheStore
+	
+	^ 'validBook'!
+
+!methodRemoval: CartTest #setUp stamp: 'JD 11/2/2021 18:28:25'!
+setUp
+	
+	aTusLibrosTestObjectsFactory := TusLibrosTestObjectsFactory new!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/2/2021 18:28:30'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'JD 11/2/2021 18:29:02' overrides: 16927572!
+setUp
+	
+	aTusLibrosTestObjectsFactory := TusLibrosTestObjectsFactory new! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/2/2021 18:29:03'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/2/2021 18:29:03'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/2/2021 18:29:03'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/2/2021 18:29:03'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/2/2021 18:29:03'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/2/2021 18:29:03'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/2/2021 18:29:03'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/2/2021 18:29:03'!
+PASSED!
+
+----SNAPSHOT----(2 November 2021 18:30:13) CuisUniversity-4913.image priorSource: 18661997!
+
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'aTusLibrosTestObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'JD 11/2/2021 18:30:41'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'aTusLibrosTestObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'JD 11/2/2021 18:43:47'!
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'JD 11/2/2021 18:43:53'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'aTusLibrosTestObjectsFactory aTusLibrosObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'no messages' stamp: 'JD 11/2/2021 18:43:41'!
+test01CannotCreateACashierForAnEmptyCart
+	
+	| aSalesRecord |
+	aSalesRecord := OrderedCollection new.
+	
+	self
+		should: [Cashier 
+			for: aTusLibrosObjectsFactory createCart
+			payingWith: aTusLibrosObjectsFactory validCreditCard
+			on: aTusLibrosObjectsFactory today
+			recordingOn: aSalesRecord]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | 
+			self assert: anError messageText = Cashier cartCannotBeEmptyErrorMessage
+			self assert: aSalesRecord isEmpty] ! !
+!CashierTest methodsFor: 'nil' stamp: 'JD 11/2/2021 18:44:08' overrides: 16927572!
+setUp
+	
+	aTusLibrosTestObjectsFactory := TusLibrosTestObjectsFactory new! !
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 18:44:44'!
+ERROR!
+
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'aTusLibrosObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'JD 11/2/2021 18:45:13'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'aTusLibrosObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'JD 11/2/2021 18:45:18'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'aTusLibrosTestObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 18:45:18' prior: 50915353!
+test01CannotCreateACashierForAnEmptyCart
+	
+	| aSalesRecord |
+	aSalesRecord := OrderedCollection new.
+	
+	self
+		should: [Cashier 
+			for: aTusLibrosTestObjectsFactory createCart
+			payingWith: aTusLibrosTestObjectsFactory validCreditCard
+			on: aTusLibrosTestObjectsFactory today
+			recordingOn: aSalesRecord]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | 
+			self assert: anError messageText = Cashier cartCannotBeEmptyErrorMessage
+			self assert: aSalesRecord isEmpty] ! !
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 18:45:23'!
+ERROR!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'JD 11/2/2021 18:46:10'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'tusLibrosTestObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 18:46:10' prior: 50915400!
+test01CannotCreateACashierForAnEmptyCart
+	
+	| aSalesRecord |
+	aSalesRecord := OrderedCollection new.
+	
+	self
+		should: [Cashier 
+			for: tusLibrosTestObjectsFactory createCart
+			payingWith: tusLibrosTestObjectsFactory validCreditCard
+			on: tusLibrosTestObjectsFactory today
+			recordingOn: aSalesRecord]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | 
+			self assert: anError messageText = Cashier cartCannotBeEmptyErrorMessage
+			self assert: aSalesRecord isEmpty] ! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 18:46:21' prior: 50915371 overrides: 16927572!
+setUp
+	
+	tusLibrosTestObjectsFactory := TusLibrosTestObjectsFactory new! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/2/2021 18:46:22'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/2/2021 18:46:22'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/2/2021 18:46:22'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/2/2021 18:46:22'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/2/2021 18:46:22'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/2/2021 18:46:22'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/2/2021 18:46:22'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/2/2021 18:46:22'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 18:46:22'!
+ERROR!
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 18:46:22'!
+ERROR!
+!TusLibrosTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 18:47:13'!
+validCreditCard
+	self shouldBeImplemented.! !
+
+(GregorianMonthOfYear year: GregorianYear current month: GregorianMonth current next)!
+
+(GregorianMonthOfYear year: GregorianYear current next month: GregorianMonth current)!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'JD 11/2/2021 19:07:49'!
+Object subclass: #CreditCard
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 19:07:45' prior: 50915488!
+validCreditCard
+	
+	^ CreditCard with: 'aValidCCNumber' expiringOn: (GregorianMonthOfYear year: GregorianYear current next month: GregorianMonth current)! !
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 19:07:54'!
+ERROR!
+!CreditCard class methodsFor: 'instance creation' stamp: 'JD 11/2/2021 19:08:01'!
+with: aString expiringOn: aGregorianMonthOfYear 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWith: aString expiringOn: aGregorianMonthOfYear ! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'JD 11/2/2021 19:08:46' prior: 50915516!
+with: aCreditCardNumber expiringOn: anExpiringMonthOfYear 
+
+	^self new initializeWith: aCreditCardNumber expiringOn: anExpiringMonthOfYear ! !
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 19:08:50'!
+ERROR!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'JD 11/2/2021 19:08:58'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'creditCardNumber'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'JD 11/2/2021 19:08:58'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'creditCardNumber expiringMonthOfYear'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCard methodsFor: 'initialization' stamp: 'JD 11/2/2021 19:08:58'!
+initializeWith: aCreditCardNumber expiringOn: anExpiringMonthOfYear 
+	self shouldBeImplemented.
+	creditCardNumber := aCreditCardNumber.
+	expiringMonthOfYear := anExpiringMonthOfYear.! !
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'JD 11/2/2021 19:10:11'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'creditCardNumber expiringMonthOfYear number'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'JD 11/2/2021 19:10:12'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'creditCardNumber expiringMonthOfYear number expirationMonthOfYear'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCard methodsFor: 'initialization' stamp: 'JD 11/2/2021 19:10:09' prior: 50915551!
+initializeWith: aCreditCardNumber expiringOn: anExpirationMonthOfYear 
+
+	number := aCreditCardNumber.
+	expirationMonthOfYear := anExpirationMonthOfYear! !
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 19:10:14'!
+ERROR!
+!TusLibrosTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 19:10:29'!
+today
+	self shouldBeImplemented.! !
+!TusLibrosTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 19:12:39' prior: 50915589!
+today
+
+	^ FixedGregorianDate today! !
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 19:12:41'!
+ERROR!
+!Cashier class methodsFor: 'instance creation' stamp: 'JD 11/2/2021 19:12:50'!
+for: aCart payingWith: aCreditCard on: aFixedGregorianDate recordingOn: anOrderedCollection 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aCart payingWith: aCreditCard on: aFixedGregorianDate recordingOn: anOrderedCollection ! !
+!Cashier class methodsFor: 'instance creation' stamp: 'JD 11/2/2021 19:14:37' prior: 50915601!
+for: aCartToCheckout payingWith: aCreditCardToPayWith on: aCashierCreationDate recordingOn: aSalesRecord 
+
+	^ self new initializeFor: aCartToCheckout payingWith: aCreditCardToPayWith on: aCashierCreationDate recordingOn: aSalesRecord ! !
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 19:14:39'!
+ERROR!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'JD 11/2/2021 19:14:48'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cartToCheckout'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'JD 11/2/2021 19:14:49'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cartToCheckout creditCardToPayWith'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'JD 11/2/2021 19:14:49'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cartToCheckout creditCardToPayWith cashierCreationDate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'JD 11/2/2021 19:14:49'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cartToCheckout creditCardToPayWith cashierCreationDate salesRecord'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'initialization' stamp: 'JD 11/2/2021 19:14:49'!
+initializeFor: aCartToCheckout payingWith: aCreditCardToPayWith on: aCashierCreationDate recordingOn: aSalesRecord 
+	self shouldBeImplemented.
+	cartToCheckout := aCartToCheckout.
+	creditCardToPayWith := aCreditCardToPayWith.
+	cashierCreationDate := aCashierCreationDate.
+	salesRecord := aSalesRecord.! !
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'JD 11/2/2021 19:15:20'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cartToCheckout creditCardToPayWith cashierCreationDate salesRecord cart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'JD 11/2/2021 19:15:22'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cartToCheckout creditCardToPayWith cashierCreationDate salesRecord cart creditCard'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'JD 11/2/2021 19:15:23'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cartToCheckout creditCardToPayWith cashierCreationDate salesRecord cart creditCard creationDate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'initialization' stamp: 'JD 11/2/2021 19:15:18' prior: 50915658!
+initializeFor: aCartToCheckout payingWith: aCreditCardToPayWith on: aCashierCreationDate recordingOn: aSalesRecord 
+
+	cart := aCartToCheckout.
+	creditCard := aCreditCardToPayWith.
+	creationDate := aCashierCreationDate.
+	salesRecord := aSalesRecord! !
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 19:15:33'!
+FAILURE!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 19:15:56' prior: 50915430!
+test01CannotCreateACashierForAnEmptyCart
+	
+	| aSalesRecord |
+	aSalesRecord := OrderedCollection new.
+	
+	self
+		should: [Cashier 
+			for: tusLibrosTestObjectsFactory createCart
+			payingWith: tusLibrosTestObjectsFactory validCreditCard
+			on: tusLibrosTestObjectsFactory today
+			recordingOn: aSalesRecord]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | 
+			self assert: anError messageText = Cashier cartCannotBeEmptyErrorMessage.
+			self assert: aSalesRecord isEmpty] ! !
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 19:15:57'!
+FAILURE!
+!Cashier class methodsFor: 'instance creation' stamp: 'JD 11/2/2021 19:20:46' prior: 50915614!
+for: aCartToCheckout payingWith: aCreditCardToPayWith on: aCashierCreationDate recordingOn: aSalesRecord 
+	
+	self assert: aCartToCheckout isEmpty not description: [self error: Cashier cartCannotBeEmptyErrorMessage].
+
+	^ self new initializeFor: aCartToCheckout payingWith: aCreditCardToPayWith on: aCashierCreationDate recordingOn: aSalesRecord ! !
+!Cashier class methodsFor: 'instance creation' stamp: 'JD 11/2/2021 19:21:05' prior: 50915735!
+for: aCartToCheckout payingWith: aCreditCardToPayWith on: aCashierCreationDate recordingOn: aSalesRecord 
+	
+	self error: Cashier cartCannotBeEmptyErrorMessage.
+
+	^ self new initializeFor: aCartToCheckout payingWith: aCreditCardToPayWith on: aCashierCreationDate recordingOn: aSalesRecord ! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/2/2021 19:21:06'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/2/2021 19:21:06'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/2/2021 19:21:06'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/2/2021 19:21:06'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/2/2021 19:21:06'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/2/2021 19:21:06'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/2/2021 19:21:06'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/2/2021 19:21:06'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 19:21:06'!
+ERROR!
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 19:21:06'!
+ERROR!
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 19:21:13'!
+cartCannotBeEmptyErrorMessage
+	self shouldBeImplemented.! !
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 19:21:31' prior: 50915793!
+cartCannotBeEmptyErrorMessage
+	
+	^ 'Cart cannot be empty'! !
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 19:21:32'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/2/2021 19:21:35'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/2/2021 19:21:35'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/2/2021 19:21:35'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/2/2021 19:21:35'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/2/2021 19:21:35'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/2/2021 19:21:35'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/2/2021 19:21:35'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/2/2021 19:21:35'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 19:21:35'!
+PASSED!
+!CreditCard class methodsFor: 'instance creation' stamp: 'JD 11/2/2021 19:22:15' prior: 50915526!
+with: aCreditCardNumber expiringOn: anExpirationMonthOfYear 
+
+	^self new initializeWith: aCreditCardNumber expiringOn: anExpirationMonthOfYear ! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 19:47:49'!
+test02
+	
+	| aSalesRecord aCashier checkoutTotal |
+	
+	aSalesRecord := OrderedCollection new.
+	aCashier := Cashier 
+				for: tusLibrosTestObjectsFactory createCart
+				payingWith: tusLibrosTestObjectsFactory validCreditCard
+				on: tusLibrosTestObjectsFactory today
+				recordingOn: aSalesRecord.
+	
+	checkoutTotal := aCashier checkout.
+	
+	self assert: (tusLibrosTestObjectsFactory defaultCatalog at: tusLibrosTestObjectsFactory itemSellByTheStore) equals: checkoutTotal! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 19:50:25' prior: 50915843!
+test02
+	
+	| aSalesRecord aCashier checkoutTotal aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := tusLibrosTestObjectsFactory createCart add: tusLibrosTestObjectsFactory itemSellByTheStore.
+	aCashier := Cashier 
+				for: aCartWithAnItem
+				payingWith: tusLibrosTestObjectsFactory validCreditCard
+				on: tusLibrosTestObjectsFactory today
+				recordingOn: aSalesRecord.
+	
+	checkoutTotal := aCashier checkout.
+	
+	self assert: (tusLibrosTestObjectsFactory defaultCatalog at: tusLibrosTestObjectsFactory itemSellByTheStore) equals: checkoutTotal! !
+!TusLibrosTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 19:51:13'!
+itemSoldByTheStore
+	
+	^ 'validBook'! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 19:51:13' prior: 50915258!
+test08CartRemembersTheNumberOfAddedItems
+
+	| cart |
+	
+	cart := aTusLibrosTestObjectsFactory createCart.
+	
+	cart add: 2 of: aTusLibrosTestObjectsFactory itemSoldByTheStore.
+	self assert: (cart occurrencesOf: aTusLibrosTestObjectsFactory itemSoldByTheStore) = 2! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 19:51:13' prior: 50915239!
+test06CartRemembersAddedItems
+
+	| cart |
+	
+	cart := aTusLibrosTestObjectsFactory createCart.
+	
+	cart add: aTusLibrosTestObjectsFactory itemSoldByTheStore.
+	self assert: (cart includes: aTusLibrosTestObjectsFactory itemSoldByTheStore)! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 19:51:13' prior: 50915861!
+test02
+	
+	| aSalesRecord aCashier checkoutTotal aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := tusLibrosTestObjectsFactory createCart add: tusLibrosTestObjectsFactory itemSoldByTheStore.
+	aCashier := Cashier 
+				for: aCartWithAnItem
+				payingWith: tusLibrosTestObjectsFactory validCreditCard
+				on: tusLibrosTestObjectsFactory today
+				recordingOn: aSalesRecord.
+	
+	checkoutTotal := aCashier checkout.
+	
+	self assert: (tusLibrosTestObjectsFactory defaultCatalog at: tusLibrosTestObjectsFactory itemSoldByTheStore) equals: checkoutTotal! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 19:51:13' prior: 50915201!
+test03AfterAddingAnItemTheCartIsNotEmptyAnymore
+
+	| cart |
+	
+	cart := aTusLibrosTestObjectsFactory createCart.
+	
+	cart add: aTusLibrosTestObjectsFactory itemSoldByTheStore.
+	self deny: cart isEmpty ! !
+!TusLibrosTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 19:51:13' prior: 50915142!
+defaultCatalog
+	
+	^ Array with: self itemSoldByTheStore! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 19:51:13' prior: 50915210!
+test04CanNotAddNonPositiveNumberOfItems
+
+	| cart |
+	
+	cart := aTusLibrosTestObjectsFactory createCart.
+	
+	self 
+		should: [cart add: 0 of: aTusLibrosTestObjectsFactory itemSoldByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidQuantityErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 19:51:13' prior: 50915249!
+test07CartDoesNotHoldNotAddedItems
+
+	| cart |
+	
+	cart := aTusLibrosTestObjectsFactory createCart.
+	
+	self deny: (cart includes: aTusLibrosTestObjectsFactory itemSoldByTheStore)! !
+
+!methodRemoval: TusLibrosTestObjectsFactory #itemSellByTheStore stamp: 'JD 11/2/2021 19:51:13'!
+itemSellByTheStore
+	
+	^ 'validBook'!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/2/2021 19:51:15'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/2/2021 19:51:15'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/2/2021 19:51:15'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/2/2021 19:51:15'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/2/2021 19:51:15'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/2/2021 19:51:15'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/2/2021 19:51:15'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/2/2021 19:51:15'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 19:51:15'!
+PASSED!
+
+!testRun: #CashierTest #test02 stamp: 'JD 11/2/2021 19:51:15'!
+ERROR!
+
+!testRun: #CashierTest #test02 stamp: 'JD 11/2/2021 19:51:15'!
+ERROR!
+!TusLibrosTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 19:51:25'!
+itemNotSoldByTheStore
+	
+	^'invalidBook'! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 19:51:25' prior: 50915187!
+test02CanNotAddItemsThatDoNotBelongToStore
+
+	| cart |
+	
+	cart := aTusLibrosTestObjectsFactory createCart.
+	
+	self 
+		should: [ cart add: aTusLibrosTestObjectsFactory itemNotSoldByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 19:51:25' prior: 50915224!
+test05CanNotAddMoreThanOneItemNotSellByTheStore
+
+	| cart |
+	
+	cart := aTusLibrosTestObjectsFactory createCart.
+	
+	self 
+		should: [cart add: 2 of: aTusLibrosTestObjectsFactory itemNotSoldByTheStore  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+
+!methodRemoval: TusLibrosTestObjectsFactory #itemNotSellByTheStore stamp: 'JD 11/2/2021 19:51:25'!
+itemNotSellByTheStore
+	
+	^'invalidBook'!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/2/2021 19:51:27'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/2/2021 19:51:27'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/2/2021 19:51:27'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/2/2021 19:51:27'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/2/2021 19:51:27'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/2/2021 19:51:27'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/2/2021 19:51:27'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/2/2021 19:51:27'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 19:51:27'!
+PASSED!
+
+!testRun: #CashierTest #test02 stamp: 'JD 11/2/2021 19:51:27'!
+ERROR!
+
+!testRun: #CashierTest #test02 stamp: 'JD 11/2/2021 19:51:27'!
+ERROR!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 19:53:27' prior: 50915910!
+test02
+	
+	| aSalesRecord aCashier totalCheckout aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := tusLibrosTestObjectsFactory createCart add: tusLibrosTestObjectsFactory itemSoldByTheStore.
+	aCashier := Cashier 
+				for: aCartWithAnItem
+				payingWith: tusLibrosTestObjectsFactory validCreditCard
+				on: tusLibrosTestObjectsFactory today
+				recordingOn: aSalesRecord.
+	
+	totalCheckout := aCashier checkout.
+	
+	self assert: (tusLibrosTestObjectsFactory defaultCatalog at: tusLibrosTestObjectsFactory itemSoldByTheStore) equals: totalCheckout! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:00:59' prior: 50916080!
+test02
+	
+	| aSalesRecord aCashier totalCheckout aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := tusLibrosTestObjectsFactory createCart add: tusLibrosTestObjectsFactory itemSoldByTheStore.
+	aCashier := Cashier 
+				for: aCartWithAnItem
+				payingWith: tusLibrosTestObjectsFactory validCreditCard
+				on: tusLibrosTestObjectsFactory today
+				recordingOn: aSalesRecord.
+	
+	totalCheckout := aCashier checkout.
+	
+	self assert: aCartWithAnItem total equals: totalCheckout! !
+
+!testRun: #CashierTest #test02 stamp: 'JD 11/2/2021 20:01:56'!
+ERROR!
+!Cashier class methodsFor: 'instance creation' stamp: 'JD 11/2/2021 19:20:46' prior: 50915749!
+for: aCartToCheckout payingWith: aCreditCardToPayWith on: aCashierCreationDate recordingOn: aSalesRecord 
+	
+	self assert: aCartToCheckout isEmpty not description: [self error: Cashier cartCannotBeEmptyErrorMessage].
+
+	^ self new initializeFor: aCartToCheckout payingWith: aCreditCardToPayWith on: aCashierCreationDate recordingOn: aSalesRecord ! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/2/2021 20:02:30'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/2/2021 20:02:30'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/2/2021 20:02:30'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/2/2021 20:02:30'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/2/2021 20:02:30'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/2/2021 20:02:30'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/2/2021 20:02:30'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/2/2021 20:02:30'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 20:02:30'!
+PASSED!
+
+!testRun: #CashierTest #test02 stamp: 'JD 11/2/2021 20:02:30'!
+ERROR!
+
+!testRun: #CashierTest #test02 stamp: 'JD 11/2/2021 20:02:30'!
+ERROR!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:02:43'!
+checkout
+	self shouldBeImplemented.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:03:30' prior: 50916169!
+checkout
+	
+	^ cart total! !
+
+!testRun: #CashierTest #test02 stamp: 'JD 11/2/2021 20:03:31'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:03:37'!
+total
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:05:02' prior: 50916180!
+total
+	
+	catalog at: 'validBook'! !
+
+!testRun: #CashierTest #test02 stamp: 'JD 11/2/2021 20:05:03'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:05:11' prior: 50916184!
+total
+	
+	^ catalog at: 'validBook'! !
+
+!testRun: #CashierTest #test02 stamp: 'JD 11/2/2021 20:05:12'!
+ERROR!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:05:39' prior: 50916101!
+test02
+	
+	| aSalesRecord aCashier totalCheckout aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := tusLibrosTestObjectsFactory createCart add: tusLibrosTestObjectsFactory itemSoldByTheStore.
+	aCashier := Cashier 
+				for: aCartWithAnItem
+				payingWith: tusLibrosTestObjectsFactory validCreditCard
+				on: tusLibrosTestObjectsFactory today
+				recordingOn: aSalesRecord.
+	
+	totalCheckout := aCashier checkout.
+	
+	self assert: 20 equals: totalCheckout! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:06:30' prior: 50916198!
+test02
+	
+	| aSalesRecord aCashier totalCheckout aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := tusLibrosTestObjectsFactory createCart add: tusLibrosTestObjectsFactory itemSoldByTheStore.
+	aCashier := Cashier 
+				for: aCartWithAnItem
+				payingWith: tusLibrosTestObjectsFactory validCreditCard
+				on: tusLibrosTestObjectsFactory today
+				recordingOn: aSalesRecord.
+	
+	totalCheckout := aCashier checkout.
+	
+	self assert: 20*dollar equals: totalCheckout! !
+!TusLibrosTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:08:51' prior: 50915941!
+defaultCatalog
+	
+	^ Dictionary new at: self itemSoldByTheStore put: 20*dollar! !
+
+!testRun: #CashierTest #test02 stamp: 'JD 11/2/2021 20:09:56'!
+ERROR!
+!TusLibrosTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:12:17' prior: 50916236!
+defaultCatalog
+	 
+	| catalog |
+	catalog := Dictionary new.
+	catalog at: self itemSoldByTheStore put: 20*dollar.
+	
+	^ catalog! !
+!TusLibrosTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:12:22' prior: 50916245!
+defaultCatalog
+	 
+	| catalog |
+	
+	catalog := Dictionary new.
+	catalog at: self itemSoldByTheStore put: 20*dollar.
+	
+	^ catalog! !
+!TusLibrosTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:12:30' prior: 50916253!
+defaultCatalog
+	 
+	| aCatalog |
+	
+	aCatalog := Dictionary new.
+	aCatalog at: self itemSoldByTheStore put: 20*dollar.
+	
+	^ aCatalog! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/2/2021 20:12:35'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/2/2021 20:12:35'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/2/2021 20:12:35'!
+ERROR!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/2/2021 20:12:35'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/2/2021 20:12:35'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/2/2021 20:12:35'!
+ERROR!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/2/2021 20:12:35'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/2/2021 20:12:35'!
+ERROR!
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 20:12:35'!
+PASSED!
+
+!testRun: #CashierTest #test02 stamp: 'JD 11/2/2021 20:12:35'!
+ERROR!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/2/2021 20:12:46'!
+ERROR!
+!TusLibrosTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:18:22' prior: 50915505!
+validCreditCard
+	
+	^ CreditCard with: 'aValidCCNumber' expiringOn: (GregorianMonthOfYear year: (self today year next) month: (self today month))! !
+
+!testRun: #CashierTest #test02 stamp: 'JD 11/2/2021 20:19:39'!
+ERROR!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:20:25' prior: 50916217!
+test02
+	
+	| aSalesRecord aCashier totalCheckout aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := tusLibrosTestObjectsFactory createCart add: (tusLibrosTestObjectsFactory itemSoldByTheStore).
+	aCashier := Cashier 
+				for: aCartWithAnItem
+				payingWith: tusLibrosTestObjectsFactory validCreditCard
+				on: tusLibrosTestObjectsFactory today
+				recordingOn: aSalesRecord.
+	
+	totalCheckout := aCashier checkout.
+	
+	self assert: 20*dollar equals: totalCheckout! !
+
+!testRun: #CashierTest #test02 stamp: 'JD 11/2/2021 20:20:26'!
+ERROR!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:20:42' prior: 50916313!
+test02
+	
+	| aSalesRecord aCashier totalCheckout aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := (tusLibrosTestObjectsFactory createCart) add: tusLibrosTestObjectsFactory itemSoldByTheStore.
+	aCashier := Cashier 
+				for: aCartWithAnItem
+				payingWith: tusLibrosTestObjectsFactory validCreditCard
+				on: tusLibrosTestObjectsFactory today
+				recordingOn: aSalesRecord.
+	
+	totalCheckout := aCashier checkout.
+	
+	self assert: 20*dollar equals: totalCheckout! !
+
+!testRun: #CashierTest #test02 stamp: 'JD 11/2/2021 20:20:43'!
+ERROR!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:20:50' prior: 50916334!
+test02
+	
+	| aSalesRecord aCashier totalCheckout aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := (tusLibrosTestObjectsFactory createCart) add: (tusLibrosTestObjectsFactory itemSoldByTheStore).
+	aCashier := Cashier 
+				for: aCartWithAnItem
+				payingWith: tusLibrosTestObjectsFactory validCreditCard
+				on: tusLibrosTestObjectsFactory today
+				recordingOn: aSalesRecord.
+	
+	totalCheckout := aCashier checkout.
+	
+	self assert: 20*dollar equals: totalCheckout! !
+
+!testRun: #CashierTest #test02 stamp: 'JD 11/2/2021 20:20:51'!
+ERROR!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:21:04' prior: 50916355!
+test02
+	
+	| aSalesRecord aCashier totalCheckout aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := tusLibrosTestObjectsFactory createCart add: tusLibrosTestObjectsFactory itemSoldByTheStore.
+	aCashier := Cashier 
+				for: aCartWithAnItem
+				payingWith: tusLibrosTestObjectsFactory validCreditCard
+				on: tusLibrosTestObjectsFactory today
+				recordingOn: aSalesRecord.
+	
+	totalCheckout := aCashier checkout.
+	
+	self assert: 20*dollar equals: totalCheckout! !
+
+!testRun: #CashierTest #test02 stamp: 'JD 11/2/2021 20:21:08'!
+ERROR!
+!Cart methodsFor: 'assertions' stamp: 'JD 11/2/2021 20:22:29' prior: 50914866!
+assertIsValidItem: anItem
+
+	(catalog includesKey: anItem) ifFalse: [ self error: self invalidItemErrorMessage ]! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/2/2021 20:22:30'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/2/2021 20:22:30'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/2/2021 20:22:30'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/2/2021 20:22:30'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/2/2021 20:22:30'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/2/2021 20:22:30'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/2/2021 20:22:30'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/2/2021 20:22:30'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 20:22:30'!
+PASSED!
+
+!testRun: #CashierTest #test02 stamp: 'JD 11/2/2021 20:22:30'!
+PASSED!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:23:47'!
+test02CanCheckoutACartWithAnItem
+	
+	| aSalesRecord aCashier totalCheckout aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := tusLibrosTestObjectsFactory createCart add: tusLibrosTestObjectsFactory itemSoldByTheStore.
+	aCashier := Cashier 
+				for: aCartWithAnItem
+				payingWith: tusLibrosTestObjectsFactory validCreditCard
+				on: tusLibrosTestObjectsFactory today
+				recordingOn: aSalesRecord.
+	
+	totalCheckout := aCashier checkout.
+	
+	self assert: 20*dollar equals: totalCheckout! !
+
+!methodRemoval: CashierTest #test02 stamp: 'JD 11/2/2021 20:23:47'!
+test02
+	
+	| aSalesRecord aCashier totalCheckout aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := tusLibrosTestObjectsFactory createCart add: tusLibrosTestObjectsFactory itemSoldByTheStore.
+	aCashier := Cashier 
+				for: aCartWithAnItem
+				payingWith: tusLibrosTestObjectsFactory validCreditCard
+				on: tusLibrosTestObjectsFactory today
+				recordingOn: aSalesRecord.
+	
+	totalCheckout := aCashier checkout.
+	
+	self assert: 20*dollar equals: totalCheckout!
+
+----SNAPSHOT----(2 November 2021 20:23:57) CuisUniversity-4913.image priorSource: 18677494!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:25:21'!
+test03
+	
+	| aSalesRecord aCashier totalCheckout aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := tusLibrosTestObjectsFactory createCart add: 2 of: tusLibrosTestObjectsFactory itemSoldByTheStore.
+	aCashier := Cashier 
+				for: aCartWithAnItem
+				payingWith: tusLibrosTestObjectsFactory validCreditCard
+				on: tusLibrosTestObjectsFactory today
+				recordingOn: aSalesRecord.
+	
+	totalCheckout := aCashier checkout.
+	
+	self assert: 40*dollar equals: totalCheckout! !
+
+!testRun: #CashierTest #test03 stamp: 'JD 11/2/2021 20:26:49'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:28:08' prior: 50916191!
+total
+	
+	^ items sum: [:anItem | catalog at: anItem]! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/2/2021 20:28:10'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/2/2021 20:28:10'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/2/2021 20:28:10'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/2/2021 20:28:10'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/2/2021 20:28:10'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/2/2021 20:28:10'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/2/2021 20:28:10'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/2/2021 20:28:10'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 20:28:10'!
+PASSED!
+
+!testRun: #CashierTest #test02CanCheckoutACartWithAnItem stamp: 'JD 11/2/2021 20:28:10'!
+PASSED!
+
+!testRun: #CashierTest #test03 stamp: 'JD 11/2/2021 20:28:10'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/2/2021 20:28:10'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/2/2021 20:28:10'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/2/2021 20:28:10'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/2/2021 20:28:10'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/2/2021 20:28:10'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/2/2021 20:28:10'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/2/2021 20:28:10'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/2/2021 20:28:10'!
+PASSED!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:28:49'!
+test03CanCheckoutACartWithManyItems
+	
+	| aSalesRecord aCashier totalCheckout aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := tusLibrosTestObjectsFactory createCart add: 2 of: tusLibrosTestObjectsFactory itemSoldByTheStore.
+	aCashier := Cashier 
+				for: aCartWithAnItem
+				payingWith: tusLibrosTestObjectsFactory validCreditCard
+				on: tusLibrosTestObjectsFactory today
+				recordingOn: aSalesRecord.
+	
+	totalCheckout := aCashier checkout.
+	
+	self assert: 40*dollar equals: totalCheckout! !
+
+!methodRemoval: CashierTest #test03 stamp: 'JD 11/2/2021 20:28:49'!
+test03
+	
+	| aSalesRecord aCashier totalCheckout aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := tusLibrosTestObjectsFactory createCart add: 2 of: tusLibrosTestObjectsFactory itemSoldByTheStore.
+	aCashier := Cashier 
+				for: aCartWithAnItem
+				payingWith: tusLibrosTestObjectsFactory validCreditCard
+				on: tusLibrosTestObjectsFactory today
+				recordingOn: aSalesRecord.
+	
+	totalCheckout := aCashier checkout.
+	
+	self assert: 40*dollar equals: totalCheckout!
+
+!methodRemoval: CashierTest #test02CanCheckoutACartWithAnItem stamp: 'JD 11/2/2021 20:29:11'!
+test02CanCheckoutACartWithAnItem
+	
+	| aSalesRecord aCashier totalCheckout aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := tusLibrosTestObjectsFactory createCart add: tusLibrosTestObjectsFactory itemSoldByTheStore.
+	aCashier := Cashier 
+				for: aCartWithAnItem
+				payingWith: tusLibrosTestObjectsFactory validCreditCard
+				on: tusLibrosTestObjectsFactory today
+				recordingOn: aSalesRecord.
+	
+	totalCheckout := aCashier checkout.
+	
+	self assert: 20*dollar equals: totalCheckout!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:29:16'!
+test02CanCheckoutACartWithManyItems
+	
+	| aSalesRecord aCashier totalCheckout aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := tusLibrosTestObjectsFactory createCart add: 2 of: tusLibrosTestObjectsFactory itemSoldByTheStore.
+	aCashier := Cashier 
+				for: aCartWithAnItem
+				payingWith: tusLibrosTestObjectsFactory validCreditCard
+				on: tusLibrosTestObjectsFactory today
+				recordingOn: aSalesRecord.
+	
+	totalCheckout := aCashier checkout.
+	
+	self assert: 40*dollar equals: totalCheckout! !
+
+!methodRemoval: CashierTest #test03CanCheckoutACartWithManyItems stamp: 'JD 11/2/2021 20:29:16'!
+test03CanCheckoutACartWithManyItems
+	
+	| aSalesRecord aCashier totalCheckout aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := tusLibrosTestObjectsFactory createCart add: 2 of: tusLibrosTestObjectsFactory itemSoldByTheStore.
+	aCashier := Cashier 
+				for: aCartWithAnItem
+				payingWith: tusLibrosTestObjectsFactory validCreditCard
+				on: tusLibrosTestObjectsFactory today
+				recordingOn: aSalesRecord.
+	
+	totalCheckout := aCashier checkout.
+	
+	self assert: 40*dollar equals: totalCheckout!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:38:16'!
+test03
+	
+	| aSalesRecord aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := tusLibrosTestObjectsFactory createCart add: tusLibrosTestObjectsFactory itemSoldByTheStore.
+	self
+		should: [Cashier 
+			for: tusLibrosTestObjectsFactory createCart
+			payingWith: tusLibrosTestObjectsFactory expiredCreditCard
+			on: tusLibrosTestObjectsFactory today
+			recordingOn: aSalesRecord]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | 
+			self assert: anError messageText = Cashier creditCardIsExpiredErrorMessage.
+			self assert: aSalesRecord isEmpty]! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:39:00' prior: 50916652!
+test03
+	
+	| aSalesRecord aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := tusLibrosTestObjectsFactory createCart add: tusLibrosTestObjectsFactory itemSoldByTheStore.
+	self
+		should: [Cashier 
+			for: aCartWithAnItem
+			payingWith: tusLibrosTestObjectsFactory expiredCreditCard
+			on: tusLibrosTestObjectsFactory today
+			recordingOn: aSalesRecord]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | 
+			self assert: anError messageText = Cashier creditCardIsExpiredErrorMessage.
+			self assert: aSalesRecord isEmpty]! !
+
+!testRun: #CashierTest #test03 stamp: 'JD 11/2/2021 20:39:05'!
+ERROR!
+!TusLibrosTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:39:27'!
+expiredCreditCard
+	self shouldBeImplemented.! !
+!TusLibrosTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 20:40:01' prior: 50916697!
+expiredCreditCard
+	
+	^ CreditCard with: 'aValidCCNumber' expiringOn: (GregorianMonthOfYear year: (self today year previous) month: (self today month))! !
+
+!testRun: #CashierTest #test03 stamp: 'JD 11/2/2021 20:40:02'!
+FAILURE!
+!Cashier class methodsFor: 'instance creation' stamp: 'JD 11/2/2021 20:41:05' prior: 50916122!
+for: aCartToCheckout payingWith: aCreditCardToPayWith on: aCashierCreationDate recordingOn: aSalesRecord 
+	
+	self assert: aCartToCheckout isEmpty not description: [self error: Cashier cartCannotBeEmptyErrorMessage].
+	self assert: aCreditCardToPayWith isNotExpired description: [self error: Cashier creditCardIsExpiredErrorMessage].
+
+	^ self new initializeFor: aCartToCheckout payingWith: aCreditCardToPayWith on: aCashierCreationDate recordingOn: aSalesRecord ! !
+!Cashier class methodsFor: 'instance creation' stamp: 'JD 11/2/2021 20:52:53' prior: 50916713!
+for: aCartToCheckout payingWith: aCreditCardToPayWith on: aCashierCreationDate recordingOn: aSalesRecord 
+	
+	| aCreditCardToPayWithIsNotExpired |
+	self assert: aCartToCheckout isEmpty not description: [self error: Cashier cartCannotBeEmptyErrorMessage].
+	aCreditCardToPayWithIsNotExpired := ((aCreditCardToPayWith expiration year = aCashierCreationDate year) and: [(aCreditCardToPayWith expiration month > aCashierCreationDate month)]) 
+		or: [aCreditCardToPayWith expiration year > aCashierCreationDate year].
+	self assert: aCreditCardToPayWithIsNotExpired description: [self error: Cashier creditCardIsExpiredErrorMessage].
+
+	^ self new initializeFor: aCartToCheckout payingWith: aCreditCardToPayWith on: aCashierCreationDate recordingOn: aSalesRecord ! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/2/2021 20:53:03'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/2/2021 20:53:03'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/2/2021 20:53:03'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/2/2021 20:53:03'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/2/2021 20:53:03'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/2/2021 20:53:03'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/2/2021 20:53:03'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/2/2021 20:53:03'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 20:53:03'!
+PASSED!
+
+!testRun: #CashierTest #test02CanCheckoutACartWithManyItems stamp: 'JD 11/2/2021 20:53:03'!
+ERROR!
+
+!testRun: #CashierTest #test03 stamp: 'JD 11/2/2021 20:53:03'!
+ERROR!
+!CreditCard methodsFor: 'initialization' stamp: 'JD 11/2/2021 20:53:39'!
+expiration
+	
+	^ expirationMonthOfYear! !
+!Cashier class methodsFor: 'instance creation' stamp: 'JD 11/2/2021 20:54:06'!
+creditCardIsExpiredErrorMessage
+
+	^ 'Credit card is expired'! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/2/2021 20:54:15'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/2/2021 20:54:15'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/2/2021 20:54:15'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/2/2021 20:54:15'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/2/2021 20:54:15'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/2/2021 20:54:15'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/2/2021 20:54:15'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/2/2021 20:54:15'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 20:54:15'!
+PASSED!
+
+!testRun: #CashierTest #test02CanCheckoutACartWithManyItems stamp: 'JD 11/2/2021 20:54:15'!
+PASSED!
+
+!testRun: #CashierTest #test03 stamp: 'JD 11/2/2021 20:54:15'!
+PASSED!
+!Cashier class methodsFor: 'instance creation' stamp: 'JD 11/2/2021 20:55:54'!
+assertThatIsNotExpired: aCreditCardToPayWith on: aCashierCreationDate
+	
+	| aCreditCardToPayWithIsNotExpired |
+
+	aCreditCardToPayWithIsNotExpired := ((aCreditCardToPayWith expiration year = aCashierCreationDate year) and: [(aCreditCardToPayWith expiration month > aCashierCreationDate month)]) 
+		or: [aCreditCardToPayWith expiration year > aCashierCreationDate year].
+	
+	self assert: aCreditCardToPayWithIsNotExpired description: [self error: Cashier creditCardIsExpiredErrorMessage].! !
+!Cashier class methodsFor: 'instance creation' stamp: 'JD 11/2/2021 20:56:13' prior: 50916834!
+assertThatIsNotExpired: aCreditCardToPayWith on: aCashierCreationDate
+	
+	| aCreditCardToPayWithIsNotExpired xx |
+
+	xx _ (aCreditCardToPayWith expiration year = aCashierCreationDate year) and: [(aCreditCardToPayWith expiration month > aCashierCreationDate month)].
+	aCreditCardToPayWithIsNotExpired := (xx) 
+		or: [aCreditCardToPayWith expiration year > aCashierCreationDate year].
+	
+	self assert: aCreditCardToPayWithIsNotExpired description: [self error: Cashier creditCardIsExpiredErrorMessage].! !
+!Cashier class methodsFor: 'instance creation' stamp: 'JD 11/2/2021 20:56:31' prior: 50916853!
+assertThatIsNotExpired: aCreditCardToPayWith on: aCashierCreationDate
+	
+	| aCreditCardToPayWithIsNotExpired xx |
+
+	xx _ (aCreditCardToPayWith expiration year = aCashierCreationDate year) and: [(aCreditCardToPayWith expiration month > aCashierCreationDate month)].
+	aCreditCardToPayWithIsNotExpired := (xx) 
+		or: [| yy |
+	yy _ aCreditCardToPayWith expiration year > aCashierCreationDate year].
+	
+	self assert: aCreditCardToPayWithIsNotExpired description: [self error: Cashier creditCardIsExpiredErrorMessage].! !
+!Cashier class methodsFor: 'instance creation' stamp: 'JD 11/2/2021 21:00:37' prior: 50916872!
+assertThatIsNotExpired: aCreditCardToPayWith on: aCashierCreationDate
+	
+	| expireOnNextMonths expireOnNextYears |
+
+	expireOnNextMonths := (aCreditCardToPayWith expiration year = aCashierCreationDate year) and: [(aCreditCardToPayWith expiration month > aCashierCreationDate month)].
+	expireOnNextYears := aCreditCardToPayWith expiration year > aCashierCreationDate year.
+	
+	self assert: (expireOnNextMonths or: [expireOnNextYears]) description: [self error: Cashier creditCardIsExpiredErrorMessage].! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/2/2021 21:00:38'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/2/2021 21:00:38'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/2/2021 21:00:38'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/2/2021 21:00:38'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/2/2021 21:00:38'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/2/2021 21:00:38'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/2/2021 21:00:38'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/2/2021 21:00:38'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 21:00:38'!
+PASSED!
+
+!testRun: #CashierTest #test02CanCheckoutACartWithManyItems stamp: 'JD 11/2/2021 21:00:38'!
+PASSED!
+
+!testRun: #CashierTest #test03 stamp: 'JD 11/2/2021 21:00:38'!
+PASSED!
+!Cashier class methodsFor: 'instance creation' stamp: 'JD 11/2/2021 21:01:05' prior: 50916731!
+for: aCartToCheckout payingWith: aCreditCardToPayWith on: aCashierCreationDate recordingOn: aSalesRecord 
+	
+	self assert: aCartToCheckout isEmpty not description: [self error: Cashier cartCannotBeEmptyErrorMessage].
+	self assertThatIsNotExpired: aCreditCardToPayWith on: aCashierCreationDate.
+
+	^ self new initializeFor: aCartToCheckout payingWith: aCreditCardToPayWith on: aCashierCreationDate recordingOn: aSalesRecord ! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/2/2021 21:01:06'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/2/2021 21:01:06'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/2/2021 21:01:06'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/2/2021 21:01:06'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/2/2021 21:01:06'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/2/2021 21:01:06'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/2/2021 21:01:06'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/2/2021 21:01:06'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 21:01:06'!
+PASSED!
+
+!testRun: #CashierTest #test02CanCheckoutACartWithManyItems stamp: 'JD 11/2/2021 21:01:06'!
+PASSED!
+
+!testRun: #CashierTest #test03 stamp: 'JD 11/2/2021 21:01:06'!
+PASSED!
+!Cashier class methodsFor: 'instance creation' stamp: 'JD 11/2/2021 21:01:29'!
+assertThatIsNotEmpty: aCartToCheckout
+
+	^ self assert: aCartToCheckout isEmpty not description: [self error: Cashier cartCannotBeEmptyErrorMessage]! !
+!Cashier class methodsFor: 'instance creation' stamp: 'JD 11/2/2021 21:01:29' prior: 50916945!
+for: aCartToCheckout payingWith: aCreditCardToPayWith on: aCashierCreationDate recordingOn: aSalesRecord 
+	
+	self assertThatIsNotEmpty: aCartToCheckout.
+	self assertThatIsNotExpired: aCreditCardToPayWith on: aCashierCreationDate.
+
+	^ self new initializeFor: aCartToCheckout payingWith: aCreditCardToPayWith on: aCashierCreationDate recordingOn: aSalesRecord ! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/2/2021 21:01:34'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/2/2021 21:01:34'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/2/2021 21:01:34'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/2/2021 21:01:34'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/2/2021 21:01:34'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/2/2021 21:01:34'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/2/2021 21:01:34'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/2/2021 21:01:34'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 21:01:34'!
+PASSED!
+
+!testRun: #CashierTest #test02CanCheckoutACartWithManyItems stamp: 'JD 11/2/2021 21:01:34'!
+PASSED!
+
+!testRun: #CashierTest #test03 stamp: 'JD 11/2/2021 21:01:34'!
+PASSED!
+
+----SNAPSHOT----(2 November 2021 21:01:47) CuisUniversity-4913.image priorSource: 18714192!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 21:03:42'!
+test03CannotCreateACashierWithAnExpiredCard
+	
+	| aSalesRecord aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := tusLibrosTestObjectsFactory createCart add: tusLibrosTestObjectsFactory itemSoldByTheStore.
+	self
+		should: [Cashier 
+			for: aCartWithAnItem
+			payingWith: tusLibrosTestObjectsFactory expiredCreditCard
+			on: tusLibrosTestObjectsFactory today
+			recordingOn: aSalesRecord]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | 
+			self assert: anError messageText = Cashier creditCardIsExpiredErrorMessage.
+			self assert: aSalesRecord isEmpty]! !
+
+!methodRemoval: CashierTest #test03 stamp: 'JD 11/2/2021 21:03:42'!
+test03
+	
+	| aSalesRecord aCartWithAnItem |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := tusLibrosTestObjectsFactory createCart add: tusLibrosTestObjectsFactory itemSoldByTheStore.
+	self
+		should: [Cashier 
+			for: aCartWithAnItem
+			payingWith: tusLibrosTestObjectsFactory expiredCreditCard
+			on: tusLibrosTestObjectsFactory today
+			recordingOn: aSalesRecord]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | 
+			self assert: anError messageText = Cashier creditCardIsExpiredErrorMessage.
+			self assert: aSalesRecord isEmpty]!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 21:33:50'!
+test04CanRegisterASale
+	
+	| aSalesRecord aCartWithAnItem aCashier |
+	
+	aSalesRecord := OrderedCollection new.
+	aCartWithAnItem := tusLibrosTestObjectsFactory createCart add: tusLibrosTestObjectsFactory itemSoldByTheStore.
+	aCashier := Cashier 
+				for: aCartWithAnItem
+				payingWith: tusLibrosTestObjectsFactory validCreditCard
+				on: tusLibrosTestObjectsFactory today
+				recordingOn: aSalesRecord.
+	
+	aCashier checkout.
+	
+	self assert: (OrderedCollection with: aCartWithAnItem total) equals: aSalesRecord! !
+
+!testRun: #CashierTest #test04CanRegisterASale stamp: 'JD 11/2/2021 21:33:56'!
+FAILURE!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 21:34:34' prior: 50916174!
+checkout
+	
+	| total |
+	total := cart total.
+	salesRecord add: total.
+	
+	^ total! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'JD 11/2/2021 21:34:38' prior: 50917118!
+checkout
+	
+	| total |
+
+	total := cart total.
+	salesRecord add: total.
+	
+	^ total! !
+
+!testRun: #CashierTest #test04CanRegisterASale stamp: 'JD 11/2/2021 21:37:43'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/2/2021 21:37:43'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/2/2021 21:37:43'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/2/2021 21:37:43'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/2/2021 21:37:43'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/2/2021 21:37:43'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/2/2021 21:37:43'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/2/2021 21:37:43'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/2/2021 21:37:43'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCreateACashierForAnEmptyCart stamp: 'JD 11/2/2021 21:37:43'!
+PASSED!
+
+!testRun: #CashierTest #test02CanCheckoutACartWithManyItems stamp: 'JD 11/2/2021 21:37:43'!
+PASSED!
+
+!testRun: #CashierTest #test03CannotCreateACashierWithAnExpiredCard stamp: 'JD 11/2/2021 21:37:43'!
+PASSED!
+
+!testRun: #CashierTest #test04CanRegisterASale stamp: 'JD 11/2/2021 21:37:43'!
+PASSED!
+
+----SNAPSHOT----(2 November 2021 21:45:23) CuisUniversity-4913.image priorSource: 18732811!
+
+----SNAPSHOT----(2 November 2021 21:45:25) CuisUniversity-4913.image priorSource: 18736618!
+
+----SNAPSHOT----(2 November 2021 21:46:52) CuisUniversity-4913.image priorSource: 18736711!

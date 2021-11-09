@@ -2365,3 +2365,2409 @@ PASSED!
 ----SNAPSHOT----(7 November 2021 16:44:42) CuisUniversity-4913.image priorSource: 18783143!
 
 ----SNAPSHOT----(7 November 2021 16:44:59) CuisUniversity-4913.image priorSource: 18783236!
+
+----SNAPSHOT----(7 November 2021 17:49:06) CuisUniversity-4913.image priorSource: 18783329!
+
+----STARTUP---- (8 November 2021 18:00:37) as /home/juli/Documentos/Facu/Inge1/cuis-university/CuisUniversity-4913.image!
+
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 20:00:09'!
+test07
+
+	| xx anExpiredCartId |
+	
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog.
+	
+	anExpiredCartId := 0.
+	self
+		should: [xx listCart: anExpiredCartId]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError | anError messageText = XX expiredCartErrorMessage]! !
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 20:01:59'!
+ERROR!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 20:02:00'!
+ERROR!
+!XX class methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 20:02:05'!
+expiredCartErrorMessage
+	self shouldBeImplemented.! !
+!XX class methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 20:03:04' prior: 50918659!
+expiredCartErrorMessage
+	
+	^ 'Cart has reached the expiration time'! !
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 20:03:06'!
+PASSED!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 20:03:06'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 20:03:06'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 20:03:06'!
+PASSED!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 20:03:06'!
+PASSED!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 20:03:06'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 20:03:06'!
+PASSED!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 20:03:06'!
+PASSED!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 20:03:10'!
+PASSED!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 20:04:37' prior: 50918640!
+test07
+
+	| xx anExpiredCartId |
+	
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog.
+	
+	anExpiredCartId := 0.
+	self
+		should: [xx listCart: anExpiredCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | anError messageText = XX expiredCartErrorMessage]! !
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 20:04:39'!
+ERROR!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 20:04:56' prior: 50918371!
+test06CannotListAnItemWithAnInvalidCartId
+
+	| xx anInvalidCartId |
+	
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog.
+	
+	anInvalidCartId := 0.
+	self
+		should: [xx listCart: anInvalidCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | anError messageText = XX invalidCartIdErrorMessage]! !
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 20:04:57'!
+ERROR!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 20:05:19' prior: 50918172!
+test05CannotAddAnItemWithAnInvalidCartId
+
+	| xx anInvalidCartId |
+	
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog.
+	
+	anInvalidCartId := 0.
+	self
+		should: [xx addToCart: anInvalidCartId quantity: 1 of: storeTestObjectsFactory itemSellByTheStore.]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | anError messageText = XX invalidCartIdErrorMessage]! !
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 20:05:21'!
+ERROR!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 20:05:31' prior: 50917285!
+test01CannotCreateACartWithAnInvalidUser
+
+	| xx |
+	xx := XX authenticatingWith: self authenticationSystemPreparedForInvalidUserOrPasswordFailure withCatalog: storeTestObjectsFactory defaultCatalog.
+	
+	self
+		should: [xx createCartFor: self invalidUser with: self validPassword]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | anError messageText = XX invalidUserOrPasswordErrorMessage]! !
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 20:05:32'!
+ERROR!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 20:07:27'!
+ERROR!
+!XX methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 20:07:58' prior: 50918100!
+createCartFor: aUser with: aUserPassword 
+	
+	| aNewCart |
+	self assert: (authenticationSystem authenticate: aUser with: aUserPassword) description: [^ self error: XX invalidUserOrPasswordErrorMessage].
+	
+	aNewCart := Cart acceptingItemsOf: catalog.
+	carts add: aNewCart.
+
+	^ self idFor: aNewCart! !
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 20:08:00'!
+ERROR!
+!XX methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 20:08:18' prior: 50918844!
+createCartFor: aUser with: aUserPassword 
+	
+	| aNewCart |
+	self assert: (authenticationSystem authenticate: aUser with: aUserPassword) description: [self error: XX invalidUserOrPasswordErrorMessage].
+	
+	aNewCart := Cart acceptingItemsOf: catalog.
+	carts add: aNewCart.
+
+	^ self idFor: aNewCart! !
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 20:08:20'!
+ERROR!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 20:08:45' prior: 50918821!
+test01CannotCreateACartWithAnInvalidUser
+
+	| xx |
+	xx := XX authenticatingWith: self authenticationSystemPreparedForInvalidUserOrPasswordFailure withCatalog: storeTestObjectsFactory defaultCatalog.
+	
+	self
+		should: [xx createCartFor: self invalidUser with: self validPassword]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | anError = XX invalidUserOrPasswordErrorMessage]! !
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 20:08:46'!
+ERROR!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 20:08:55' prior: 50918876!
+test01CannotCreateACartWithAnInvalidUser
+
+	| xx |
+	xx := XX authenticatingWith: self authenticationSystemPreparedForInvalidUserOrPasswordFailure withCatalog: storeTestObjectsFactory defaultCatalog.
+	
+	self
+		should: [xx createCartFor: self invalidUser with: self validPassword]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | anError messageText = XX invalidUserOrPasswordErrorMessage]! !
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 20:09:37'!
+ERROR!
+!XX methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 20:09:57' prior: 50918860!
+createCartFor: aUser with: aUserPassword 
+	
+	| aNewCart |
+	self assert: (authenticationSystem authenticate: aUser with: aUserPassword) description: [XX invalidUserOrPasswordErrorMessage].
+	
+	aNewCart := Cart acceptingItemsOf: catalog.
+	carts add: aNewCart.
+
+	^ self idFor: aNewCart! !
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 20:09:58'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 20:09:58'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 20:09:58'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 20:09:58'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 20:09:58'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 20:09:58'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 20:09:58'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 20:09:58'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 20:09:58'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 20:09:58'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 20:09:58'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 20:09:58'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 20:09:58'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 20:09:58'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 20:09:58'!
+PASSED!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 20:09:58'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 20:09:58'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 20:09:58'!
+PASSED!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 20:09:58'!
+PASSED!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 20:09:58'!
+ERROR!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 20:09:58'!
+ERROR!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 20:09:58'!
+ERROR!
+!XX methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 20:11:53' prior: 50917762!
+assertThatCartIdIsValid: aCartId
+
+	^ self assert: (self isCartIdValid: aCartId) description: [XX invalidCartIdErrorMessage]! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 20:11:54'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 20:11:54'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 20:11:54'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 20:11:54'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 20:11:54'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 20:11:54'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 20:11:54'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 20:11:54'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 20:11:54'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 20:11:54'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 20:11:54'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 20:11:54'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 20:11:54'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 20:11:54'!
+PASSED!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 20:11:54'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 20:11:54'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 20:11:54'!
+PASSED!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 20:11:54'!
+PASSED!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 20:11:54'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 20:11:54'!
+PASSED!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 20:11:54'!
+PASSED!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 20:15:42' prior: 50918761!
+test07
+
+	| xx anExpiredCartId |
+	
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog.
+	
+	anExpiredCartId := 0.
+	self
+		should: [xx listCart: anExpiredCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX expiredCartErrorMessage]! !
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 20:15:51'!
+FAILURE!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 20:16:12' prior: 50918779!
+test06CannotListAnItemWithAnInvalidCartId
+
+	| xx anInvalidCartId |
+	
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog.
+	
+	anInvalidCartId := 0.
+	self
+		should: [xx listCart: anInvalidCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX invalidCartIdErrorMessage]! !
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 20:16:13'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 20:16:13'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 20:16:13'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 20:16:13'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 20:16:13'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 20:16:13'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 20:16:13'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 20:16:13'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 20:16:13'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 20:16:13'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 20:16:13'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 20:16:13'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 20:16:13'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 20:16:13'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 20:16:13'!
+PASSED!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 20:16:13'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 20:16:13'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 20:16:13'!
+PASSED!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 20:16:13'!
+PASSED!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 20:16:13'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 20:16:13'!
+PASSED!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 20:16:13'!
+FAILURE!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 20:16:13'!
+FAILURE!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 20:16:55' prior: 50918799!
+test05CannotAddAnItemWithAnInvalidCartId
+
+	| xx anInvalidCartId |
+	
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog.
+	
+	anInvalidCartId := 0.
+	self
+		should: [xx addToCart: anInvalidCartId quantity: 1 of: storeTestObjectsFactory itemSellByTheStore.]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX invalidCartIdErrorMessage]! !
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 20:16:56'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 20:16:56'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 20:16:56'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 20:16:56'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 20:16:56'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 20:16:56'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 20:16:56'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 20:16:56'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 20:16:56'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 20:16:56'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 20:16:56'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 20:16:56'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 20:16:56'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 20:16:56'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 20:16:56'!
+PASSED!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 20:16:56'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 20:16:56'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 20:16:56'!
+PASSED!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 20:16:56'!
+PASSED!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 20:16:56'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 20:16:56'!
+PASSED!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 20:16:56'!
+FAILURE!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 20:16:56'!
+FAILURE!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 20:17:15' prior: 50918896!
+test01CannotCreateACartWithAnInvalidUser
+
+	| xx |
+	xx := XX authenticatingWith: self authenticationSystemPreparedForInvalidUserOrPasswordFailure withCatalog: storeTestObjectsFactory defaultCatalog.
+	
+	self
+		should: [xx createCartFor: self invalidUser with: self validPassword]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX invalidUserOrPasswordErrorMessage]! !
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 20:17:17'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 20:17:17'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 20:17:17'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 20:17:17'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 20:17:17'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 20:17:17'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 20:17:17'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 20:17:17'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 20:17:17'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 20:17:17'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 20:17:17'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 20:17:17'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 20:17:17'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 20:17:17'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 20:17:17'!
+PASSED!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 20:17:17'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 20:17:17'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 20:17:17'!
+PASSED!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 20:17:17'!
+PASSED!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 20:17:17'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 20:17:17'!
+PASSED!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 20:17:17'!
+FAILURE!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 20:17:17'!
+FAILURE!
+
+!classDefinition: #Clock category: 'TusLibros' stamp: 'JD 11/8/2021 20:30:21'!
+Object subclass: #Clock
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreTestObjectsFactory methodsFor: 'date' stamp: 'JD 11/8/2021 20:30:18'!
+clock
+	
+	^ Clock new! !
+!StoreTestObjectsFactory methodsFor: 'date' stamp: 'JD 11/8/2021 20:30:54' prior: 50919364!
+clock
+	
+	^ Clock for: self today! !
+
+!classDefinition: 'Clock class' category: 'TusLibros' stamp: 'JD 11/8/2021 21:08:15'!
+Clock class
+	instanceVariableNames: 'today'!
+!Clock class methodsFor: 'no messages' stamp: 'JD 11/8/2021 21:08:13'!
+for: aTodayDate
+	
+	today := aTodayDate! !
+!XX class methodsFor: 'instance creation' stamp: 'JD 11/8/2021 21:10:30'!
+authenticatingWith: anAuthenticationSystem withCatalog: aCatalog withClock: aClock  
+
+	^ self new initializeAuthenticatingWith: anAuthenticationSystem withCatalog: aCatalog! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:10:30' prior: 50919269!
+test01CannotCreateACartWithAnInvalidUser
+
+	| xx |
+	xx := XX authenticatingWith: self authenticationSystemPreparedForInvalidUserOrPasswordFailure withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock.
+	
+	self
+		should: [xx createCartFor: self invalidUser with: self validPassword]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX invalidUserOrPasswordErrorMessage]! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:10:30' prior: 50918470!
+test02CanCreateACart
+
+	| xx aCartId cartContents |
+	
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	
+	cartContents := xx listCart: aCartId.
+	self assert: (OrderedCollection new) equals: cartContents! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:10:30' prior: 50919178!
+test05CannotAddAnItemWithAnInvalidCartId
+
+	| xx anInvalidCartId |
+	
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock.
+	
+	anInvalidCartId := 0.
+	self
+		should: [xx addToCart: anInvalidCartId quantity: 1 of: storeTestObjectsFactory itemSellByTheStore.]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX invalidCartIdErrorMessage]! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:10:30' prior: 50919089!
+test06CannotListAnItemWithAnInvalidCartId
+
+	| xx anInvalidCartId |
+	
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock.
+	
+	anInvalidCartId := 0.
+	self
+		should: [xx listCart: anInvalidCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX invalidCartIdErrorMessage]! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:10:30' prior: 50919071!
+test07
+
+	| xx anExpiredCartId |
+	
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock.
+	
+	anExpiredCartId := 0.
+	self
+		should: [xx listCart: anExpiredCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX expiredCartErrorMessage]! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:10:30' prior: 50918485!
+test03CanAddAnItemToCart
+
+	| xx aCartId cartContents |
+	
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	xx addToCart: aCartId quantity: 1 of: storeTestObjectsFactory itemSellByTheStore.
+
+	cartContents := xx listCart: aCartId.
+	self assert: (OrderedCollection with: storeTestObjectsFactory itemSellByTheStore with: 1) equals: cartContents! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:10:30' prior: 50918531!
+test04CanCreateManyCarts
+
+	| xx aCartId cartContents anotherCartContents anotherCartId |
+	
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	xx addToCart: aCartId quantity: 1 of: storeTestObjectsFactory itemSellByTheStore.
+	anotherCartId := 	xx createCartFor: self validUser with: self validPassword.
+
+	cartContents := xx listCart: aCartId.
+	anotherCartContents := xx listCart: anotherCartId.
+	self assert: (OrderedCollection with: storeTestObjectsFactory itemSellByTheStore with: 1) equals: cartContents.
+	self assert: (OrderedCollection new) equals: anotherCartContents! !
+
+!methodRemoval: XX class #authenticatingWith:withCatalog: stamp: 'JD 11/8/2021 21:10:30'!
+authenticatingWith: anAuthenticationSystem withCatalog: aCatalog 
+
+	^ self new initializeAuthenticatingWith: anAuthenticationSystem withCatalog: aCatalog!
+!XX methodsFor: 'initialization' stamp: 'JD 11/8/2021 21:11:27'!
+initializeAuthenticatingWith: anAuthenticationSystem withCatalog: aCatalog withClock: aClock   
+
+	authenticationSystem := anAuthenticationSystem.
+	catalog := aCatalog.
+	carts := OrderedCollection new! !
+!XX class methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:11:27' prior: 50919380!
+authenticatingWith: anAuthenticationSystem withCatalog: aCatalog withClock: aClock  
+
+	^ self new initializeAuthenticatingWith: anAuthenticationSystem withCatalog: aCatalog withClock: aClock! !
+
+!methodRemoval: XX #initializeAuthenticatingWith:withCatalog: stamp: 'JD 11/8/2021 21:11:27'!
+initializeAuthenticatingWith: anAuthenticationSystem withCatalog: aCatalog  
+
+	authenticationSystem := anAuthenticationSystem.
+	catalog := aCatalog.
+	carts := OrderedCollection new!
+
+!classDefinition: #XX category: 'TusLibros' stamp: 'JD 11/8/2021 21:12:17'!
+Object subclass: #XX
+	instanceVariableNames: 'authenticationSystem carts catalog clock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!XX methodsFor: 'initialization' stamp: 'JD 11/8/2021 21:12:15' prior: 50919534!
+initializeAuthenticatingWith: anAuthenticationSystem withCatalog: aCatalog withClock: aClock   
+
+	authenticationSystem := anAuthenticationSystem.
+	catalog := aCatalog.
+	carts := OrderedCollection new.
+	clock := aClock! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:17:31' prior: 50919461!
+test07
+
+	| xx anExpiredCartId aCartId |
+	
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	
+	storeTestObjectsFactory clock now: (self today + (31*minute)).
+	self
+		should: [xx listCart: anExpiredCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX expiredCartErrorMessage]! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:17:44' prior: 50919579!
+test07
+
+	| xx aCartId |
+	
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	
+	storeTestObjectsFactory clock now: (self today + (31*minute)).
+	self
+		should: [xx listCart: aCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX expiredCartErrorMessage]! !
+!Clock class methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:18:39' prior: 50919376!
+for: aTodayDate
+	
+	^ self initializeFor: aTodayDate! !
+
+!classDefinition: #Clock category: 'TusLibros' stamp: 'JD 11/8/2021 21:19:01'!
+Object subclass: #Clock
+	instanceVariableNames: 'now'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Clock methodsFor: 'no messages' stamp: 'JD 11/8/2021 21:19:00'!
+initializeFor: aTodayDate
+	
+	now := aTodayDate! !
+
+Clock class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Clock class' category: 'TusLibros' stamp: 'JD 11/8/2021 21:19:11'!
+Clock class
+	instanceVariableNames: ''!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 21:19:24'!
+ERROR!
+!Clock class methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:19:35' prior: 50919620!
+for: aTodayDate
+	
+	^ self new initializeFor: aTodayDate! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 21:19:37'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 21:19:37'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 21:19:37'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 21:19:37'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 21:19:37'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 21:19:37'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 21:19:37'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 21:19:37'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 21:19:37'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 21:19:37'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 21:19:37'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 21:19:37'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 21:19:37'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 21:19:37'!
+PASSED!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 21:19:37'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 21:19:37'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 21:19:37'!
+PASSED!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 21:19:37'!
+PASSED!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:19:37'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:19:37'!
+PASSED!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 21:19:37'!
+ERROR!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 21:19:37'!
+ERROR!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:19:51' prior: 50919600!
+test07
+
+	| xx aCartId |
+	
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	
+	storeTestObjectsFactory clock now: (storeTestObjectsFactory today + (31*minute)).
+	self
+		should: [xx listCart: aCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX expiredCartErrorMessage]! !
+!StoreTestObjectsFactory methodsFor: 'initialization' stamp: 'JD 11/8/2021 21:22:07' prior: 50915988 overrides: 16896425!
+initialize
+
+	today := GregorianDateTime now! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 21:22:08'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 21:22:08'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 21:22:08'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 21:22:08'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 21:22:08'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 21:22:08'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 21:22:08'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 21:22:08'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 21:22:08'!
+ERROR!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 21:22:08'!
+ERROR!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 21:22:08'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 21:22:08'!
+ERROR!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 21:22:08'!
+ERROR!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 21:22:08'!
+ERROR!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 21:22:08'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 21:22:08'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 21:22:08'!
+PASSED!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 21:22:08'!
+PASSED!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:22:08'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:22:08'!
+PASSED!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 21:22:08'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'initialization' stamp: 'JD 11/8/2021 21:22:14' prior: 50919739 overrides: 16896425!
+initialize
+
+	today := DateAndTime now! !
+!StoreTestObjectsFactory methodsFor: 'initialization' stamp: 'JD 11/8/2021 21:23:03' prior: 50919811 overrides: 16896425!
+initialize
+
+	today := GregorianDateTime now! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 21:23:04'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 21:23:04'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 21:23:04'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 21:23:04'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 21:23:04'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 21:23:04'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 21:23:04'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 21:23:04'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 21:23:04'!
+ERROR!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 21:23:04'!
+ERROR!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 21:23:04'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 21:23:04'!
+ERROR!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 21:23:04'!
+ERROR!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 21:23:04'!
+ERROR!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 21:23:04'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 21:23:04'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 21:23:04'!
+PASSED!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 21:23:04'!
+PASSED!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:23:04'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:23:04'!
+PASSED!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 21:23:04'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'initialization' stamp: 'JD 11/8/2021 21:23:14' prior: 50919817 overrides: 16896425!
+initialize
+
+	today := FixedGregorianDate today! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 21:23:15'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 21:23:15'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 21:23:15'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 21:23:15'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 21:23:15'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 21:23:15'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 21:23:15'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 21:23:15'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 21:23:15'!
+ERROR!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 21:23:15'!
+ERROR!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 21:23:15'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 21:23:15'!
+ERROR!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 21:23:15'!
+ERROR!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 21:23:15'!
+ERROR!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 21:23:15'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 21:23:15'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 21:23:15'!
+PASSED!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 21:23:15'!
+PASSED!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:23:15'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:23:15'!
+PASSED!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 21:23:15'!
+ERROR!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 21:23:25'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'initialization' stamp: 'JD 11/8/2021 21:23:48' prior: 50919889 overrides: 16896425!
+initialize
+
+	today := DateAndTime now! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 21:23:50'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 21:23:50'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 21:23:50'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 21:23:50'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 21:23:50'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 21:23:50'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 21:23:50'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 21:23:50'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 21:23:50'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 21:23:50'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 21:23:50'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 21:23:50'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 21:23:50'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 21:23:50'!
+PASSED!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 21:23:50'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 21:23:50'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 21:23:50'!
+PASSED!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 21:23:50'!
+PASSED!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:23:50'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:23:50'!
+PASSED!
+
+Duration!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:25:38' prior: 50919718!
+test07
+
+	| xx aCartId |
+	
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	
+	storeTestObjectsFactory clock now: (storeTestObjectsFactory today + Duration minutes: 31).
+	self
+		should: [xx listCart: aCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX expiredCartErrorMessage]! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:25:55' prior: 50920033!
+test07
+
+	| xx aCartId |
+	
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	
+	storeTestObjectsFactory clock now: (storeTestObjectsFactory today + (Duration minutes: 31)).
+	self
+		should: [xx listCart: aCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX expiredCartErrorMessage]! !
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 21:25:56'!
+ERROR!
+!Clock methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:26:11'!
+now: aDateAndTime 
+	self shouldBeImplemented.
+	now _ aDateAndTime! !
+!Clock methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:26:27' prior: 50920077!
+now: aTodayDate
+	
+	now := aTodayDate! !
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 21:26:30'!
+FAILURE!
+
+!classDefinition: #XX category: 'TusLibros' stamp: 'JD 11/8/2021 21:31:34'!
+Object subclass: #XX
+	instanceVariableNames: 'authenticationSystem carts catalog clock cartsLastUsage'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!XX methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:31:33' prior: 50918387!
+listCart: aCartId
+	
+	| cartForId |
+	
+	self assertThatCartIdIsValid: aCartId.
+	self assert: (clock now - (cartsLastUsage at: aCartId)) minutes <= 30 description: [XX expiredCartErrorMessage].
+
+	cartForId := carts at: aCartId.
+	
+	^ self listItemsWithOccurrencesOf: cartForId 
+! !
+!XX methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:32:46' prior: 50918916!
+createCartFor: aUser with: aUserPassword 
+	
+	| aNewCart newCartId |
+	self assert: (authenticationSystem authenticate: aUser with: aUserPassword) description: [XX invalidUserOrPasswordErrorMessage].
+	
+	aNewCart := Cart acceptingItemsOf: catalog.
+	carts add: aNewCart.
+	
+	newCartId := self idFor: aNewCart.
+	cartsLastUsage at: newCartId put: clock now.
+
+	^ newCartId! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 21:32:53'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 21:32:53'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 21:32:53'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 21:32:53'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 21:32:53'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 21:32:53'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 21:32:53'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 21:32:53'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 21:32:53'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 21:32:53'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 21:32:53'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 21:32:53'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 21:32:53'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 21:32:53'!
+PASSED!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 21:32:53'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 21:32:53'!
+ERROR!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 21:32:53'!
+ERROR!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 21:32:53'!
+ERROR!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:32:53'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:32:53'!
+PASSED!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 21:32:53'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 21:33:14'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 21:33:14'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 21:33:14'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 21:33:14'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 21:33:14'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 21:33:14'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 21:33:14'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 21:33:14'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 21:33:14'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 21:33:14'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 21:33:14'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 21:33:14'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 21:33:14'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 21:33:14'!
+PASSED!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 21:33:14'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 21:33:14'!
+ERROR!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 21:33:14'!
+ERROR!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 21:33:14'!
+ERROR!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:33:14'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:33:14'!
+PASSED!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 21:33:14'!
+ERROR!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 21:33:16'!
+ERROR!
+!Clock methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:33:28'!
+now
+	
+	^ now! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 21:33:29'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 21:33:29'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 21:33:29'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 21:33:29'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 21:33:29'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 21:33:29'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 21:33:29'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 21:33:29'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 21:33:29'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 21:33:29'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 21:33:29'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 21:33:29'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 21:33:29'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 21:33:29'!
+PASSED!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 21:33:29'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 21:33:29'!
+ERROR!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 21:33:29'!
+ERROR!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 21:33:29'!
+ERROR!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:33:29'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:33:29'!
+PASSED!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 21:33:29'!
+ERROR!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 21:33:31'!
+ERROR!
+!XX methodsFor: 'initialization' stamp: 'JD 11/8/2021 21:34:03' prior: 50919569!
+initializeAuthenticatingWith: anAuthenticationSystem withCatalog: aCatalog withClock: aClock   
+
+	authenticationSystem := anAuthenticationSystem.
+	catalog := aCatalog.
+	carts := OrderedCollection new.
+	clock := aClock.
+	cartsLastUsage := Dictionary new! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 21:34:04'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 21:34:04'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 21:34:04'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 21:34:04'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 21:34:04'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 21:34:04'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 21:34:04'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 21:34:04'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 21:34:04'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 21:34:04'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 21:34:04'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 21:34:04'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 21:34:04'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 21:34:04'!
+PASSED!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 21:34:04'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 21:34:04'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 21:34:04'!
+PASSED!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 21:34:04'!
+PASSED!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:34:04'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:34:04'!
+PASSED!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 21:34:04'!
+FAILURE!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 21:34:04'!
+FAILURE!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:34:49' prior: 50920054!
+test07
+
+	| xx aCartId |
+	
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	
+	storeTestObjectsFactory clock now: (storeTestObjectsFactory today + (Duration minutes: 40)).
+	self
+		should: [xx listCart: aCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX expiredCartErrorMessage]! !
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 21:34:50'!
+FAILURE!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:34:53' prior: 50920410!
+test07
+
+	| xx aCartId |
+	
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	
+	storeTestObjectsFactory clock now: (storeTestObjectsFactory today + (Duration minutes: 31)).
+	self
+		should: [xx listCart: aCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX expiredCartErrorMessage]! !
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 21:34:54'!
+FAILURE!
+
+storeTestObjectsFactory clock now.!
+
+			storeTestObjectsFactory clock now.!
+
+		storeTestObjectsFactory clock now. !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:37:48' prior: 50920433!
+test07
+
+	| xx aCartId aClock |
+	
+	aClock := storeTestObjectsFactory clock.
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: aClock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	
+	aClock now: (storeTestObjectsFactory today + (Duration minutes: 31)).
+	self
+		should: [xx listCart: aCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX expiredCartErrorMessage]! !
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!testRun: #InterfaceTest #test07 stamp: 'JD 11/8/2021 21:37:51'!
+PASSED!
+
+!classRenamed: #Clock as: #SimulatedClock stamp: 'JD 11/8/2021 21:39:14'!
+Smalltalk renameClassNamed: #Clock as: #SimulatedClock!
+!StoreTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:39:14' prior: 50919368!
+clock
+	
+	^ SimulatedClock for: self today! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:39:38'!
+test07CannotListAnExpiredCart
+
+	| xx aCartId aClock |
+	
+	aClock := storeTestObjectsFactory clock.
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: aClock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	
+	aClock now: (storeTestObjectsFactory today + (Duration minutes: 31)).
+	self
+		should: [xx listCart: aCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX expiredCartErrorMessage]! !
+
+!methodRemoval: InterfaceTest #test07 stamp: 'JD 11/8/2021 21:39:38'!
+test07
+
+	| xx aCartId aClock |
+	
+	aClock := storeTestObjectsFactory clock.
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: aClock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	
+	aClock now: (storeTestObjectsFactory today + (Duration minutes: 31)).
+	self
+		should: [xx listCart: aCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX expiredCartErrorMessage]!
+
+----SNAPSHOT----(8 November 2021 21:43:38) CuisUniversity-4913.image priorSource: 18783422!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:51:36'!
+test08
+
+	| xx aCartId aClock |
+	
+	aClock := storeTestObjectsFactory clock.
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: aClock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	
+	aClock now: (storeTestObjectsFactory today + (Duration minutes: 31)).
+	self
+		should: [xx listCart: aCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | 
+			self assert: anError messageText = XX expiredCartErrorMessage].
+
+	self
+		should: [xx listCart: aCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | 
+			self assert: anError messageText = XX invalidCartIdErrorMessage]! !
+
+!testRun: #InterfaceTest #test08 stamp: 'JD 11/8/2021 21:51:37'!
+FAILURE!
+!XX methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:54:50' prior: 50920097!
+listCart: aCartId
+	
+	| cartForId |
+	
+	self assertThatCartIdIsValid: aCartId.
+	(clock now - (cartsLastUsage at: aCartId)) minutes <= 30 ifTrue: [
+		cartsLastUsage remove: aCartId.
+		carts remove: aCartId.
+		self error: [XX expiredCartErrorMessage]
+	].
+	cartForId := carts at: aCartId.
+	
+	^ self listItemsWithOccurrencesOf: cartForId 
+! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 21:54:51'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 21:54:51'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 21:54:51'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 21:54:51'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 21:54:51'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 21:54:51'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 21:54:51'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 21:54:51'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 21:54:51'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 21:54:51'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 21:54:51'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 21:54:51'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 21:54:51'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 21:54:51'!
+PASSED!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 21:54:51'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 21:54:51'!
+ERROR!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 21:54:51'!
+ERROR!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 21:54:51'!
+ERROR!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:54:51'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:54:51'!
+PASSED!
+
+!testRun: #InterfaceTest #test07CannotListAnExpiredCart stamp: 'JD 11/8/2021 21:54:51'!
+FAILURE!
+
+!testRun: #InterfaceTest #test08 stamp: 'JD 11/8/2021 21:54:51'!
+FAILURE!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 21:54:56'!
+ERROR!
+!XX methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:55:31' prior: 50920631!
+listCart: aCartId
+	
+	| cartForId |
+	
+	self assertThatCartIdIsValid: aCartId.
+	(clock now - (cartsLastUsage at: aCartId)) minutes <= 30 ifTrue: [
+		cartsLastUsage removeKey: aCartId.
+		carts remove: aCartId.
+		self error: [XX expiredCartErrorMessage]
+	].
+	cartForId := carts at: aCartId.
+	
+	^ self listItemsWithOccurrencesOf: cartForId 
+! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 21:55:32'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 21:55:32'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 21:55:32'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 21:55:32'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 21:55:32'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 21:55:32'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 21:55:32'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 21:55:32'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 21:55:32'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 21:55:32'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 21:55:32'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 21:55:32'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 21:55:32'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 21:55:32'!
+PASSED!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 21:55:32'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 21:55:32'!
+ERROR!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 21:55:32'!
+ERROR!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 21:55:32'!
+ERROR!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:55:32'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:55:32'!
+PASSED!
+
+!testRun: #InterfaceTest #test07CannotListAnExpiredCart stamp: 'JD 11/8/2021 21:55:32'!
+FAILURE!
+
+!testRun: #InterfaceTest #test08 stamp: 'JD 11/8/2021 21:55:32'!
+FAILURE!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 21:55:34'!
+ERROR!
+
+!testRun: #InterfaceTest #test08 stamp: 'JD 11/8/2021 21:56:45'!
+FAILURE!
+
+!testRun: #InterfaceTest #test08 stamp: 'JD 11/8/2021 21:56:49'!
+FAILURE!
+!XX methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:57:57' prior: 50920716!
+listCart: aCartId
+	
+	| cartForId |
+	
+	self assertThatCartIdIsValid: aCartId.
+	cartForId := carts at: aCartId.
+	(clock now - (cartsLastUsage at: aCartId)) minutes <= 30 ifTrue: [
+		cartsLastUsage removeKey: aCartId.
+		carts remove: cartForId.
+		self error: [XX expiredCartErrorMessage]
+	].
+	
+	^ self listItemsWithOccurrencesOf: cartForId 
+! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 21:57:58'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 21:57:58'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 21:57:58'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 21:57:58'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 21:57:58'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 21:57:58'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 21:57:58'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 21:57:58'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 21:57:58'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 21:57:58'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 21:57:58'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 21:57:58'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 21:57:58'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 21:57:58'!
+PASSED!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 21:57:58'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 21:57:58'!
+ERROR!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 21:57:58'!
+ERROR!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 21:57:58'!
+ERROR!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:57:58'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:57:58'!
+PASSED!
+
+!testRun: #InterfaceTest #test07CannotListAnExpiredCart stamp: 'JD 11/8/2021 21:57:58'!
+FAILURE!
+
+!testRun: #InterfaceTest #test08 stamp: 'JD 11/8/2021 21:57:58'!
+FAILURE!
+
+!testRun: #InterfaceTest #test08 stamp: 'JD 11/8/2021 21:58:12'!
+FAILURE!
+
+!testRun: #InterfaceTest #test07CannotListAnExpiredCart stamp: 'JD 11/8/2021 21:58:28'!
+FAILURE!
+
+!testRun: #InterfaceTest #test07CannotListAnExpiredCart stamp: 'JD 11/8/2021 21:58:28'!
+FAILURE!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 21:58:32'!
+ERROR!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 21:58:32'!
+ERROR!
+!XX methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:59:15' prior: 50920806!
+listCart: aCartId
+	
+	| cartForId |
+	
+	self assertThatCartIdIsValid: aCartId.
+	cartForId := carts at: aCartId.
+	(clock now - (cartsLastUsage at: aCartId)) minutes <= 30 ifFalse: [
+		cartsLastUsage removeKey: aCartId.
+		carts remove: cartForId.
+		self error: [XX expiredCartErrorMessage]
+	].
+	
+	^ self listItemsWithOccurrencesOf: cartForId 
+! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 21:59:16'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 21:59:16'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 21:59:16'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 21:59:16'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 21:59:16'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 21:59:16'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 21:59:16'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 21:59:16'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 21:59:16'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 21:59:16'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 21:59:16'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 21:59:16'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 21:59:16'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 21:59:16'!
+PASSED!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 21:59:16'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 21:59:16'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 21:59:16'!
+PASSED!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 21:59:16'!
+PASSED!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:59:16'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:59:16'!
+PASSED!
+
+!testRun: #InterfaceTest #test07CannotListAnExpiredCart stamp: 'JD 11/8/2021 21:59:16'!
+ERROR!
+
+!testRun: #InterfaceTest #test08 stamp: 'JD 11/8/2021 21:59:16'!
+ERROR!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:59:22' prior: 50920558!
+test07CannotListAnExpiredCart
+
+	| xx aCartId aClock |
+	
+	aClock := storeTestObjectsFactory clock.
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: aClock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	
+	aClock now: (storeTestObjectsFactory today + (Duration minutes: 31)).
+	self
+		should: [xx listCart: aCartId]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX expiredCartErrorMessage]! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:59:29' prior: 50920602!
+test08
+
+	| xx aCartId aClock |
+	
+	aClock := storeTestObjectsFactory clock.
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: aClock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	
+	aClock now: (storeTestObjectsFactory today + (Duration minutes: 31)).
+	self
+		should: [xx listCart: aCartId]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError | 
+			self assert: anError messageText = XX expiredCartErrorMessage].
+
+	self
+		should: [xx listCart: aCartId]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError | 
+			self assert: anError messageText = XX invalidCartIdErrorMessage]! !
+
+!testRun: #InterfaceTest #test08 stamp: 'JD 11/8/2021 21:59:30'!
+FAILURE!
+
+!testRun: #InterfaceTest #test07CannotListAnExpiredCart stamp: 'JD 11/8/2021 21:59:40'!
+FAILURE!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 21:59:46'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 21:59:46'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 21:59:46'!
+PASSED!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 21:59:46'!
+PASSED!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:59:46'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 21:59:46'!
+PASSED!
+
+!testRun: #InterfaceTest #test07CannotListAnExpiredCart stamp: 'JD 11/8/2021 21:59:46'!
+FAILURE!
+
+!testRun: #InterfaceTest #test08 stamp: 'JD 11/8/2021 21:59:46'!
+FAILURE!
+
+!testRun: #InterfaceTest #test07CannotListAnExpiredCart stamp: 'JD 11/8/2021 21:59:48'!
+FAILURE!
+
+!testRun: #InterfaceTest #test07CannotListAnExpiredCart stamp: 'JD 11/8/2021 22:00:27'!
+FAILURE!
+
+!testRun: #InterfaceTest #test07CannotListAnExpiredCart stamp: 'JD 11/8/2021 22:01:38'!
+FAILURE!
+
+self isCartIdValid: aCartId!
+
+carts isInBounds: aCartId!
+
+!testRun: #InterfaceTest #test07CannotListAnExpiredCart stamp: 'JD 11/8/2021 22:02:22'!
+FAILURE!
+
+self size!
+
+anIndex between: 1 and: self size!
+
+carts isInBounds: aCartId!
+
+(clock now - (cartsLastUsage at: aCartId)) minutes <= 30!
+
+(clock now - (cartsLastUsage at: aCartId)) minutes!
+
+!testRun: #InterfaceTest #test07CannotListAnExpiredCart stamp: 'JD 11/8/2021 22:06:46'!
+FAILURE!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 22:07:18' prior: 50920986!
+test07CannotListAnExpiredCart
+
+	| xx aCartId aClock |
+	
+	aClock := storeTestObjectsFactory clock.
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: aClock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	
+	aClock now: (storeTestObjectsFactory today + (Duration minutes: 31)).
+	self
+		should: [xx listCart: aCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX expiredCartErrorMessage]! !
+
+!testRun: #InterfaceTest #test07CannotListAnExpiredCart stamp: 'JD 11/8/2021 22:07:19'!
+ERROR!
+
+!testRun: #InterfaceTest #test07CannotListAnExpiredCart stamp: 'JD 11/8/2021 22:07:19'!
+ERROR!
+!XX methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 22:09:28' prior: 50920903!
+listCart: aCartId
+	
+	| cartForId |
+	
+	self assertThatCartIdIsValid: aCartId.
+	cartForId := carts at: aCartId.
+	(clock now - (cartsLastUsage at: aCartId)) minutes <= 30 ifFalse: [
+		cartsLastUsage removeKey: aCartId.
+		carts remove: cartForId.
+		self error: XX expiredCartErrorMessage
+	].
+	
+	^ self listItemsWithOccurrencesOf: cartForId 
+! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 22:09:31' prior: 50921087!
+test07CannotListAnExpiredCart
+
+	| xx aCartId aClock |
+	
+	aClock := storeTestObjectsFactory clock.
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: aClock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	
+	aClock now: (storeTestObjectsFactory today + (Duration minutes: 31)).
+	self
+		should: [xx listCart: aCartId]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX expiredCartErrorMessage]! !
+
+!testRun: #InterfaceTest #test07CannotListAnExpiredCart stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+
+!testRun: #InterfaceTest #test07CannotListAnExpiredCart stamp: 'JD 11/8/2021 22:09:32'!
+PASSED!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 22:09:49' prior: 50921008!
+test08
+
+	| xx aCartId aClock |
+	
+	aClock := storeTestObjectsFactory clock.
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: aClock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	
+	aClock now: (storeTestObjectsFactory today + (Duration minutes: 31)).
+	self
+		should: [xx listCart: aCartId]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError | 
+			self assert: anError messageText = XX expiredCartErrorMessage].
+
+	self
+		should: [xx listCart: aCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | 
+			self assert: anError messageText = XX invalidCartIdErrorMessage]! !
+
+!testRun: #InterfaceTest #test08 stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #InterfaceTest #test01CannotCreateACartWithAnInvalidUser stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #InterfaceTest #test02CanCreateACart stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CanAddAnItemToCart stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #InterfaceTest #test04CanCreateManyCarts stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #InterfaceTest #test05CannotAddAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotListAnItemWithAnInvalidCartId stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #InterfaceTest #test07CannotListAnExpiredCart stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+!testRun: #InterfaceTest #test08 stamp: 'JD 11/8/2021 22:09:50'!
+PASSED!
+
+----SNAPSHOT----(8 November 2021 22:09:59) CuisUniversity-4913.image priorSource: 18846339!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 22:15:44'!
+test08AnExpiredCartIsErasedWhenUsed
+
+	| xx aCartId aClock |
+	
+	aClock := storeTestObjectsFactory clock.
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: aClock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	
+	aClock now: (storeTestObjectsFactory today + (Duration minutes: 31)).
+	self
+		should: [xx listCart: aCartId]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError | 
+			self assert: anError messageText = XX expiredCartErrorMessage].
+
+	self
+		should: [xx listCart: aCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | 
+			self assert: anError messageText = XX invalidCartIdErrorMessage]! !
+
+!methodRemoval: InterfaceTest #test08 stamp: 'JD 11/8/2021 22:15:44'!
+test08
+
+	| xx aCartId aClock |
+	
+	aClock := storeTestObjectsFactory clock.
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: aClock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	
+	aClock now: (storeTestObjectsFactory today + (Duration minutes: 31)).
+	self
+		should: [xx listCart: aCartId]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError | 
+			self assert: anError messageText = XX expiredCartErrorMessage].
+
+	self
+		should: [xx listCart: aCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | 
+			self assert: anError messageText = XX invalidCartIdErrorMessage]!
+
+----SNAPSHOT----(8 November 2021 22:15:53) CuisUniversity-4913.image priorSource: 18869335!

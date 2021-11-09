@@ -283,46 +283,46 @@ setUp
 
 	storeTestObjectsFactory := StoreTestObjectsFactory new! !
 
-!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/7/2021 15:26:33'!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:10:30'!
 test01CannotCreateACartWithAnInvalidUser
 
 	| xx |
-	xx := XX authenticatingWith: self authenticationSystemPreparedForInvalidUserOrPasswordFailure withCatalog: storeTestObjectsFactory defaultCatalog.
+	xx := XX authenticatingWith: self authenticationSystemPreparedForInvalidUserOrPasswordFailure withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock.
 	
 	self
 		should: [xx createCartFor: self invalidUser with: self validPassword]
-		raise: Error - MessageNotUnderstood
-		withExceptionDo: [:anError | anError messageText = XX invalidUserOrPasswordErrorMessage]! !
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX invalidUserOrPasswordErrorMessage]! !
 
-!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/7/2021 16:20:23'!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:10:30'!
 test02CanCreateACart
 
 	| xx aCartId cartContents |
 	
-	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog.
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock.
 	aCartId := 	xx createCartFor: self validUser with: self validPassword.
 	
 	cartContents := xx listCart: aCartId.
 	self assert: (OrderedCollection new) equals: cartContents! !
 
-!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/7/2021 16:20:30'!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:10:30'!
 test03CanAddAnItemToCart
 
 	| xx aCartId cartContents |
 	
-	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog.
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock.
 	aCartId := 	xx createCartFor: self validUser with: self validPassword.
 	xx addToCart: aCartId quantity: 1 of: storeTestObjectsFactory itemSellByTheStore.
 
 	cartContents := xx listCart: aCartId.
 	self assert: (OrderedCollection with: storeTestObjectsFactory itemSellByTheStore with: 1) equals: cartContents! !
 
-!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/7/2021 16:20:42'!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:10:30'!
 test04CanCreateManyCarts
 
 	| xx aCartId cartContents anotherCartContents anotherCartId |
 	
-	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog.
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock.
 	aCartId := 	xx createCartFor: self validUser with: self validPassword.
 	xx addToCart: aCartId quantity: 1 of: storeTestObjectsFactory itemSellByTheStore.
 	anotherCartId := 	xx createCartFor: self validUser with: self validPassword.
@@ -332,31 +332,68 @@ test04CanCreateManyCarts
 	self assert: (OrderedCollection with: storeTestObjectsFactory itemSellByTheStore with: 1) equals: cartContents.
 	self assert: (OrderedCollection new) equals: anotherCartContents! !
 
-!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/7/2021 16:16:29'!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:10:30'!
 test05CannotAddAnItemWithAnInvalidCartId
 
 	| xx anInvalidCartId |
 	
-	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog.
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock.
 	
 	anInvalidCartId := 0.
 	self
 		should: [xx addToCart: anInvalidCartId quantity: 1 of: storeTestObjectsFactory itemSellByTheStore.]
-		raise: Error - MessageNotUnderstood
-		withExceptionDo: [:anError | anError messageText = XX invalidCartIdErrorMessage]! !
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX invalidCartIdErrorMessage]! !
 
-!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/7/2021 16:17:52'!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:10:30'!
 test06CannotListAnItemWithAnInvalidCartId
 
 	| xx anInvalidCartId |
 	
-	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog.
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock.
 	
 	anInvalidCartId := 0.
 	self
 		should: [xx listCart: anInvalidCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | self assert: anError messageText = XX invalidCartIdErrorMessage]! !
+
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 22:09:31'!
+test07CannotListAnExpiredCart
+
+	| xx aCartId aClock |
+	
+	aClock := storeTestObjectsFactory clock.
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: aClock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	
+	aClock now: (storeTestObjectsFactory today + (Duration minutes: 31)).
+	self
+		should: [xx listCart: aCartId]
 		raise: Error - MessageNotUnderstood
-		withExceptionDo: [:anError | anError messageText = XX invalidCartIdErrorMessage]! !
+		withExceptionDo: [:anError | self assert: anError messageText = XX expiredCartErrorMessage]! !
+
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 22:15:44'!
+test08AnExpiredCartIsErasedWhenUsed
+
+	| xx aCartId aClock |
+	
+	aClock := storeTestObjectsFactory clock.
+	xx := XX authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: aClock.
+	aCartId := 	xx createCartFor: self validUser with: self validPassword.
+	
+	aClock now: (storeTestObjectsFactory today + (Duration minutes: 31)).
+	self
+		should: [xx listCart: aCartId]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError | 
+			self assert: anError messageText = XX expiredCartErrorMessage].
+
+	self
+		should: [xx listCart: aCartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [:anError | 
+			self assert: anError messageText = XX invalidCartIdErrorMessage]! !
 
 !InterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/4/2021 20:17:54'!
 validPassword
@@ -634,6 +671,40 @@ of: aTotal
 	^self new initializeTotal: aTotal ! !
 
 
+!classDefinition: #SimulatedClock category: 'TusLibros'!
+Object subclass: #SimulatedClock
+	instanceVariableNames: 'now'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!SimulatedClock methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:19:00'!
+initializeFor: aTodayDate
+	
+	now := aTodayDate! !
+
+!SimulatedClock methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:33:28'!
+now
+	
+	^ now! !
+
+!SimulatedClock methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:26:27'!
+now: aTodayDate
+	
+	now := aTodayDate! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'SimulatedClock class' category: 'TusLibros'!
+SimulatedClock class
+	instanceVariableNames: ''!
+
+!SimulatedClock class methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:19:35'!
+for: aTodayDate
+	
+	^ self new initializeFor: aTodayDate! !
+
+
 !classDefinition: #StoreTestObjectsFactory category: 'TusLibros'!
 Object subclass: #StoreTestObjectsFactory
 	instanceVariableNames: 'today'
@@ -681,11 +752,16 @@ notExpiredCreditCard
 	^CreditCard expiringOn: (Month month: today monthIndex year: today yearNumber + 1)! !
 
 
-!StoreTestObjectsFactory methodsFor: 'initialization' stamp: 'HernanWilkinson 6/17/2013 18:37'!
+!StoreTestObjectsFactory methodsFor: 'initialization' stamp: 'JD 11/8/2021 21:23:48'!
 initialize
 
 	today := DateAndTime now! !
 
+
+!StoreTestObjectsFactory methodsFor: 'date' stamp: 'JD 11/8/2021 21:39:14'!
+clock
+	
+	^ SimulatedClock for: self today! !
 
 !StoreTestObjectsFactory methodsFor: 'date' stamp: 'HernanWilkinson 6/17/2013 18:37'!
 today
@@ -695,17 +771,19 @@ today
 
 !classDefinition: #XX category: 'TusLibros'!
 Object subclass: #XX
-	instanceVariableNames: 'authenticationSystem carts catalog'
+	instanceVariableNames: 'authenticationSystem carts catalog clock cartsLastUsage'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!XX methodsFor: 'initialization' stamp: 'JD 11/4/2021 21:24:02'!
-initializeAuthenticatingWith: anAuthenticationSystem withCatalog: aCatalog  
+!XX methodsFor: 'initialization' stamp: 'JD 11/8/2021 21:34:03'!
+initializeAuthenticatingWith: anAuthenticationSystem withCatalog: aCatalog withClock: aClock   
 
 	authenticationSystem := anAuthenticationSystem.
 	catalog := aCatalog.
-	carts := OrderedCollection new! !
+	carts := OrderedCollection new.
+	clock := aClock.
+	cartsLastUsage := Dictionary new! !
 
 
 !XX methodsFor: 'as yet unclassified' stamp: 'JD 11/7/2021 16:01:44'!
@@ -714,21 +792,24 @@ addToCart: aCartId quantity: aBookQuantity of: aBookISBN
 	self assertThatCartIdIsValid: aCartId.
 	(carts at: aCartId) add: aBookQuantity of: aBookISBN! !
 
-!XX methodsFor: 'as yet unclassified' stamp: 'JD 11/7/2021 16:01:44'!
+!XX methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 20:11:53'!
 assertThatCartIdIsValid: aCartId
 
-	^ self assert: (self isCartIdValid: aCartId) description: [self error: XX invalidCartIdErrorMessage]! !
+	^ self assert: (self isCartIdValid: aCartId) description: [XX invalidCartIdErrorMessage]! !
 
-!XX methodsFor: 'as yet unclassified' stamp: 'JD 11/7/2021 16:15:16'!
+!XX methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:32:46'!
 createCartFor: aUser with: aUserPassword 
 	
-	| aNewCart |
-	self assert: (authenticationSystem authenticate: aUser with: aUserPassword) description: [self error: XX invalidUserOrPasswordErrorMessage].
+	| aNewCart newCartId |
+	self assert: (authenticationSystem authenticate: aUser with: aUserPassword) description: [XX invalidUserOrPasswordErrorMessage].
 	
 	aNewCart := Cart acceptingItemsOf: catalog.
 	carts add: aNewCart.
+	
+	newCartId := self idFor: aNewCart.
+	cartsLastUsage at: newCartId put: clock now.
 
-	^ self idFor: aNewCart! !
+	^ newCartId! !
 
 !XX methodsFor: 'as yet unclassified' stamp: 'JD 11/7/2021 16:15:16'!
 idFor: aNewCart
@@ -740,14 +821,18 @@ isCartIdValid: aCartId
 
 	^ carts isInBounds: aCartId! !
 
-!XX methodsFor: 'as yet unclassified' stamp: 'JD 11/7/2021 16:18:28'!
+!XX methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 22:09:28'!
 listCart: aCartId
 	
 	| cartForId |
 	
 	self assertThatCartIdIsValid: aCartId.
-
 	cartForId := carts at: aCartId.
+	(clock now - (cartsLastUsage at: aCartId)) minutes <= 30 ifFalse: [
+		cartsLastUsage removeKey: aCartId.
+		carts remove: cartForId.
+		self error: XX expiredCartErrorMessage
+	].
 	
 	^ self listItemsWithOccurrencesOf: cartForId 
 ! !
@@ -771,11 +856,16 @@ listItemsWithOccurrencesOf: aCartToList
 XX class
 	instanceVariableNames: ''!
 
-!XX class methodsFor: 'instance creation' stamp: 'JD 11/4/2021 21:23:04'!
-authenticatingWith: anAuthenticationSystem withCatalog: aCatalog 
+!XX class methodsFor: 'instance creation' stamp: 'JD 11/8/2021 21:11:27'!
+authenticatingWith: anAuthenticationSystem withCatalog: aCatalog withClock: aClock  
 
-	^ self new initializeAuthenticatingWith: anAuthenticationSystem withCatalog: aCatalog! !
+	^ self new initializeAuthenticatingWith: anAuthenticationSystem withCatalog: aCatalog withClock: aClock! !
 
+
+!XX class methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 20:03:04'!
+expiredCartErrorMessage
+	
+	^ 'Cart has reached the expiration time'! !
 
 !XX class methodsFor: 'as yet unclassified' stamp: 'JD 11/7/2021 15:40:07'!
 invalidCartIdErrorMessage

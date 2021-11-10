@@ -105,7 +105,7 @@ TestCase subclass: #CashierTest
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!CashierTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 18:50'!
+!CashierTest methodsFor: 'tests' stamp: 'JD 11/10/2021 17:17:30'!
 test01CanNotCheckoutAnEmptyCart
 
 	| salesBook |
@@ -117,13 +117,13 @@ test01CanNotCheckoutAnEmptyCart
 			charging: testObjectsFactory notExpiredCreditCard 
 			throught: self
 			on: testObjectsFactory today
-			registeringOn:  salesBook ]
+			registeringOn:  salesBook purchasedBy: testObjectsFactory validUser ]
 		raise: Error - MessageNotUnderstood
 		withExceptionDo: [ :anError |
 			self assert: anError messageText = Cashier cartCanNotBeEmptyErrorMessage.
 			self assert: salesBook isEmpty ]! !
 
-!CashierTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 18:51'!
+!CashierTest methodsFor: 'tests' stamp: 'JD 11/10/2021 17:17:30'!
 test02CalculatedTotalIsCorrect
 
 	| cart cashier |
@@ -136,11 +136,11 @@ test02CalculatedTotalIsCorrect
 		charging: testObjectsFactory notExpiredCreditCard 
 		throught: self
 		on: testObjectsFactory today 
-		registeringOn: OrderedCollection new.
+		registeringOn: OrderedCollection new purchasedBy: testObjectsFactory validUser.
 		
 	self assert: cashier checkOut = (testObjectsFactory itemSellByTheStorePrice * 2)! !
 
-!CashierTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 18:51'!
+!CashierTest methodsFor: 'tests' stamp: 'JD 11/10/2021 17:17:30'!
 test03CanNotCheckoutWithAnExpiredCreditCart
 
 	| cart salesBook |
@@ -155,13 +155,13 @@ test03CanNotCheckoutWithAnExpiredCreditCart
 				charging: testObjectsFactory expiredCreditCard 
 				throught: self
 				on: testObjectsFactory today
-				registeringOn: salesBook ]
+				registeringOn: salesBook purchasedBy: testObjectsFactory validUser ]
 		raise: Error - MessageNotUnderstood
 		withExceptionDo: [ :anError | 
 			self assert: anError messageText = Cashier canNotChargeAnExpiredCreditCardErrorMessage.
 			self assert: salesBook isEmpty ]! !
 
-!CashierTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 19:04'!
+!CashierTest methodsFor: 'tests' stamp: 'JD 11/10/2021 17:17:30'!
 test04CheckoutRegistersASale
 
 	| cart cashier salesBook total |
@@ -175,14 +175,14 @@ test04CheckoutRegistersASale
 		charging: testObjectsFactory notExpiredCreditCard
 		throught: self
 		on: testObjectsFactory today
-		registeringOn: salesBook.
+		registeringOn: salesBook purchasedBy: testObjectsFactory validUser.
 		
 	total := cashier checkOut.
 					
 	self assert: salesBook size = 1.
 	self assert: salesBook first total = total.! !
 
-!CashierTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 19:00'!
+!CashierTest methodsFor: 'tests' stamp: 'JD 11/10/2021 17:17:30'!
 test05CashierChargesCreditCardUsingMerchantProcessor
 
 	| cart cashier salesBook total creditCard debitedAmout debitedCreditCard  |
@@ -197,7 +197,7 @@ test05CashierChargesCreditCardUsingMerchantProcessor
 		charging: creditCard
 		throught: self
 		on: testObjectsFactory today
-		registeringOn: salesBook.
+		registeringOn: salesBook purchasedBy: testObjectsFactory validUser.
 		
 	debitBehavior := [ :anAmount :aCreditCard | 
 		debitedAmout := anAmount.
@@ -207,7 +207,7 @@ test05CashierChargesCreditCardUsingMerchantProcessor
 	self assert: debitedCreditCard = creditCard.
 	self assert: debitedAmout = total.! !
 
-!CashierTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 18:59'!
+!CashierTest methodsFor: 'tests' stamp: 'JD 11/10/2021 17:17:30'!
 test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit
 
 	| cart cashier salesBook creditCard |
@@ -223,7 +223,7 @@ test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit
 		charging: creditCard
 		throught: self
 		on: testObjectsFactory today
-		registeringOn: salesBook.
+		registeringOn: salesBook purchasedBy: testObjectsFactory validUser.
 		
 	self 
 		should: [cashier checkOut ]
@@ -248,254 +248,349 @@ debit: anAmount from: aCreditCard
 
 !classDefinition: #RestInterfaceTest category: 'TusLibros'!
 TestCase subclass: #RestInterfaceTest
-	instanceVariableNames: 'storeTestObjectsFactory'
+	instanceVariableNames: 'testObjectsFactory clock'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/4/2021 20:38:36'!
-authenticationSystemPreparedForAuthenticationSuccess
-	
-	| anAuthenticationStub |
-
-	anAuthenticationStub := AuthenticationStub new.
-	anAuthenticationStub prepareForAuthenticationSuccess.
-	
-	^ anAuthenticationStub! !
-
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/4/2021 20:22:15'!
-authenticationSystemPreparedForInvalidUserOrPasswordFailure
-	
-	| anAuthenticationStub |
-
-	anAuthenticationStub := AuthenticationStub new.
-	anAuthenticationStub prepareForInvalidUserOrPasswordFailure.
-	
-	^ anAuthenticationStub! !
-
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/4/2021 20:16:53'!
-invalidUser
-
-	^ 'InvalidUser'! !
-
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/4/2021 20:07:43'!
-setUp 
-
-	storeTestObjectsFactory := StoreTestObjectsFactory new! !
-
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'gq 11/9/2021 19:30:06'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'JD 11/10/2021 18:46:37'!
 test01CannotCreateACartWithAnInvalidUser
 
 	| aRestInterface |
-	aRestInterface := RestInterface authenticatingWith: self authenticationSystemPreparedForInvalidUserOrPasswordFailure withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock debitingBy: self registeringSalesOn: OrderedCollection new.
+	aRestInterface := self restInterfaceWhichFailWhenAuthenticating.
 	
-	self
-		should: [aRestInterface createCartFor: self invalidUser with: self validPassword]
-		raise: AssertionFailure - MessageNotUnderstood
-		withExceptionDo: [:anError | self assert: anError messageText = RestInterface invalidUserOrPasswordErrorMessage]! !
+	self assertThatShouldRaiseInvalidUserOrPasswordErrorMessage: [aRestInterface createCartFor: testObjectsFactory invalidUser with: testObjectsFactory validPassword]! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'gq 11/9/2021 19:30:06'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'JD 11/10/2021 19:21:00'!
 test02CanCreateACart
 
 	| aRestInterface aCartId cartContents |
 	
-	aRestInterface := RestInterface authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock debitingBy: self registeringSalesOn: OrderedCollection new.
-	aCartId := 	aRestInterface createCartFor: self validUser with: self validPassword.
+	aRestInterface := self defaultRestInterface.
+	aCartId := 	self createCartForAValidUserAndPasswordUsing: aRestInterface.
 	
 	cartContents := aRestInterface listCart: aCartId.
+
 	self assert: cartContents isEmpty ! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'gq 11/9/2021 19:30:06'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'JD 11/10/2021 19:22:54'!
 test03CanAddAnItemToCart
 
 	| aRestInterface aCartId cartContents anExpectedCartList |
 	
-	aRestInterface := RestInterface authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock debitingBy: self registeringSalesOn: OrderedCollection new.
-	aCartId := 	aRestInterface createCartFor: self validUser with: self validPassword.
-	aRestInterface addToCart: aCartId quantity: 1 of: storeTestObjectsFactory itemSellByTheStore.
+	aRestInterface := self defaultRestInterface.
+	aCartId := 	self createCartForAValidUserAndPasswordUsing: aRestInterface.
+	self addAnItemTo: aCartId using: aRestInterface.
 
 	cartContents := aRestInterface listCart: aCartId.
 	anExpectedCartList := Dictionary new.
-	anExpectedCartList at: storeTestObjectsFactory itemSellByTheStore put: 1.
+	anExpectedCartList at: testObjectsFactory itemSellByTheStore put: 1.
 	self assert: anExpectedCartList equals: cartContents! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'gq 11/9/2021 19:30:06'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'JD 11/10/2021 19:22:54'!
 test04CanCreateManyCarts
 
 	| aRestInterface aCartId cartContents anotherCartContents anotherCartId anExpectedCartList |
 	
-	aRestInterface := RestInterface authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock debitingBy: self registeringSalesOn: OrderedCollection new.
-	aCartId := 	aRestInterface createCartFor: self validUser with: self validPassword.
-	aRestInterface addToCart: aCartId quantity: 1 of: storeTestObjectsFactory itemSellByTheStore.
-	anotherCartId := 	aRestInterface createCartFor: self validUser with: self validPassword.
+	aRestInterface := self defaultRestInterface.
+	aCartId := 	self createCartForAValidUserAndPasswordUsing: aRestInterface.
+	self addAnItemTo: aCartId using: aRestInterface.
+	anotherCartId := 	self createCartForAValidUserAndPasswordUsing: aRestInterface.
 
 	cartContents := aRestInterface listCart: aCartId.
 	anotherCartContents := aRestInterface listCart: anotherCartId.
 	anExpectedCartList := Dictionary new.
-	anExpectedCartList at: storeTestObjectsFactory itemSellByTheStore put: 1.
+	anExpectedCartList at: testObjectsFactory itemSellByTheStore put: 1.
 	self assert: anExpectedCartList equals: cartContents.
 	self assert: anotherCartContents isEmpty! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'gq 11/9/2021 19:30:06'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'JD 11/10/2021 18:46:59'!
 test05CannotAddAnItemWithAnInvalidCartId
 
 	| aRestInterface anInvalidCartId |
 	
-	aRestInterface := RestInterface authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock debitingBy: self registeringSalesOn: OrderedCollection new.
-	
+	aRestInterface := self defaultRestInterface.
 	anInvalidCartId := 0.
-	self
-		should: [aRestInterface addToCart: anInvalidCartId quantity: 1 of: storeTestObjectsFactory itemSellByTheStore.]
-		raise: AssertionFailure - MessageNotUnderstood
-		withExceptionDo: [:anError | self assert: anError messageText = RestInterface invalidCartIdErrorMessage]! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'gq 11/9/2021 19:30:06'!
+	self assertThatShouldRaiseCartIdErrorMessage: [aRestInterface addToCart: anInvalidCartId quantity: 1 of: testObjectsFactory itemSellByTheStore.]! !
+
+!RestInterfaceTest methodsFor: 'tests' stamp: 'JD 11/10/2021 18:47:05'!
 test06CannotListAnItemWithAnInvalidCartId
 
 	| aRestInterface anInvalidCartId |
 	
-	aRestInterface := RestInterface authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: storeTestObjectsFactory clock debitingBy: self registeringSalesOn: OrderedCollection new.
-	
+	aRestInterface := self defaultRestInterface.
 	anInvalidCartId := 0.
-	self
-		should: [aRestInterface listCart: anInvalidCartId]
-		raise: AssertionFailure - MessageNotUnderstood
-		withExceptionDo: [:anError | self assert: anError messageText = RestInterface invalidCartIdErrorMessage]! !
+	
+	self assertThatShouldRaiseCartIdErrorMessage: [aRestInterface listCart: anInvalidCartId]! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'gq 11/9/2021 19:30:06'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'JD 11/10/2021 18:48:53'!
 test07CannotListAnExpiredCart
 
-	| aRestInterface aCartId aClock |
-	
-	aClock := storeTestObjectsFactory clock.
-	aRestInterface := RestInterface authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: aClock debitingBy: self registeringSalesOn: OrderedCollection new.
-	aCartId := 	aRestInterface createCartFor: self validUser with: self validPassword.
-	
-	aClock now: (storeTestObjectsFactory today + (Duration minutes: 31)).
-	self
-		should: [aRestInterface listCart: aCartId]
-		raise: Error - MessageNotUnderstood
-		withExceptionDo: [:anError | self assert: anError messageText = RestInterface expiredCartErrorMessage].
-		
-	self
-		should: [aRestInterface listCart: aCartId]
-		raise: AssertionFailure - MessageNotUnderstood
-		withExceptionDo: [:anError | 
-			self assert: anError messageText = RestInterface invalidCartIdErrorMessage]! !
+	| aRestInterface anExpiredCartId |
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'gq 11/9/2021 19:30:06'!
+	aRestInterface := self defaultRestInterface.
+	anExpiredCartId := self expiredCartIdOf: aRestInterface.
+
+	self assertThatShouldRaiseExpiredCartErrorMessage: [aRestInterface listCart: anExpiredCartId].
+	self assertThatShouldRaiseCartIdErrorMessage: [aRestInterface listCart: anExpiredCartId]
+! !
+
+!RestInterfaceTest methodsFor: 'tests' stamp: 'JD 11/10/2021 18:49:29'!
 test08CannotAddAnItemToAnExpiredCart
 
-	| aRestInterface aCartId aClock |
+	| aRestInterface anExpiredCartId |
 	
-	aClock := storeTestObjectsFactory clock.
-	aRestInterface := RestInterface authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: aClock debitingBy: self registeringSalesOn: OrderedCollection new.
-	aCartId := 	aRestInterface createCartFor: self validUser with: self validPassword.
-	
-	aClock now: (storeTestObjectsFactory today + (Duration minutes: 31)).
-	self
-		should: [aRestInterface addToCart: aCartId quantity: 1 of: storeTestObjectsFactory itemSellByTheStore ]
-		raise: Error - MessageNotUnderstood
-		withExceptionDo: [:anError | self assert: anError messageText = RestInterface expiredCartErrorMessage].
-		
-	self
-		should: [aRestInterface addToCart: aCartId quantity: 1 of: storeTestObjectsFactory itemSellByTheStore ]
-		raise: AssertionFailure - MessageNotUnderstood
-		withExceptionDo: [:anError | 
-			self assert: anError messageText = RestInterface invalidCartIdErrorMessage]! !
+	aRestInterface := self defaultRestInterface.
+	anExpiredCartId := self expiredCartIdOf: aRestInterface.
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'gq 11/9/2021 19:30:06'!
+	self assertThatShouldRaiseExpiredCartErrorMessage: [aRestInterface addToCart: anExpiredCartId quantity: 1 of: testObjectsFactory itemSellByTheStore ].
+	self assertThatShouldRaiseCartIdErrorMessage: [aRestInterface addToCart: anExpiredCartId quantity: 1 of: testObjectsFactory itemSellByTheStore ]
+! !
+
+!RestInterfaceTest methodsFor: 'tests' stamp: 'JD 11/10/2021 19:18:11'!
 test09CannotCheckoutACartWithAnInvalidId
 
-	| aRestInterface anInvalidCartId aClock |
-	
-	aClock := storeTestObjectsFactory clock.
-	aRestInterface := RestInterface authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: aClock debitingBy: self registeringSalesOn: OrderedCollection new.
+	| aRestInterface anInvalidCartId |
+
+	aRestInterface := self defaultRestInterface.
 	anInvalidCartId := 	0.
 	
-	self
-		should: [aRestInterface checkoutCart: anInvalidCartId withCreditCardNumber: '1234567890123456' expiringOn: storeTestObjectsFactory currentMonthOfYear ownedBy: 'Alan Kay']
-		raise: AssertionFailure - MessageNotUnderstood
-		withExceptionDo: [:anError | self assert: anError messageText = RestInterface invalidCartIdErrorMessage ].
+	self assertThatShouldRaiseCartIdErrorMessage: [aRestInterface checkoutCart: anInvalidCartId withCreditCardNumber: self creditCardNumber expiringOn: testObjectsFactory currentMonthOfYear ownedBy: self creditCardOwner]
 ! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'gq 11/9/2021 19:30:06'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'JD 11/10/2021 19:18:11'!
 test10CannotCheckoutAnExpiredCart
 
-	| aRestInterface aCartId aClock |
+	| aRestInterface anExpiredCartId |
 	
-	aClock := storeTestObjectsFactory clock.
-	aRestInterface := RestInterface authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: aClock debitingBy: self registeringSalesOn: OrderedCollection new.
-	aCartId := 	aRestInterface createCartFor: self validUser with: self validPassword.
-	
-	aClock now: (storeTestObjectsFactory today + (Duration minutes: 31)).
-	
-	self
-		should: [aRestInterface checkoutCart: aCartId withCreditCardNumber: '1234567890123456' expiringOn: storeTestObjectsFactory currentMonthOfYear ownedBy: 'Alan Kay']
-		raise: Error - MessageNotUnderstood
-		withExceptionDo: [:anError | self assert: anError messageText = RestInterface expiredCartErrorMessage ].
+	aRestInterface := self defaultRestInterface.
+	anExpiredCartId := self expiredCartIdOf: aRestInterface.
+
+	self assertThatShouldRaiseExpiredCartErrorMessage: [aRestInterface checkoutCart: anExpiredCartId withCreditCardNumber: self creditCardNumber expiringOn: testObjectsFactory currentMonthOfYear ownedBy: self creditCardOwner]
 ! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'gq 11/9/2021 19:30:06'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'JD 11/10/2021 19:21:00'!
 test11CannotCheckoutAnEmptyCart
 
-	| aRestInterface anEmptyCartId aClock |
+	| aRestInterface anEmptyCartId |
 	
-	aClock := storeTestObjectsFactory clock.
-	aRestInterface := RestInterface authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: aClock debitingBy: self registeringSalesOn: OrderedCollection new.
-	anEmptyCartId := 	aRestInterface createCartFor: self validUser with: self validPassword.
-	
-	self
-		should: [aRestInterface checkoutCart: anEmptyCartId withCreditCardNumber: '1234567890123456' expiringOn: storeTestObjectsFactory currentMonthOfYear ownedBy: 'Alan Kay']
-		raise: AssertionFailure - MessageNotUnderstood
-		withExceptionDo: [:anError | self assert: anError messageText = RestInterface emptyCartErrorMessage ].
+	aRestInterface := self defaultRestInterface.
+	anEmptyCartId := 	self createCartForAValidUserAndPasswordUsing: aRestInterface.
+
+	self assertThat: [aRestInterface checkoutCart: anEmptyCartId withCreditCardNumber: self creditCardNumber expiringOn: testObjectsFactory currentMonthOfYear ownedBy: self creditCardOwner] shouldRaise: AssertionFailure - MessageNotUnderstood with: RestInterface emptyCartErrorMessage
 ! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'gq 11/9/2021 19:30:06'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'JD 11/10/2021 19:25:46'!
 test12CanCheckoutACart
 
-	| aRestInterface aCartId aClock |
+	| aRestInterface aCartId |
+
+	aRestInterface := self defaultRestInterface.
+	aCartId := 	self createCartForAValidUserAndPasswordUsing: aRestInterface.
+	self addAnItemTo: aCartId using: aRestInterface.
 	
-	aClock := storeTestObjectsFactory clock.
-	aRestInterface := RestInterface authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: storeTestObjectsFactory defaultCatalog withClock: aClock debitingBy: self registeringSalesOn: OrderedCollection new.
-	aCartId := 	aRestInterface createCartFor: self validUser with: self validPassword.
-	aRestInterface addToCart: aCartId quantity: 1 of: storeTestObjectsFactory itemSellByTheStore.
+	self checkoutCart: aCartId withAValidCreditCardUsing: aRestInterface.
 	
-	aRestInterface checkoutCart: aCartId withCreditCardNumber: '1234567890123456' expiringOn: storeTestObjectsFactory currentMonthOfYear ownedBy: 'Alan Kay'.
-	
-	self assert: (aRestInterface listCart: aCartId) isEmpty 
+	self assertThatShouldRaiseCartIdErrorMessage: [aRestInterface listCart: aCartId]
+
 	
 ! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/4/2021 20:17:54'!
-validPassword
-	
-	^ 'ValidPassword'! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'JD 11/10/2021 18:47:26'!
+test13CannotListPurchasesOfAnInvalidUserId
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JD 11/4/2021 20:25:15'!
-validUser
+	| aRestInterface |
+
+	aRestInterface := self restInterfaceWhichFailWhenAuthenticating.
+
+	self assertThatShouldRaiseInvalidUserOrPasswordErrorMessage: [aRestInterface listPurchases: testObjectsFactory invalidUser with: testObjectsFactory validPassword]
 	
-	^ 'ValidUser'! !
+! !
+
+!RestInterfaceTest methodsFor: 'tests' stamp: 'JD 11/10/2021 18:37:58'!
+test14CanListPurchasesOfAUserWithoutPurchases
+
+	| aRestInterface aPurchasesList |
+
+	aRestInterface := self defaultRestInterface.
+
+	aPurchasesList := aRestInterface listPurchases: testObjectsFactory validUser with: testObjectsFactory validPassword.
+
+	self assert: aPurchasesList isEmpty
+
+! !
+
+!RestInterfaceTest methodsFor: 'tests' stamp: 'JD 11/10/2021 18:37:27'!
+test15CanListPurchasesOfAUserWithPurchases
+
+	| aRestInterface aPurchasesList aCartId |
+
+	aRestInterface := self defaultRestInterface.
+	aCartId := 	self checkedOutCartIdOf: aRestInterface.
+
+	aPurchasesList := aRestInterface listPurchases: testObjectsFactory validUser with: testObjectsFactory validPassword.
+
+	self assert: aPurchasesList size = 1.
+	self assert: (OrderedCollection with: testObjectsFactory itemSellByTheStore) equals: aPurchasesList first items.
+	self assert: testObjectsFactory itemSellByTheStorePrice equals: aPurchasesList first total.
+	self assert: testObjectsFactory validUser equals: aPurchasesList first buyer.
+
+! !
+
+
+!RestInterfaceTest methodsFor: 'merchant processor' stamp: 'JD 11/10/2021 16:29:37'!
+debit: anAmount from: aCreditCard 
+! !
+
+
+!RestInterfaceTest methodsFor: 'authentication service' stamp: 'JD 11/10/2021 18:12:09'!
+authenticationSystemPreparedForAuthenticationSuccess
+	
+	| anAuthenticationStub |
+
+	anAuthenticationStub := AuthenticationServiceStub new.
+	anAuthenticationStub prepareForAuthenticationSuccess.
+	
+	^ anAuthenticationStub! !
+
+!RestInterfaceTest methodsFor: 'authentication service' stamp: 'JD 11/10/2021 18:12:09'!
+authenticationSystemPreparedForInvalidUserOrPasswordFailure
+	
+	| anAuthenticationStub |
+
+	anAuthenticationStub := AuthenticationServiceStub new.
+	anAuthenticationStub prepareForInvalidUserOrPasswordFailure.
+	
+	^ anAuthenticationStub! !
+
+
+!RestInterfaceTest methodsFor: 'assertions' stamp: 'JD 11/10/2021 18:51:19'!
+assertThat: aBlock shouldRaise: anExpectedError with: anExpectedErrorMessage
+	
+	self
+		should: aBlock
+		raise: anExpectedError
+		withExceptionDo: [:anError | self assert: anError messageText = anExpectedErrorMessage ]! !
+
+!RestInterfaceTest methodsFor: 'assertions' stamp: 'JD 11/10/2021 18:51:48'!
+assertThatShouldRaiseCartIdErrorMessage: aBlock
+
+	self assertThat: aBlock shouldRaise: AssertionFailure - MessageNotUnderstood with: RestInterface invalidCartIdErrorMessage
+! !
+
+!RestInterfaceTest methodsFor: 'assertions' stamp: 'JD 11/10/2021 18:52:09'!
+assertThatShouldRaiseExpiredCartErrorMessage: aBlock
+	
+	self assertThat: aBlock shouldRaise: Error - MessageNotUnderstood with: RestInterface expiredCartErrorMessage! !
+
+!RestInterfaceTest methodsFor: 'assertions' stamp: 'JD 11/10/2021 18:52:44'!
+assertThatShouldRaiseInvalidUserOrPasswordErrorMessage: aBlock
+
+	self assertThat: aBlock shouldRaise: AssertionFailure - MessageNotUnderstood with: RestInterface invalidUserOrPasswordErrorMessage! !
+
+
+!RestInterfaceTest methodsFor: 'carts id' stamp: 'JD 11/10/2021 19:25:46'!
+checkedOutCartIdOf: aRestInterface
+
+	| aCartId |
+
+	aCartId := self createCartForAValidUserAndPasswordUsing: aRestInterface.
+	self addAnItemTo: aCartId using: aRestInterface.
+	self checkoutCart: aCartId withAValidCreditCardUsing: aRestInterface.
+	
+	^ aCartId 
+! !
+
+!RestInterfaceTest methodsFor: 'carts id' stamp: 'JD 11/10/2021 19:21:00'!
+expiredCartIdOf: aRestInterface
+
+	| aCartId |
+
+	aCartId := 	self createCartForAValidUserAndPasswordUsing: aRestInterface.
+	
+	clock now: (testObjectsFactory today + (Duration minutes: 31)).
+	
+	^ aCartId! !
+
+
+!RestInterfaceTest methodsFor: 'rest interfaces' stamp: 'JD 11/10/2021 18:29:58'!
+defaultRestInterface
+
+	^ RestInterface authenticatingWith: self authenticationSystemPreparedForAuthenticationSuccess withCatalog: testObjectsFactory defaultCatalog withClock: clock debitingBy: self registeringSalesOn: OrderedCollection new! !
+
+!RestInterfaceTest methodsFor: 'rest interfaces' stamp: 'JD 11/10/2021 18:30:25'!
+restInterfaceWhichFailWhenAuthenticating
+
+	^ RestInterface authenticatingWith: self authenticationSystemPreparedForInvalidUserOrPasswordFailure withCatalog: testObjectsFactory defaultCatalog withClock: clock debitingBy: self registeringSalesOn: OrderedCollection new! !
+
+
+!RestInterfaceTest methodsFor: 'set up' stamp: 'JD 11/10/2021 18:29:45'!
+setUp 
+
+	testObjectsFactory := StoreTestObjectsFactory new.
+	clock := SimulatedClock for: testObjectsFactory today! !
+
+
+!RestInterfaceTest methodsFor: 'credit card data' stamp: 'JD 11/10/2021 19:17:44'!
+creditCardNumber
+
+	^ '1234567890123456'! !
+
+!RestInterfaceTest methodsFor: 'credit card data' stamp: 'JD 11/10/2021 19:18:11'!
+creditCardOwner
+
+	^ 'Alan Kay'! !
+
+
+!RestInterfaceTest methodsFor: 'interface operations' stamp: 'JD 11/10/2021 19:22:54'!
+addAnItemTo: aCartId using: aRestInterface
+
+	^ aRestInterface addToCart: aCartId quantity: 1 of: testObjectsFactory itemSellByTheStore! !
+
+!RestInterfaceTest methodsFor: 'interface operations' stamp: 'JD 11/10/2021 19:25:46'!
+checkoutCart: aCartId withAValidCreditCardUsing: aRestInterface
+
+	^ aRestInterface checkoutCart: aCartId withCreditCardNumber: self creditCardNumber expiringOn: testObjectsFactory currentMonthOfYear ownedBy: self creditCardOwner! !
+
+!RestInterfaceTest methodsFor: 'interface operations' stamp: 'JD 11/10/2021 19:21:00'!
+createCartForAValidUserAndPasswordUsing: aRestInterface
+
+	^ aRestInterface createCartFor: testObjectsFactory validUser with: testObjectsFactory validPassword! !
 
 
-!classDefinition: #AuthenticationStub category: 'TusLibros'!
-Object subclass: #AuthenticationStub
+!classDefinition: #AuthenticationService category: 'TusLibros'!
+Object subclass: #AuthenticationService
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!AuthenticationService methodsFor: 'authentication' stamp: 'JD 11/10/2021 18:12:42'!
+authenticate: aUser with: aUserPassword 
+	
+	self subclassResponsibility ! !
+
+
+!classDefinition: #AuthenticationServiceStub category: 'TusLibros'!
+AuthenticationService subclass: #AuthenticationServiceStub
 	instanceVariableNames: 'authenticationResult'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!AuthenticationStub methodsFor: 'as yet unclassified' stamp: 'JD 11/4/2021 20:34:30'!
+!AuthenticationServiceStub methodsFor: 'authentication' stamp: 'JD 11/4/2021 20:34:30'!
 authenticate: aUser with: aUserPassword 
 	
 	^ authenticationResult ! !
 
-!AuthenticationStub methodsFor: 'as yet unclassified' stamp: 'JD 11/4/2021 20:37:32'!
+
+!AuthenticationServiceStub methodsFor: 'test preparation' stamp: 'JD 11/4/2021 20:37:32'!
 prepareForAuthenticationSuccess
 	
 	authenticationResult := true! !
 
-!AuthenticationStub methodsFor: 'as yet unclassified' stamp: 'JD 11/4/2021 20:35:44'!
+!AuthenticationServiceStub methodsFor: 'test preparation' stamp: 'JD 11/4/2021 20:35:44'!
 prepareForInvalidUserOrPasswordFailure
 	
 	authenticationResult := false! !
@@ -574,7 +669,7 @@ add: aQuantity of: anItem
 	1 to: aQuantity do: [ :aNumber | items add: anItem ]! !
 
 
-!Cart methodsFor: 'as yet unclassified' stamp: 'JD 11/7/2021 15:18:55'!
+!Cart methodsFor: 'items' stamp: 'JD 11/7/2021 15:18:55'!
 items
 	
 	^ items copy! !
@@ -593,7 +688,7 @@ acceptingItemsOf: aCatalog
 
 !classDefinition: #Cashier category: 'TusLibros'!
 Object subclass: #Cashier
-	instanceVariableNames: 'cart salesBook merchantProcessor creditCard total'
+	instanceVariableNames: 'cart salesBook merchantProcessor creditCard total buyer'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
@@ -604,10 +699,11 @@ calculateTotal
 	total := cart total.
 	! !
 
-!Cashier methodsFor: 'checkout - private' stamp: 'HernanWilkinson 6/17/2013 19:07'!
+!Cashier methodsFor: 'checkout - private' stamp: 'JD 11/10/2021 17:34:01'!
 createSale
 
-	^ Sale of: total
+	^ Sale of: cart items withTotal: total madeBy: buyer
+
 ! !
 
 !Cashier methodsFor: 'checkout - private' stamp: 'HernanWilkinson 6/17/2013 19:06'!
@@ -632,13 +728,14 @@ checkOut
 	^ total! !
 
 
-!Cashier methodsFor: 'initialization' stamp: 'HernanWilkinson 6/17/2013 18:53'!
-initializeToCheckout: aCart charging: aCreditCard throught: aMerchantProcessor registeringOn: aSalesBook
+!Cashier methodsFor: 'initialization' stamp: 'JD 11/10/2021 17:18:51'!
+initializeToCheckout: aCart charging: aCreditCard throught: aMerchantProcessor registeringOn: aSalesBook purchasedBy: aBuyer
 	
 	cart := aCart.
 	creditCard := aCreditCard.
 	merchantProcessor := aMerchantProcessor.
-	salesBook := aSalesBook! !
+	salesBook := aSalesBook.
+	buyer := aBuyer! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -657,13 +754,13 @@ assertIsNotExpired: aCreditCard on: aDate
 	(aCreditCard isExpiredOn: aDate) ifTrue: [ self error: self canNotChargeAnExpiredCreditCardErrorMessage ]! !
 
 
-!Cashier class methodsFor: 'instance creation' stamp: 'HernanWilkinson 6/17/2013 18:51'!
-toCheckout: aCart charging: aCreditCard throught: aMerchantProcessor on: aDate registeringOn: aSalesBook
+!Cashier class methodsFor: 'instance creation' stamp: 'JD 11/10/2021 17:17:41'!
+toCheckout: aCart charging: aCreditCard throught: aMerchantProcessor on: aDate registeringOn: aSalesBook purchasedBy: aBuyer 
 	
 	self assertIsNotEmpty: aCart.
 	self assertIsNotExpired: aCreditCard on: aDate.
 	
-	^self new initializeToCheckout: aCart charging: aCreditCard throught: aMerchantProcessor registeringOn: aSalesBook! !
+	^self new initializeToCheckout: aCart charging: aCreditCard throught: aMerchantProcessor registeringOn: aSalesBook purchasedBy: aBuyer! !
 
 
 !Cashier class methodsFor: 'error messages' stamp: 'HernanWilkinson 6/17/2013 18:21'!
@@ -680,6 +777,54 @@ cartCanNotBeEmptyErrorMessage
 creditCardHasNoCreditErrorMessage
 	
 	^'Credit card has no credit'! !
+
+
+!classDefinition: #Clock category: 'TusLibros'!
+Object subclass: #Clock
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!Clock methodsFor: 'time' stamp: 'JD 11/10/2021 18:15:41'!
+now
+	
+	self subclassResponsibility ! !
+
+
+!classDefinition: #SimulatedClock category: 'TusLibros'!
+Clock subclass: #SimulatedClock
+	instanceVariableNames: 'now'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!SimulatedClock methodsFor: 'time' stamp: 'JD 11/8/2021 21:33:28'!
+now
+	
+	^ now! !
+
+!SimulatedClock methodsFor: 'time' stamp: 'JD 11/8/2021 21:26:27'!
+now: aTodayDate
+	
+	now := aTodayDate! !
+
+
+!SimulatedClock methodsFor: 'initialization' stamp: 'JD 11/8/2021 21:19:00'!
+initializeFor: aTodayDate
+	
+	now := aTodayDate! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'SimulatedClock class' category: 'TusLibros'!
+SimulatedClock class
+	instanceVariableNames: ''!
+
+!SimulatedClock class methodsFor: 'instance creation' stamp: 'JD 11/8/2021 21:19:35'!
+for: aTodayDate
+	
+	^ self new initializeFor: aTodayDate! !
 
 
 !classDefinition: #CreditCard category: 'TusLibros'!
@@ -714,35 +859,42 @@ expiringOn: aMonth
 
 !classDefinition: #RestInterface category: 'TusLibros'!
 Object subclass: #RestInterface
-	instanceVariableNames: 'authenticationSystem carts catalog clock cartsLastUsage merchantProcessor salesBook'
+	instanceVariableNames: 'authenticationSystem carts catalog clock cartsLastUsage merchantProcessor salesBook cartUsers'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
-
-!RestInterface methodsFor: 'initialization' stamp: 'gq 11/9/2021 17:42:55'!
-initializeAuthenticatingWith: anAuthenticationSystem withCatalog: aCatalog withClock: aClock   
-
-	authenticationSystem := anAuthenticationSystem.
-	catalog := aCatalog.
-	carts :=  Dictionary new.
-	clock := aClock.
-	cartsLastUsage := Dictionary new! !
-
 
 !RestInterface methodsFor: 'assertions' stamp: 'gq 11/9/2021 17:03:37'!
 assertThatCartIdIsValid: aCartId
 
 	^ self assert: (self isCartIdValid: aCartId) description: [RestInterface invalidCartIdErrorMessage]! !
 
-!RestInterface methodsFor: 'assertions' stamp: 'gq 11/9/2021 17:56:25'!
+!RestInterface methodsFor: 'assertions' stamp: 'JD 11/10/2021 17:57:47'!
+assertThatCartIsNotEmpty: aCartIdToCheckout
+
+	^ self assert: (carts at: aCartIdToCheckout) isEmpty not description: RestInterface emptyCartErrorMessage! !
+
+!RestInterface methodsFor: 'assertions' stamp: 'JD 11/10/2021 18:02:41'!
 validateThatIsNotExpired: aCartId
 	
 	(clock now - (cartsLastUsage at: aCartId)) minutes <= 30 ifFalse: [
-		cartsLastUsage removeKey: aCartId.
-		carts removeKey: aCartId.
+		self deleteCart: aCartId.
 		self error: RestInterface expiredCartErrorMessage
 	].
 ! !
+
+
+!RestInterface methodsFor: 'initialization' stamp: 'JD 11/10/2021 17:46:06'!
+initializeAuthenticatingWith: anAuthenticationSystem withCatalog: aCatalog withClock: aClock debitingBy: aMerchantProcessor registeringSalesOn: aSalesBook 
+
+	authenticationSystem := anAuthenticationSystem.
+	catalog := aCatalog.
+	carts :=  Dictionary new.
+	clock := aClock.
+	cartsLastUsage := Dictionary new.
+	merchantProcessor := aMerchantProcessor.
+	salesBook := aSalesBook.
+	cartUsers := Dictionary new! !
 
 
 !RestInterface methodsFor: 'interface operations' stamp: 'gq 11/9/2021 17:13:49'!
@@ -754,34 +906,32 @@ addToCart: aCartId quantity: aBookQuantity of: aBookISBN
 	(carts at: aCartId) add: aBookQuantity of: aBookISBN.
 	! !
 
-!RestInterface methodsFor: 'interface operations' stamp: 'gq 11/9/2021 19:21:42'!
+!RestInterface methodsFor: 'interface operations' stamp: 'JD 11/10/2021 18:05:14'!
+assertThatCanAuthenticate: aUserPassword with: aUser
+
+	^ self assert: (authenticationSystem authenticate: aUser with: aUserPassword) description: [RestInterface invalidUserOrPasswordErrorMessage]! !
+
+!RestInterface methodsFor: 'interface operations' stamp: 'JD 11/10/2021 18:03:50'!
 checkoutCart: aCartIdToCheckout withCreditCardNumber: aCreditCardNumber expiringOn: aCreditCardExpirationDate ownedBy: aCreditCardOwner    
 	
-	| aCashier aCreditCard |
+	| aCreditCard |
 	
 	self assertThatCartIdIsValid: aCartIdToCheckout.
 	self validateThatIsNotExpired: aCartIdToCheckout.
-	self assert: (carts at: aCartIdToCheckout) isEmpty not description: RestInterface emptyCartErrorMessage.
+	self assertThatCartIsNotEmpty: aCartIdToCheckout.
 	
 	aCreditCard := CreditCard expiringOn: aCreditCardExpirationDate.
-	
-	aCashier := Cashier toCheckout: (carts at: aCartIdToCheckout)  charging: aCreditCard throught: merchantProcessor on: clock now registeringOn: salesBook.
-	
-	aCashier checkOut.
-	
-	cartsLastUsage removeKey: aCartIdToCheckout.
-	carts removeKey: aCartIdToCheckout.! !
+	self checkoutCart: aCartIdToCheckout payingWith: aCreditCard! !
 
-!RestInterface methodsFor: 'interface operations' stamp: 'gq 11/9/2021 17:48:26'!
+!RestInterface methodsFor: 'interface operations' stamp: 'JD 11/10/2021 18:07:50'!
 createCartFor: aUser with: aUserPassword 
 	
 	| aNewCart aNewCartId |
-	self assert: (authenticationSystem authenticate: aUser with: aUserPassword) description: [RestInterface invalidUserOrPasswordErrorMessage].
+	self assertThatCanAuthenticate: aUser with: aUserPassword.
 	
 	aNewCart := Cart acceptingItemsOf: catalog.
 	aNewCartId := self idFor: aNewCart.
-	carts at: aNewCartId put: aNewCart.
-	cartsLastUsage at: aNewCartId put: clock now.
+	self saveCart: aNewCart for: aUser with: aNewCartId.
 
 	^ aNewCartId! !
 
@@ -794,19 +944,41 @@ listCart: aCartId
 	^ self listItemsWithOccurrencesOf: (carts at: aCartId)
 ! !
 
+!RestInterface methodsFor: 'interface operations' stamp: 'JD 11/10/2021 18:05:35'!
+listPurchases: aUser with: aUserPassword 
+	
+	self assertThatCanAuthenticate: aUser with: aUserPassword.
+	
+	^ salesBook select: [:aSale | aSale buyer = aUser]! !
 
-!RestInterface methodsFor: 'testing' stamp: 'gq 11/9/2021 17:49:56'!
-isCartIdValid: aCartId
 
-	^ carts includesKey: aCartId ! !
+!RestInterface methodsFor: 'interface operations - private' stamp: 'JD 11/10/2021 19:09:41'!
+checkoutCart: aCartIdToCheckout payingWith: aCreditCard
+	
+	| aCashier aTransactionId |
 
+	aCashier := Cashier toCheckout: (carts at: aCartIdToCheckout) charging: aCreditCard throught: merchantProcessor on: clock now registeringOn: salesBook purchasedBy: (cartUsers at: aCartIdToCheckout).
+	
+	aCashier checkOut.
+	self deleteCart: aCartIdToCheckout.
+	
+	aTransactionId := salesBook size.
 
-!RestInterface methodsFor: 'accessing - private' stamp: 'gq 11/9/2021 17:47:18'!
+	^ aTransactionId
+	! !
+
+!RestInterface methodsFor: 'interface operations - private' stamp: 'JD 11/10/2021 18:03:08'!
+deleteCart: aCartId
+
+	cartsLastUsage removeKey: aCartId.
+	carts removeKey: aCartId! !
+
+!RestInterface methodsFor: 'interface operations - private' stamp: 'gq 11/9/2021 17:47:18'!
 idFor: aNewCart
 
 	^ aNewCart identityHash ! !
 
-!RestInterface methodsFor: 'accessing - private' stamp: 'gq 11/9/2021 18:09:31'!
+!RestInterface methodsFor: 'interface operations - private' stamp: 'gq 11/9/2021 18:09:31'!
 listItemsWithOccurrencesOf: aCartToList
 
 	| aCartList |
@@ -818,16 +990,29 @@ listItemsWithOccurrencesOf: aCartToList
 	
 	^ aCartList! !
 
+!RestInterface methodsFor: 'interface operations - private' stamp: 'JD 11/10/2021 18:08:19'!
+saveCart: aNewCart for: aUser with: aNewCartId
+
+	carts at: aNewCartId put: aNewCart.
+	cartsLastUsage at: aNewCartId put: clock now.
+	cartUsers at: aNewCartId put: aUser! !
+
+
+!RestInterface methodsFor: 'testing' stamp: 'gq 11/9/2021 17:49:56'!
+isCartIdValid: aCartId
+
+	^ carts includesKey: aCartId ! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'RestInterface class' category: 'TusLibros'!
 RestInterface class
-	instanceVariableNames: ''!
+	instanceVariableNames: 'cartUsers'!
 
-!RestInterface class methodsFor: 'instance creation' stamp: 'gq 11/9/2021 19:30:06'!
+!RestInterface class methodsFor: 'instance creation' stamp: 'JD 11/10/2021 16:25:55'!
 authenticatingWith: anAuthenticationSystem withCatalog: aCatalog withClock: aClock debitingBy: aMerchantProcessor registeringSalesOn: aSalesBook    
 
-	^ self new initializeAuthenticatingWith: anAuthenticationSystem withCatalog: aCatalog withClock: aClock! !
+	^ self new initializeAuthenticatingWith: anAuthenticationSystem withCatalog: aCatalog withClock: aClock debitingBy: aMerchantProcessor registeringSalesOn: aSalesBook ! !
 
 
 !RestInterface class methodsFor: 'error messages' stamp: 'gq 11/9/2021 18:33:23'!
@@ -853,16 +1038,33 @@ invalidUserOrPasswordErrorMessage
 
 !classDefinition: #Sale category: 'TusLibros'!
 Object subclass: #Sale
-	instanceVariableNames: 'total'
+	instanceVariableNames: 'total items buyer'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!Sale methodsFor: 'total' stamp: 'HernanWilkinson 6/17/2013 18:48'!
+!Sale methodsFor: 'accessing' stamp: 'JD 11/10/2021 17:43:46'!
+buyer
+	
+	^ buyer ! !
+
+!Sale methodsFor: 'accessing' stamp: 'JD 11/10/2021 17:44:54'!
+items
+	
+	^ items! !
+
+!Sale methodsFor: 'accessing' stamp: 'HernanWilkinson 6/17/2013 18:48'!
 total
 	
 	^ total! !
 
+
+!Sale methodsFor: 'initialization' stamp: 'JD 11/10/2021 17:32:16'!
+initializeBoughtItems: boughtItems withTotal: aTotalPrice madeBy: aBuyer
+	
+	items := boughtItems.
+	total := aTotalPrice.
+	buyer := aBuyer! !
 
 !Sale methodsFor: 'initialization' stamp: 'HernanWilkinson 6/17/2013 18:47'!
 initializeTotal: aTotal
@@ -875,45 +1077,11 @@ initializeTotal: aTotal
 Sale class
 	instanceVariableNames: ''!
 
-!Sale class methodsFor: 'instance creation' stamp: 'HernanWilkinson 6/17/2013 18:47'!
-of: aTotal
+!Sale class methodsFor: 'instance creation' stamp: 'JD 11/10/2021 17:31:31'!
+of: boughtItems withTotal: aTotalPrice madeBy: aBuyer
 
 	"should assert total is not negative or 0!!"
-	^self new initializeTotal: aTotal ! !
-
-
-!classDefinition: #SimulatedClock category: 'TusLibros'!
-Object subclass: #SimulatedClock
-	instanceVariableNames: 'now'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-
-!SimulatedClock methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:19:00'!
-initializeFor: aTodayDate
-	
-	now := aTodayDate! !
-
-!SimulatedClock methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:33:28'!
-now
-	
-	^ now! !
-
-!SimulatedClock methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:26:27'!
-now: aTodayDate
-	
-	now := aTodayDate! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'SimulatedClock class' category: 'TusLibros'!
-SimulatedClock class
-	instanceVariableNames: ''!
-
-!SimulatedClock class methodsFor: 'as yet unclassified' stamp: 'JD 11/8/2021 21:19:35'!
-for: aTodayDate
-	
-	^ self new initializeFor: aTodayDate! !
+	^self new initializeBoughtItems: boughtItems withTotal: aTotalPrice madeBy: aBuyer! !
 
 
 !classDefinition: #StoreTestObjectsFactory category: 'TusLibros'!
@@ -983,3 +1151,19 @@ clock
 today
 	
 	^ today! !
+
+
+!StoreTestObjectsFactory methodsFor: 'users' stamp: 'JD 11/10/2021 17:20:03'!
+invalidUser
+
+	^ 'InvalidUser'! !
+
+!StoreTestObjectsFactory methodsFor: 'users' stamp: 'JD 11/10/2021 17:19:58'!
+validPassword
+	
+	^ 'ValidPassword'! !
+
+!StoreTestObjectsFactory methodsFor: 'users' stamp: 'JD 11/10/2021 17:19:54'!
+validUser
+	
+	^ 'ValidUser'! !

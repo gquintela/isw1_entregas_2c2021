@@ -1,0 +1,3888 @@
+
+
+----QUIT----(13 November 2021 20:18:32) CuisUniversity-4972.image priorSource: 14896235!
+
+----STARTUP---- (13 November 2021 20:18:33) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4972.image!
+
+
+----QUIT----(13 November 2021 20:18:33) CuisUniversity-4972.image priorSource: 18974023!
+
+----STARTUP---- (15 November 2021 17:58:55) as /home/equipo/Escritorio/linux64 (3)/linux64/CuisUniversity-4972.image!
+
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/WordsClientDemo.st----!
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/TusLibros-View.st----!
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/TusLibros-80.st----!
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/StringsServicesServer.st----!
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/Packages/System/Collections-CompactArrays.pck.st----!
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/Packages/Features/Compression.pck.st----!
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/Packages/Features/Sound.pck.st----!
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/Packages/Features/Cryptography-DigitalSignatures.pck.st----!
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/Packages/Features/Identities-UUID.pck.st----!
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/Packages/System/Network-Kernel.pck.st----!
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/Packages/WebClient.pck.st----!
+
+----STARTUP---- (15 November 2021 18:04:00) as /home/equipo/Escritorio/linux64 (3)/linux64/CuisUniversity-4972.image!
+
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/Packages/System/Collections-CompactArrays.pck.st----!
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/Packages/Features/Compression.pck.st----!
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/Packages/Features/Sound.pck.st----!
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/Packages/Features/Cryptography-DigitalSignatures.pck.st----!
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/Packages/Features/Identities-UUID.pck.st----!
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/Packages/System/Network-Kernel.pck.st----!
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/Packages/WebClient.pck.st----!
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/WordsClientDemo.st----!
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/TusLibros-View.st----!
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/TusLibros-80.st----!
+
+----End fileIn of /home/equipo/Escritorio/linux64 (3)/linux64/StringsServicesServer.st----!
+
+----SNAPSHOT----(15 November 2021 18:05:58) CuisUniversity-4972.image priorSource: 18974255!
+
+StringsServicesRestInterface listeningOn: 8080!
+
+WordsClientWindow open!
+
+----STARTUP---- (15 November 2021 18:20:55) as /home/equipo/Escritorio/linux64 (3)/linux64/CuisUniversity-4972.image!
+
+!TusLibrosXx methodsFor: 'initialization' stamp: 'FR 11/15/2021 19:36:07'!
+addCreateCartService
+
+	webServer addService: '/create-cart' action:[:request | | user password cartId cartIdAsJson |
+		
+		[
+			user := (request fields at: 'user').
+			password := (request fields at: 'password').
+			cartId := tusLibrosSystemFacade 
+			createCartFor: user authenticatedWith: password.
+			cartIdAsJson := WebUtils jsonEncode: (cartId).
+			request send200Response: (cartIdAsJson)
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+!TusLibrosXx methodsFor: 'initialization' stamp: 'FR 11/15/2021 19:38:31' prior: 50961541!
+addServices
+
+	self addCreateCartService.! !
+!TusLibrosSystemFacade methodsFor: 'facade protocol' stamp: 'FR 11/15/2021 19:39:58'!
+listCatalog
+
+	^ catalog copy! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CanCheckoutACart stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'FR 11/15/2021 19:40:03'!
+PASSED!
+!TusLibrosXx methodsFor: 'initialization' stamp: 'FR 11/15/2021 19:45:27'!
+addListCatalogService
+
+	webServer addService: '/list-catalog' action:[:request | | catalogAsJson |
+		
+		[
+			catalogAsJson := WebUtils jsonEncode: (tusLibrosSystemFacade 
+			listCatalog).
+			request send200Response: (catalogAsJson)
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+!TusLibrosXx methodsFor: 'initialization' stamp: 'FR 11/15/2021 19:45:38' prior: 50963468!
+addServices
+
+	self addCreateCartService.
+	self addListCatalogService.! !
+!TusLibrosXx methodsFor: 'initialization' stamp: 'FR 11/15/2021 19:49:26'!
+destroy
+	
+	webServer ifNotNil:[webServer destroy]! !
+
+MerchantProcessor subclass: #MerchantProcessorStub
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+
+!classDefinition: #MerchantProcessorStub category: 'TusLibros-Model' stamp: 'FR 11/15/2021 20:00:01'!
+MerchantProcessor subclass: #MerchantProcessorStub
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+!MerchantProcessorStub methodsFor: 'nil' stamp: 'FR 11/15/2021 20:00:14' overrides: 50962064!
+debit: anAmount from: aCreditCard! !
+
+| userAndPassword catalog |
+
+userAndPassword := Dictionary new at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new at: 'book' put: 10.
+
+TusLibrosXx listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: (GregorianDateTime new).!
+
+TusLibrosXx!
+
+TusLibrosXx!
+
+TusLibrosXx allInstances.!
+
+TusLibrosXx allInstances first destroy.!
+
+| userAndPassword catalog tusLibrosXxInstance |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosXx listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: (GregorianDateTime new).!
+
+| userAndPassword catalog tusLibrosXxInstance |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosXx listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: (GregorianDateTime new).!
+
+TusLibrosXx allInstances.!
+
+TusLibrosXx allInstancesDo: [:anInstance | anInstance destroy].!
+
+TusLibrosXx allInstances.!
+
+TusLibrosXx allInstancesDo: [:anInstance | anInstance destroy].!
+
+TusLibrosXx allInstances.!
+
+TusLibrosXx allInstances do: [:anInstance | anInstance destroy].!
+
+TusLibrosXx allInstances.!
+
+TusLibrosXx allInstances.!
+
+| userAndPassword catalog tusLibrosXxInstance |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosXx listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: (GregorianDateTime new).!
+
+TusLibrosXx allInstances do: [:anInstance | anInstance destroy].
+!
+
+| userAndPassword catalog tusLibrosXxInstance |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosXx listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: (GregorianDateTime new).!
+
+TusLibrosXx allInstances do: [:anInstance | anInstance destroy].!
+
+| userAndPassword catalog tusLibrosXxInstance |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosXx listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime.!
+
+TusLibrosXx allInstances do: [:anInstance | anInstance destroy].!
+
+----SNAPSHOT----(15 November 2021 20:27:59) CuisUniversity-4972.image priorSource: 20217313!
+!TusLibrosXx methodsFor: 'initialization' stamp: 'FR 11/15/2021 20:38:07'!
+addAddToCartService
+
+	webServer addService: '/add-to-cart' action:[:request | | bookAmount book cartId |
+		
+		[
+			bookAmount := (request fields at: 'bookAmount').
+			book := (request fields at: 'book').
+			cartId := (request fields at: 'cartId').
+			tusLibrosSystemFacade 
+			add: bookAmount of: book toCartIdentifiedAs: cartId.
+			request send200Response: (WebUtils jsonEncode: 'Book added correctly')
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+!TusLibrosXx methodsFor: 'initialization' stamp: 'FR 11/15/2021 20:38:16' prior: 50963608!
+addServices
+
+	self addCreateCartService.
+	self addListCatalogService.
+	self addAddToCartService.! !
+
+| userAndPassword catalog tusLibrosXxInstance |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosXx listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime.!
+
+TusLibrosXx allInstances do: [:anInstance | anInstance destroy].!
+
+| userAndPassword catalog tusLibrosXxInstance tusLibrosSystemFacade |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.!
+
+tusLibrosSystemFacade := TusLibrosSystemFacade authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime.
+
+tusLibrosSystemFacade createCartFor: 'validUser' authenticatedWith: 'validUserPassword'.!
+
+| userAndPassword catalog tusLibrosXxInstance tusLibrosSystemFacade |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosSystemFacade := TusLibrosSystemFacade authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime.
+
+tusLibrosSystemFacade createCartFor: 'validUser' authenticatedWith: 'validUserPassword'.!
+
+| userAndPassword catalog tusLibrosXxInstance tusLibrosSystemFacade |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosSystemFacade := TusLibrosSystemFacade authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime.
+
+tusLibrosSystemFacade createCartFor: 'validUser' authenticatedWith: 'validUserPassword'.!
+
+| userAndPassword catalog tusLibrosXxInstance tusLibrosSystemFacade |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosSystemFacade := TusLibrosSystemFacade authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime.
+
+tusLibrosSystemFacade createCartFor: 'validUser' authenticatedWith: 'validUserPassword'.
+
+tusLibrosSystemFacade add: 1 of: 'book' toCartIdentifiedAs: 1.!
+!TusLibrosSystemFacade methodsFor: 'cart session management' stamp: 'FR 11/15/2021 20:59:40' prior: 50962275!
+withCartSessionIdentifiedAs: aCartId do: aBlock
+
+	| cartSession |
+
+	cartSession := cartSessions at: aCartId ifAbsent: [self signalInvalidCartId ].
+	cartSession do: aBlock.
+	cartSessions at: aCartId
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FR 11/15/2021 20:59:40'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'FR 11/15/2021 20:59:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FR 11/15/2021 20:59:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'FR 11/15/2021 20:59:40'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'FR 11/15/2021 20:59:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'FR 11/15/2021 20:59:40'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FR 11/15/2021 20:59:40'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'FR 11/15/2021 20:59:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FR 11/15/2021 20:59:40'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CanCheckoutACart stamp: 'FR 11/15/2021 20:59:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'FR 11/15/2021 20:59:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'FR 11/15/2021 20:59:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'FR 11/15/2021 20:59:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'FR 11/15/2021 20:59:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'FR 11/15/2021 20:59:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'FR 11/15/2021 20:59:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'FR 11/15/2021 20:59:40'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'FR 11/15/2021 20:59:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'FR 11/15/2021 20:59:40'!
+PASSED!
+
+cartSessions at: aCartId!
+!TusLibrosXx methodsFor: 'initialization' stamp: 'FR 11/15/2021 21:02:02' prior: 50963449!
+addCreateCartService
+
+	webServer addService: '/create-cart' action:[:request | | user password cartId cartIdAsJson |
+		
+		[
+			user := (request fields at: 'user').
+			password := (request fields at: 'password').
+			cartId := tusLibrosSystemFacade 
+			createCartFor: user authenticatedWith: password.
+			cartIdAsJson := WebUtils jsonEncode: (cartId).
+			tusLibrosSystemFacade add: 1 of: 'book' toCartIdentifiedAs: cartId.
+			request send200Response: (cartIdAsJson)
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+
+| userAndPassword catalog tusLibrosXxInstance tusLibrosSystemFacade |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosXx listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime.!
+
+tusLibrosXxInstance!
+
+TusLibrosXx allInstances do: [:anInstance | anInstance destroy].
+!
+
+| userAndPassword catalog tusLibrosXxInstance tusLibrosSystemFacade |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosXx listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. !
+
+tusLibrosXxInstance!
+!TusLibrosXx methodsFor: 'initialization' stamp: 'FR 11/15/2021 21:10:01' prior: 50963931!
+addCreateCartService
+
+	webServer addService: '/create-cart' action:[:request | | user password cartId cartIdAsJson |
+		
+		[
+			user := (request fields at: 'user').
+			password := (request fields at: 'password').
+			cartId := tusLibrosSystemFacade 
+			createCartFor: user authenticatedWith: password.
+			cartIdAsJson := WebUtils jsonEncode: (cartId).
+			request send200Response: (cartIdAsJson)
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+
+----SNAPSHOT----(15 November 2021 21:10:13) CuisUniversity-4972.image priorSource: 20226714!
+
+TusLibrosXx allInstances do: [:anInstance | anInstance destroy].
+!
+!TusLibrosXx methodsFor: 'initialization' stamp: 'FR 11/15/2021 21:14:55' prior: 50963984!
+addCreateCartService
+
+	webServer addService: '/create-cart' action:[:request | | user password cartId cartIdAsJson |
+		
+		[
+			user := (request fields at: 'user').
+			password := (request fields at: 'password').
+			cartId := tusLibrosSystemFacade createCartFor: user authenticatedWith: password.
+			cartIdAsJson := WebUtils jsonEncode: (cartId).
+			request send200Response: (cartIdAsJson)
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+!TusLibrosXx methodsFor: 'initialization' stamp: 'FR 11/15/2021 21:15:16' prior: 50964008!
+addCreateCartService
+
+	webServer addService: '/create-cart' action:[:request | | user password cartId cartIdAsJson |
+		
+		[
+			user := (request fields at: 'user').
+			password := (request fields at: 'password').
+			self halt.
+			cartId := tusLibrosSystemFacade createCartFor: user authenticatedWith: password.
+			cartIdAsJson := WebUtils jsonEncode: (cartId).
+			request send200Response: (cartIdAsJson)
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+
+| userAndPassword catalog tusLibrosXxInstance tusLibrosSystemFacade |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosXx listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. !
+!TusLibrosXx methodsFor: 'initialization' stamp: 'FR 11/15/2021 21:15:48' prior: 50964027!
+addCreateCartService
+
+	webServer addService: '/create-cart' action:[:request | | user password cartId cartIdAsJson |
+		
+		[
+			user := (request fields at: 'user').
+			password := (request fields at: 'password').
+			cartId := tusLibrosSystemFacade createCartFor: user authenticatedWith: password.
+			cartIdAsJson := WebUtils jsonEncode: (cartId).
+			request send200Response: (cartIdAsJson)
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+!TusLibrosXx methodsFor: 'initialization' stamp: 'FR 11/15/2021 21:16:26' prior: 50963739!
+addAddToCartService
+
+	webServer addService: '/add-to-cart' action:[:request | | bookAmount book cartId |
+		
+		[
+			bookAmount := (request fields at: 'bookAmount').
+			book := (request fields at: 'book').
+			cartId := (request fields at: 'cartId').
+			self halt.
+			tusLibrosSystemFacade add: bookAmount of: book toCartIdentifiedAs: cartId.
+			request send200Response: (WebUtils jsonEncode: 'Book added correctly')
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+
+TusLibrosXx allInstances do: [:anInstance | anInstance destroy].
+!
+
+| userAndPassword catalog tusLibrosXxInstance tusLibrosSystemFacade |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosXx listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. !
+
+tusLibrosSystemFacade add: bookAmount of: book toCartIdentifiedAs: cartId!
+!TusLibrosXx methodsFor: 'initialization' stamp: 'FR 11/15/2021 21:21:19' prior: 50964079!
+addAddToCartService
+
+	webServer addService: '/add-to-cart' action:[:request | | bookAmount book cartId |
+		
+		[
+			bookAmount := (request fields at: 'bookAmount').
+			book := (request fields at: 'book').
+			cartId := (request fields at: 'cartId') asNumber.
+			tusLibrosSystemFacade add: bookAmount of: book toCartIdentifiedAs: cartId.
+			request send200Response: (WebUtils jsonEncode: 'Book added correctly')
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+
+TusLibrosXx allInstances do: [:anInstance | anInstance destroy].
+!
+
+| userAndPassword catalog tusLibrosXxInstance tusLibrosSystemFacade |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosXx listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. !
+
+TusLibrosXx allInstances do: [:anInstance | anInstance destroy].
+!
+!TusLibrosXx methodsFor: 'initialization' stamp: 'FR 11/15/2021 21:24:30' prior: 50964117!
+addAddToCartService
+
+	webServer addService: '/add-to-cart' action:[:request | | bookAmount book cartId |
+		
+		[
+			bookAmount := (request fields at: 'bookAmount').
+			book := (request fields at: 'book').
+			self halt.
+			cartId := (request fields at: 'cartId') asNumber.
+			tusLibrosSystemFacade add: bookAmount of: book toCartIdentifiedAs: cartId.
+			request send200Response: (WebUtils jsonEncode: 'Book added correctly')
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+!TusLibrosXx methodsFor: 'initialization' stamp: 'FR 11/15/2021 21:24:52' prior: 50964155!
+addAddToCartService
+
+	webServer addService: '/add-to-cart' action:[:request | | bookAmount book cartId |
+		
+		[
+			bookAmount := (request fields at: 'bookAmount') asNumber.
+			book := (request fields at: 'book').
+			self halt.
+			cartId := (request fields at: 'cartId') asNumber.
+			tusLibrosSystemFacade add: bookAmount of: book toCartIdentifiedAs: cartId.
+			request send200Response: (WebUtils jsonEncode: 'Book added correctly')
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+!TusLibrosXx methodsFor: 'initialization' stamp: 'FR 11/15/2021 21:24:56' prior: 50964175!
+addAddToCartService
+
+	webServer addService: '/add-to-cart' action:[:request | | bookAmount book cartId |
+		
+		[
+			bookAmount := (request fields at: 'bookAmount') asNumber.
+			book := (request fields at: 'book').
+			cartId := (request fields at: 'cartId') asNumber.
+			tusLibrosSystemFacade add: bookAmount of: book toCartIdentifiedAs: cartId.
+			request send200Response: (WebUtils jsonEncode: 'Book added correctly')
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+
+| userAndPassword catalog tusLibrosXxInstance tusLibrosSystemFacade |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosXx listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. !
+
+----SNAPSHOT----(15 November 2021 21:26:03) CuisUniversity-4972.image priorSource: 20235243!
+
+----STARTUP---- (17 November 2021 16:25:05) as /home/juli/Documentos/Facu/Inge1/cuis-university/CuisUniversity-4972.image!
+
+!TusLibrosXx methodsFor: 'initialization' stamp: 'JD 11/17/2021 16:59:14'!
+addListCartService
+
+	| cartContent cartContentAsJson |
+	webServer addService: '/list-cart' action:[:request | | cartId |
+		
+		[	
+			cartId := (request fields at: 'cartId') asNumber.
+			cartContent := tusLibrosSystemFacade listCart: cartId.
+			cartContentAsJson := WebUtils jsonEncode: cartContent.
+			request send200Response: (cartContentAsJson)
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+
+!classRenamed: #TusLibrosXx as: #TusLibrosRestAPI stamp: 'JD 11/17/2021 17:00:49'!
+Smalltalk renameClassNamed: #TusLibrosXx as: #TusLibrosRestAPI!
+!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 17:02:33' prior: 50964235!
+addListCartService
+
+	| cartContent cartContentAsJson |
+	webServer addService: '/list-cart' action:[:request | | cartId |
+		
+		[	
+			cartId := (request fields at: 'cartId') asNumber.
+			cartContent := tusLibrosSystemFacade listCartIdentifiedAs: cartId.
+			cartContentAsJson := WebUtils jsonEncode: cartContent.
+			request send200Response: (cartContentAsJson)
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+
+| userAndPassword catalog tusLibrosRestAPI |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosRestAPI := TusLibrosRestAPI listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. !
+
+TusLibrosRestAPI allInstances do: [:anInstance | anInstance destroy].
+!
+
+| userAndPassword catalog tusLibrosRestAPI |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosRestAPI := TusLibrosRestAPI listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. !
+
+TusLibrosRestAPI allInstances do: [:anInstance | anInstance destroy].!
+
+| userAndPassword catalog tusLibrosRestAPI |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosRestAPI := TusLibrosRestAPI listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. !
+!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 17:06:43' prior: 50963758!
+addServices
+
+	self addCreateCartService.
+	self addListCatalogService.
+	self addAddToCartService.
+	self addListCartService.! !
+
+TusLibrosRestAPI allInstances do: [:anInstance | anInstance destroy].!
+
+| userAndPassword catalog tusLibrosRestAPI |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosRestAPI := TusLibrosRestAPI listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. 
+!
+!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 17:09:28' prior: 50964257!
+addListCartService
+
+	| cartContent cartContentAsJson |
+	webServer addService: '/list-cart' action:[:request | | cartId |
+		
+		[	
+			cartId := (request fields at: 'cartId') asNumber.
+			self halt.
+			cartContent := tusLibrosSystemFacade listCartIdentifiedAs: cartId.
+			cartContentAsJson := WebUtils jsonEncode: cartContent.
+			request send200Response: (cartContentAsJson)
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+
+TusLibrosRestAPI allInstances do: [:anInstance | anInstance destroy].!
+
+| userAndPassword catalog tusLibrosRestAPI |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosRestAPI := TusLibrosRestAPI listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 17:15:42'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'JD 11/17/2021 17:15:42'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'JD 11/17/2021 17:15:42'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JD 11/17/2021 17:15:42'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JD 11/17/2021 17:15:42'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CanCheckoutACart stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'JD 11/17/2021 17:15:42'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'JD 11/17/2021 17:15:42'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 17:15:52'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 17:16:59'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'JD 11/17/2021 17:16:59'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JD 11/17/2021 17:16:59'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'JD 11/17/2021 17:16:59'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'JD 11/17/2021 17:16:59'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'JD 11/17/2021 17:16:59'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JD 11/17/2021 17:16:59'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'JD 11/17/2021 17:16:59'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JD 11/17/2021 17:16:59'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CanCheckoutACart stamp: 'JD 11/17/2021 17:16:59'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'JD 11/17/2021 17:16:59'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 17:16:59'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'JD 11/17/2021 17:16:59'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'JD 11/17/2021 17:16:59'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'JD 11/17/2021 17:16:59'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'JD 11/17/2021 17:16:59'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'JD 11/17/2021 17:16:59'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'JD 11/17/2021 17:16:59'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'JD 11/17/2021 17:16:59'!
+PASSED!
+
+----STARTUP---- (17 November 2021 17:18:32) as /home/juli/Documentos/Facu/Inge1/cuis-university/CuisUniversity-4972.image!
+
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 17:18:45'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'JD 11/17/2021 17:18:45'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'JD 11/17/2021 17:18:45'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JD 11/17/2021 17:18:45'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JD 11/17/2021 17:18:45'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CanCheckoutACart stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'JD 11/17/2021 17:18:45'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'JD 11/17/2021 17:18:45'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 17:18:54'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 17:20:10'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'JD 11/17/2021 17:20:10'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'JD 11/17/2021 17:20:10'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JD 11/17/2021 17:20:10'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JD 11/17/2021 17:20:10'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CanCheckoutACart stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'JD 11/17/2021 17:20:10'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'JD 11/17/2021 17:20:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 17:20:16'!
+ERROR!
+!TusLibrosSystemFacade methodsFor: 'facade protocol' stamp: 'JD 11/17/2021 17:20:45' prior: 50962320!
+listCartIdentifiedAs: aCartId
+
+	^ self withCartSessionIdentifiedAs: aCartId do: [ :cartSession | ^ cartSession cartContent ]! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CanCheckoutACart stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'JD 11/17/2021 17:20:49'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CanCheckoutACart stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'JD 11/17/2021 17:21:03'!
+PASSED!
+!TusLibrosXx methodsFor: 'initialization' stamp: 'JD 11/17/2021 17:21:56'!
+addListCartService
+
+ | cartContent cartContentAsJson |
+	 webServer addService: '/list-cart' action:[:request | | cartId |
+		  [
+		   cartId := (request fields at: 'cartId') asNumber.
+		   cartContent := tusLibrosSystemFacade listCartIdentifiedAs: cartId.
+		   cartContentAsJson := WebUtils jsonEncode: cartContent.
+		   request send200Response: (cartContentAsJson)
+		   ]
+	  on: Error
+	  do: [ :anError |
+	   request send400Response: (anError messageText) ]].
+	
+	! !
+!TusLibrosXx methodsFor: 'initialization' stamp: 'JD 11/17/2021 17:22:14' prior: 50964717!
+addListCartService
+
+ | cartContent cartContentAsJson |
+	 webServer addService: '/list-cart' action:[:request | | cartId |
+
+		  [
+			   cartId := (request fields at: 'cartId') asNumber.
+			   cartContent := tusLibrosSystemFacade listCartIdentifiedAs: cartId.
+			   cartContentAsJson := WebUtils jsonEncode: cartContent.
+			   request send200Response: (cartContentAsJson)
+		   ]
+	  on: Error
+	  do: [ :anError |
+	   request send400Response: (anError messageText) ]].
+	
+	! !
+!TusLibrosXx methodsFor: 'initialization' stamp: 'JD 11/17/2021 17:22:30' prior: 50964735!
+addListCartService
+
+ | cartContent cartContentAsJson |
+	 webServer addService: '/list-cart' action:[:request | | cartId |
+
+		  [
+			   cartId := (request fields at: 'cartId') asNumber.
+			   cartContent := tusLibrosSystemFacade listCartIdentifiedAs: cartId.
+			   cartContentAsJson := WebUtils jsonEncode: cartContent.
+			   request send200Response: (cartContentAsJson)
+		   ]
+	  on: Error
+	  do: [ :anError |
+	   	request send400Response: (anError messageText) ]].
+	
+	! !
+!TusLibrosXx methodsFor: 'initialization' stamp: 'JD 11/17/2021 17:23:02' prior: 50964753!
+addListCartService
+
+	 webServer addService: '/list-cart' action:[:request | | cartId cartContent cartContentAsJson |
+
+		  [
+			   cartId := (request fields at: 'cartId') asNumber.
+			   cartContent := tusLibrosSystemFacade listCartIdentifiedAs: cartId.
+			   cartContentAsJson := WebUtils jsonEncode: cartContent.
+			   request send200Response: (cartContentAsJson)
+		   ]
+	  on: Error
+	  do: [ :anError |
+	   	  request send400Response: (anError messageText) ]].
+	
+	! !
+!TusLibrosXx methodsFor: 'initialization' stamp: 'JD 11/17/2021 17:23:12' prior: 50964771!
+addListCartService
+
+	 webServer addService: '/list-cart' action:[:request | | cartId cartContent cartContentAsJson |
+
+		  [
+			   cartId := (request fields at: 'cartId') asNumber.
+			   cartContent := tusLibrosSystemFacade listCartIdentifiedAs: cartId.
+			   cartContentAsJson := WebUtils jsonEncode: cartContent.
+			   request send200Response: (cartContentAsJson)
+		   ]
+		  on: Error
+		  do: [ :anError |
+		   	  request send400Response: (anError messageText) ]].
+	
+	! !
+
+TusLibrosXx allInstances do: [:anInstance | anInstance destroy].!
+
+TusLibrosXx allInstances do: [:anInstance | anInstance destroy].!
+
+| userAndPassword catalog tusLibrosXxInstance |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosXx listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. !
+!TusLibrosXx methodsFor: 'initialization' stamp: 'JD 11/17/2021 17:24:12' prior: 50963758!
+addServices
+
+	self addCreateCartService.
+	self addListCatalogService.
+	self addAddToCartService.
+	self addListCartService.! !
+
+TusLibrosXx allInstances do: [:anInstance | anInstance destroy].!
+
+| userAndPassword catalog tusLibrosXxInstance |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosXx listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. !
+!TusLibrosXx methodsFor: 'initialization' stamp: 'JD 11/17/2021 17:29:43' prior: 50964789!
+addListCartService
+
+	 webServer addService: '/list-cart' action:[:request | | cartId cartContent cartContentAsJson |
+
+		  [
+			   cartId := (request fields at: 'cartId') asNumber.	
+			   self halt.
+			   cartContent := tusLibrosSystemFacade listCartIdentifiedAs: cartId.
+			   cartContentAsJson := WebUtils jsonEncode: cartContent.
+			   request send200Response: (cartContentAsJson)
+		   ]
+		  on: Error
+		  do: [ :anError |
+		   	  request send400Response: (anError messageText) ]].
+	
+	! !
+
+TusLibrosXx allInstances do: [:anInstance | anInstance destroy].!
+
+| userAndPassword catalog tusLibrosXxInstance |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosXx listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. !
+!WebUtils class methodsFor: 'json-encode' stamp: 'JD 11/17/2021 17:34:43' prior: 50959685!
+jsonObj: anObject on: stream
+	"Encode a generic object"
+
+	anObject isString ifTrue:[^self jsonString: anObject on: stream].
+	anObject isNumber ifTrue:[^self jsonNumber: anObject on: stream].
+	anObject == nil ifTrue:[^stream nextPutAll: 'null'].
+	anObject == true ifTrue:[^stream nextPutAll: 'true'].
+	anObject == false ifTrue:[^stream nextPutAll: 'false'].
+	anObject isArray ifTrue:[^self jsonArray: anObject on: stream].
+	(anObject is: #Dictionary) ifTrue:[^self jsonMap: anObject on: stream].
+	(anObject is: #Bag) ifTrue:[^self jsonMap: anObject on: stream].
+
+	self error: 'Cannot encode: ', anObject! !
+
+allInstances!
+
+| userAndPassword catalog tusLibrosXxInstance |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosXx listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. !
+!WebUtils class methodsFor: 'json-encode' stamp: 'JD 11/17/2021 17:36:00' prior: 50964882!
+jsonObj: anObject on: stream
+	"Encode a generic object"
+
+	anObject isString ifTrue:[^self jsonString: anObject on: stream].
+	anObject isNumber ifTrue:[^self jsonNumber: anObject on: stream].
+	anObject == nil ifTrue:[^stream nextPutAll: 'null'].
+	anObject == true ifTrue:[^stream nextPutAll: 'true'].
+	anObject == false ifTrue:[^stream nextPutAll: 'false'].
+	anObject isArray ifTrue:[^self jsonArray: anObject on: stream].
+	(anObject is: #Dictionary) ifTrue:[^self jsonMap: anObject on: stream].
+	(anObject is: #Bag) ifTrue:[^self jsonArray: anObject on: stream].
+
+	self error: 'Cannot encode: ', anObject! !
+
+TusLibrosXx allInstances do: [:anInstance | anInstance destroy].!
+
+| userAndPassword catalog tusLibrosXxInstance |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosXx listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. 
+!
+!TusLibrosXx methodsFor: 'initialization' stamp: 'JD 11/17/2021 17:36:45' prior: 50964848!
+addListCartService
+
+	 webServer addService: '/list-cart' action:[:request | | cartId cartContent cartContentAsJson |
+
+		  [
+			   cartId := (request fields at: 'cartId') asNumber.	
+			   self halt.
+			   cartContent := tusLibrosSystemFacade listCartIdentifiedAs: cartId.
+			   cartContentAsJson := WebUtils jsonEncode: cartContent asArray.
+			   request send200Response: (cartContentAsJson)
+		   ]
+		  on: Error
+		  do: [ :anError |
+		   	  request send400Response: (anError messageText) ]].
+	
+	! !
+
+TusLibrosXx allInstances do: [:anInstance | anInstance destroy].!
+!TusLibrosXx methodsFor: 'initialization' stamp: 'JD 11/17/2021 17:36:53' prior: 50964956!
+addListCartService
+
+	 webServer addService: '/list-cart' action:[:request | | cartId cartContent cartContentAsJson |
+
+		  [
+			   cartId := (request fields at: 'cartId') asNumber.	
+			   cartContent := tusLibrosSystemFacade listCartIdentifiedAs: cartId.
+			   cartContentAsJson := WebUtils jsonEncode: cartContent asArray.
+			   request send200Response: (cartContentAsJson)
+		   ]
+		  on: Error
+		  do: [ :anError |
+		   	  request send400Response: (anError messageText) ]].
+	
+	! !
+
+TusLibrosXx allInstances do: [:anInstance | anInstance destroy].!
+
+| userAndPassword catalog tusLibrosXxInstance |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosXx listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. !
+!WebUtils class methodsFor: 'json-encode' stamp: 'JD 11/17/2021 17:37:19' prior: 50964918!
+jsonObj: anObject on: stream
+	"Encode a generic object"
+
+	anObject isString ifTrue:[^self jsonString: anObject on: stream].
+	anObject isNumber ifTrue:[^self jsonNumber: anObject on: stream].
+	anObject == nil ifTrue:[^stream nextPutAll: 'null'].
+	anObject == true ifTrue:[^stream nextPutAll: 'true'].
+	anObject == false ifTrue:[^stream nextPutAll: 'false'].
+	anObject isArray ifTrue:[^self jsonArray: anObject on: stream].
+	(anObject is: #Dictionary) ifTrue:[^self jsonMap: anObject on: stream].
+
+	self error: 'Cannot encode: ', anObject! !
+
+!classRenamed: #TusLibrosXx as: #TusLibrosRestAPI stamp: 'JD 11/17/2021 17:39:00'!
+Smalltalk renameClassNamed: #TusLibrosXx as: #TusLibrosRestAPI!
+!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 17:48:26'!
+addCheckoutCartService
+
+	webServer addService: '/list-catalog' action:[:request | | cartId cardNumber cardExpirationDate cardOwner ticket |
+		
+		[	
+			cartId := (request fields at: 'cartId') asNumber.
+			cardNumber := (request fields at: 'ccn') asNumber.
+			cardExpirationDate := request fields at: 'cced'.
+			cardOwner := request fields at: 'cco'.
+			ticket := tusLibrosSystemFacade checkOutCartIdentifiedAs: cartId withCreditCardNumbered: cardNumber ownedBy: cardOwner expiringOn: cardExpirationDate.
+			ticket := WebUtils jsonEncode: ticket.
+			request send200Response: ticket
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 17:48:40' prior: 50964825!
+addServices
+
+	self addCreateCartService.
+	self addListCatalogService.
+	self addAddToCartService.
+	self addListCartService.
+	self addCheckoutCartService.! !
+!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 17:50:58'!
+addListPurchasesService
+
+	webServer addService: '/list-catalog' action:[:request | | user password purchasesList purchasesListAsJson |
+		
+		[	
+			user := (request fields at: 'user').
+			password := (request fields at: 'password').
+			purchasesList := tusLibrosSystemFacade listPurchasesOf: user  authenticatingWith: password.
+			purchasesListAsJson := WebUtils jsonEncode: purchasesList.
+			request send200Response: purchasesListAsJson
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 17:51:19' prior: 50965068!
+addListPurchasesService
+
+	webServer addService: '/list-purchases' action:[:request | | user password purchasesList purchasesListAsJson |
+		
+		[	
+			user := (request fields at: 'user').
+			password := (request fields at: 'password').
+			purchasesList := tusLibrosSystemFacade listPurchasesOf: user  authenticatingWith: password.
+			purchasesListAsJson := WebUtils jsonEncode: purchasesList.
+			request send200Response: purchasesListAsJson
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 17:51:27' prior: 50965035!
+addCheckoutCartService
+
+	webServer addService: '/checkout-cart' action:[:request | | cartId cardNumber cardExpirationDate cardOwner ticket |
+		
+		[	
+			cartId := (request fields at: 'cartId') asNumber.
+			cardNumber := (request fields at: 'ccn') asNumber.
+			cardExpirationDate := request fields at: 'cced'.
+			cardOwner := request fields at: 'cco'.
+			ticket := tusLibrosSystemFacade checkOutCartIdentifiedAs: cartId withCreditCardNumbered: cardNumber ownedBy: cardOwner expiringOn: cardExpirationDate.
+			ticket := WebUtils jsonEncode: ticket.
+			request send200Response: ticket
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 18:04:53' prior: 50965108!
+addCheckoutCartService
+
+	webServer addService: '/checkout-cart' action:[:request | | cartId cardNumber cardExpirationDate cardOwner ticket |
+		
+		[	
+			cartId := (request fields at: 'cartId') asNumber.
+			cardNumber := (request fields at: 'ccn') asNumber.
+			cardExpirationDate := Month readFrom: (request fields at: 'cced').
+			cardOwner := request fields at: 'cco'.
+			ticket := tusLibrosSystemFacade checkOutCartIdentifiedAs: cartId withCreditCardNumbered: cardNumber ownedBy: cardOwner expiringOn: cardExpirationDate.
+			ticket := WebUtils jsonEncode: ticket.
+			request send200Response: ticket
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+
+TusLibrosRestAPI allInstances do: [:anInstance | anInstance destroy].!
+
+| userAndPassword catalog tusLibrosXxInstance |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosRestAPI listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. 
+!
+!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 18:08:16' prior: 50965133!
+addCheckoutCartService
+
+	webServer addService: '/checkout-cart' action:[:request | | cartId cardNumber cardExpirationDate cardOwner ticket |
+		
+		[	
+			cartId := (request fields at: 'cartId') asNumber.
+			cardNumber := (request fields at: 'ccn') asNumber.
+			cardExpirationDate := Month readFrom: (request fields at: 'cced').
+			cardOwner := request fields at: 'cco'.
+			ticket := tusLibrosSystemFacade checkOutCartIdentifiedAs: cartId withCreditCardNumbered: cardNumber ownedBy: cardOwner expiringOn: cardExpirationDate.
+			request send200Response: 'OK'
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 18:08:27' prior: 50965174!
+addCheckoutCartService
+
+	webServer addService: '/checkout-cart' action:[:request | | cartId cardNumber cardExpirationDate cardOwner |
+		
+		[	
+			cartId := (request fields at: 'cartId') asNumber.
+			cardNumber := (request fields at: 'ccn') asNumber.
+			cardExpirationDate := Month readFrom: (request fields at: 'cced').
+			cardOwner := request fields at: 'cco'.
+			tusLibrosSystemFacade checkOutCartIdentifiedAs: cartId withCreditCardNumbered: cardNumber ownedBy: cardOwner expiringOn: cardExpirationDate.
+			request send200Response: 'OK'
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+
+TusLibrosRestAPI allInstances do: [:anInstance | anInstance destroy].!
+
+| userAndPassword catalog tusLibrosXxInstance |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosRestAPI listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. !
+!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 18:09:20' prior: 50965198!
+addCheckoutCartService
+
+	webServer addService: '/checkout-cart' action:[:request | | cartId cardNumber cardExpirationDate cardOwner |
+		
+		[	
+			self halt.
+			cartId := (request fields at: 'cartId') asNumber.
+			cardNumber := (request fields at: 'ccn') asNumber.
+			cardExpirationDate := Month readFrom: (request fields at: 'cced').
+			cardOwner := request fields at: 'cco'.
+			tusLibrosSystemFacade checkOutCartIdentifiedAs: cartId withCreditCardNumbered: cardNumber ownedBy: cardOwner expiringOn: cardExpirationDate.
+			request send200Response: 'OK'
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+
+TusLibrosRestAPI allInstances do: [:anInstance | anInstance destroy].!
+
+| userAndPassword catalog tusLibrosXxInstance |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosRestAPI listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. 
+!
+
+(request fields at: 'cced')!
+
+(request fields at: 'cced')!
+
+(request fields at: 'cced')!
+
+Month readFrom: (request fields at: 'cced')!
+!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 18:11:43' prior: 50965237!
+addCheckoutCartService
+
+	webServer addService: '/checkout-cart' action:[:request | | cartId cardNumber cardExpirationDate cardOwner |
+		
+		[	
+			self halt.
+			cartId := (request fields at: 'cartId') asNumber.
+			cardNumber := (request fields at: 'ccn') asNumber.
+			cardExpirationDate := Month readFrom: (ReadStream on: (request fields at: 'cced')).
+			cardOwner := request fields at: 'cco'.
+			tusLibrosSystemFacade checkOutCartIdentifiedAs: cartId withCreditCardNumbered: cardNumber ownedBy: cardOwner expiringOn: cardExpirationDate.
+			request send200Response: 'OK'
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+
+TusLibrosRestAPI allInstances do: [:anInstance | anInstance destroy].!
+
+| userAndPassword catalog tusLibrosXxInstance |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosRestAPI listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. !
+!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 18:12:40' prior: 50965060!
+addServices
+
+	self addCreateCartService.
+	self addListCatalogService.
+	self addAddToCartService.
+	self addListCartService.
+	self addCheckoutCartService.
+	self addListPurchasesService.! !
+
+TusLibrosRestAPI allInstances do: [:anInstance | anInstance destroy].!
+
+| userAndPassword catalog tusLibrosXxInstance |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosRestAPI listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. !
+!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 18:14:06' prior: 50965281!
+addCheckoutCartService
+
+	webServer addService: '/checkout-cart' action:[:request | | cartId cardNumber cardExpirationDate cardOwner |
+		
+		[	
+			cartId := (request fields at: 'cartId') asNumber.
+			cardNumber := (request fields at: 'ccn') asNumber.
+			cardExpirationDate := Month readFrom: (ReadStream on: (request fields at: 'cced')).
+			cardOwner := request fields at: 'cco'.
+			tusLibrosSystemFacade checkOutCartIdentifiedAs: cartId withCreditCardNumbered: cardNumber ownedBy: cardOwner expiringOn: cardExpirationDate.
+			request send200Response: 'OK'
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+!TusLibrosSystemFacade methodsFor: 'facade protocol' stamp: 'JD 11/17/2021 18:21:44'!
+remove: aBook fromCartIdentifiedAs: aCartId
+
+	self withCartSessionIdentifiedAs: aCartId do: [ :cartSession | cartSession remove: aBook ]! !
+
+!methodRemoval: TusLibrosSystemFacade #remove:fromCartIdentifiedAs: stamp: 'JD 11/17/2021 18:21:56'!
+remove: aBook fromCartIdentifiedAs: aCartId
+
+	self withCartSessionIdentifiedAs: aCartId do: [ :cartSession | cartSession remove: aBook ]!
+!TusLibrosSystemFacadeTest methodsFor: 'tests - checkout' stamp: 'JD 11/17/2021 18:27:33'!
+test20CannotRemoveABookNotPresentInTheCart
+
+	| cartId |
+
+	cartId := systemFacade createCartFor: self validUser authenticatedWith: self validUserPassword.
+	self should: [
+		systemFacade remove: self validBook fromCart: cartId]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText equals: systemFacade canNotRemoveParameterFromBinaryMessagesErrorMessage.
+			self assert: (systemFacade listCartIdentifiedAs: cartId) isEmpty ]
+
+
+	! !
+!TusLibrosSystemFacadeTest methodsFor: 'tests - checkout' stamp: 'JD 11/17/2021 18:27:53' prior: 50965385!
+test20CannotRemoveABookNotPresentInTheCart
+
+	| cartId |
+
+	cartId := systemFacade createCartFor: self validUser authenticatedWith: self validUserPassword.
+	self should: [
+		systemFacade remove: self validBook fromCart: cartId]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText equals: systemFacade cannotRemoveANonPresentBookErrorMessage.
+			self assert: (systemFacade listCartIdentifiedAs: cartId) isEmpty ]
+
+
+	! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20CannotRemoveABookNotPresentInTheCart stamp: 'JD 11/17/2021 18:28:03'!
+ERROR!
+!TusLibrosSystemFacade methodsFor: 'facade protocol' stamp: 'JD 11/17/2021 18:28:10'!
+remove: aString fromCart: aSmallInteger 
+	self shouldBeImplemented.! !
+!TusLibrosSystemFacade methodsFor: 'facade protocol' stamp: 'JD 11/17/2021 18:30:07' prior: 50965426!
+remove: aBook fromCart: aCartId
+	
+	self assert: ((self listCartIdentifiedAs: aCartId) includes: aBook) description: TusLibrosSystemFacade cannotRemoveANonPresentBookErrorMessage! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20CannotRemoveABookNotPresentInTheCart stamp: 'JD 11/17/2021 18:30:11'!
+ERROR!
+!TusLibrosSystemFacade class methodsFor: 'as yet unclassified' stamp: 'JD 11/17/2021 18:30:22'!
+cannotRemoveANonPresentBookErrorMessage
+	self shouldBeImplemented.! !
+!TusLibrosSystemFacade class methodsFor: 'as yet unclassified' stamp: 'JD 11/17/2021 18:30:37' prior: 50965445!
+cannotRemoveANonPresentBookErrorMessage
+	
+	^ 'Cannot remove a non present book.'! !
+!TusLibrosSystemFacadeTest methodsFor: 'tests - checkout' stamp: 'JD 11/17/2021 18:31:04' prior: 50965404!
+test20CannotRemoveABookNotPresentInTheCart
+
+	| cartId |
+
+	cartId := systemFacade createCartFor: self validUser authenticatedWith: self validUserPassword.
+	self should: [
+		systemFacade remove: self validBook fromCart: cartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText equals: systemFacade cannotRemoveANonPresentBookErrorMessage.
+			self assert: (systemFacade listCartIdentifiedAs: cartId) isEmpty ]
+
+
+	! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20CannotRemoveABookNotPresentInTheCart stamp: 'JD 11/17/2021 18:31:05'!
+ERROR!
+!TusLibrosSystemFacadeTest methodsFor: 'tests - checkout' stamp: 'JD 11/17/2021 18:31:18' prior: 50965457!
+test20CannotRemoveABookNotPresentInTheCart
+
+	| cartId |
+
+	cartId := systemFacade createCartFor: self validUser authenticatedWith: self validUserPassword.
+	self should: [
+		systemFacade remove: self validBook fromCart: cartId]
+		raise: AssertionFailure - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText equals: TusLibrosSystemFacade cannotRemoveANonPresentBookErrorMessage.
+			self assert: (systemFacade listCartIdentifiedAs: cartId) isEmpty ]
+
+
+	! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20CannotRemoveABookNotPresentInTheCart stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CanCheckoutACart stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20CannotRemoveABookNotPresentInTheCart stamp: 'JD 11/17/2021 18:31:19'!
+PASSED!
+!TusLibrosSystemFacadeTest methodsFor: 'tests - checkout' stamp: 'JD 11/17/2021 18:34:13'!
+test21CannotRemoveABookFromANotCreatedCart
+
+	self should: [
+		systemFacade remove: self validBook fromCart: self invalidCartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText equals: systemFacade invalidCartIdErrorDescription ]
+
+
+	! !
+!CartSession methodsFor: 'error signal' stamp: 'JD 11/17/2021 18:40:56'!
+signalCannotRemoveANonPresentBook
+
+	self error: systemFacade cannotRemoveANonPresentBookErrorMessage ! !
+
+!methodRemoval: TusLibrosSystemFacade class #cannotRemoveANonPresentBookErrorMessage stamp: 'JD 11/17/2021 18:41:10'!
+cannotRemoveANonPresentBookErrorMessage
+	
+	^ 'Cannot remove a non present book.'!
+!TusLibrosSystemFacade methodsFor: 'error messages' stamp: 'JD 11/17/2021 18:41:25'!
+cannotRemoveANonPresentBookErrorMessage
+	
+	^ 'Cannot remove a non present book.'! !
+!CartSession methodsFor: 'cart' stamp: 'JD 11/17/2021 18:41:32'!
+removeBook: aBook
+	
+	(self cartContent includes: aBook) ifFalse: [ self signalCannotRemoveANonPresentBook ].
+	! !
+!TusLibrosSystemFacade methodsFor: 'facade protocol' stamp: 'JD 11/17/2021 18:42:34' prior: 50965432!
+remove: aBook fromCart: aCartId
+	
+	(cartSessions at: aCartId) removeBook: aBook! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/17/2021 18:42:42'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/17/2021 18:42:42'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/17/2021 18:42:42'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/17/2021 18:42:42'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/17/2021 18:42:42'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/17/2021 18:42:42'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/17/2021 18:42:42'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/17/2021 18:42:42'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 18:42:42'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/17/2021 18:42:42'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/17/2021 18:42:42'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/17/2021 18:42:42'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/17/2021 18:42:42'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/17/2021 18:42:42'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 18:42:42'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'JD 11/17/2021 18:42:42'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JD 11/17/2021 18:42:42'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'JD 11/17/2021 18:42:42'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'JD 11/17/2021 18:42:42'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'JD 11/17/2021 18:42:43'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JD 11/17/2021 18:42:43'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'JD 11/17/2021 18:42:43'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JD 11/17/2021 18:42:43'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CanCheckoutACart stamp: 'JD 11/17/2021 18:42:43'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'JD 11/17/2021 18:42:43'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 18:42:43'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'JD 11/17/2021 18:42:43'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'JD 11/17/2021 18:42:43'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'JD 11/17/2021 18:42:43'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'JD 11/17/2021 18:42:43'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:42:43'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:42:43'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:42:43'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20CannotRemoveABookNotPresentInTheCart stamp: 'JD 11/17/2021 18:42:43'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test21CannotRemoveABookFromANotCreatedCart stamp: 'JD 11/17/2021 18:42:43'!
+FAILURE!
+!TusLibrosSystemFacadeTest methodsFor: 'tests - checkout' stamp: 'JD 11/17/2021 18:42:53' prior: 50965480!
+test20CannotRemoveABookNotPresentInTheCart
+
+	| cartId |
+
+	cartId := systemFacade createCartFor: self validUser authenticatedWith: self validUserPassword.
+	self should: [
+		systemFacade remove: self validBook fromCart: cartId]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText equals: systemFacade cannotRemoveANonPresentBookErrorMessage.
+			self assert: (systemFacade listCartIdentifiedAs: cartId) isEmpty ]
+
+
+	! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20CannotRemoveABookNotPresentInTheCart stamp: 'JD 11/17/2021 18:42:54'!
+PASSED!
+!TusLibrosSystemFacade methodsFor: 'facade protocol' stamp: 'JD 11/17/2021 18:43:42' prior: 50965660!
+remove: aBook fromCart: aCartId
+	
+	cartSessions at: aCartId ifAbsent: [self signalInvalidCartId ].
+	(cartSessions at: aCartId) removeBook: aBook! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CanCheckoutACart stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20CannotRemoveABookNotPresentInTheCart stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test21CannotRemoveABookFromANotCreatedCart stamp: 'JD 11/17/2021 18:43:44'!
+PASSED!
+!TusLibrosSystemFacadeTest methodsFor: 'tests - checkout' stamp: 'JD 11/17/2021 18:46:17'!
+test22CannotRemoveABookWhenSessionIsExpired
+	
+	| cartId |
+	cartId := systemFacade createCartFor: self validUser authenticatedWith: self validUserPassword.
+	systemFacade add: 2 of: self validBook toCartIdentifiedAs: cartId.
+	self advanceTime: (systemFacade sessionDuration + 1 minutes).
+	self should: [
+		systemFacade remove: self validBook fromCart: self invalidCartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText equals: systemFacade sessionHasExpiredErrorDescription ]
+
+
+	! !
+!TusLibrosSystemFacadeTest methodsFor: 'tests - checkout' stamp: 'JD 11/17/2021 18:46:22' prior: 50965945!
+test22CannotRemoveABookWhenSessionIsExpired
+	
+	| cartId |
+
+	cartId := systemFacade createCartFor: self validUser authenticatedWith: self validUserPassword.
+	systemFacade add: 2 of: self validBook toCartIdentifiedAs: cartId.
+	self advanceTime: (systemFacade sessionDuration + 1 minutes).
+	self should: [
+		systemFacade remove: self validBook fromCart: self invalidCartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText equals: systemFacade sessionHasExpiredErrorDescription ]
+
+
+	! !
+
+!testRun: #TusLibrosSystemFacadeTest #test22CannotRemoveABookWhenSessionIsExpired stamp: 'JD 11/17/2021 18:46:23'!
+FAILURE!
+!CartSession methodsFor: 'cart' stamp: 'JD 11/17/2021 18:48:36' prior: 50965653!
+removeBook: aBook
+	
+	(self cartContent includes: aBook) ifFalse: [ self signalCannotRemoveANonPresentBook ].
+	self assertIsNotExpirtedAt: self now.
+! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CanCheckoutACart stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20CannotRemoveABookNotPresentInTheCart stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test21CannotRemoveABookFromANotCreatedCart stamp: 'JD 11/17/2021 18:48:38'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test22CannotRemoveABookWhenSessionIsExpired stamp: 'JD 11/17/2021 18:48:38'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test22CannotRemoveABookWhenSessionIsExpired stamp: 'JD 11/17/2021 18:48:38'!
+FAILURE!
+!TusLibrosSystemFacadeTest methodsFor: 'tests - checkout' stamp: 'JD 11/17/2021 18:49:20' prior: 50965966!
+test22CannotRemoveABookWhenSessionIsExpired
+	
+	| cartId |
+
+	cartId := systemFacade createCartFor: self validUser authenticatedWith: self validUserPassword.
+	systemFacade add: 2 of: self validBook toCartIdentifiedAs: cartId.
+	self advanceTime: (systemFacade sessionDuration + 1 minutes).
+	self should: [
+		systemFacade remove: self validBook fromCart: cartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText equals: systemFacade sessionHasExpiredErrorDescription ]
+
+
+	! !
+
+!testRun: #TusLibrosSystemFacadeTest #test22CannotRemoveABookWhenSessionIsExpired stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CanCheckoutACart stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20CannotRemoveABookNotPresentInTheCart stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test21CannotRemoveABookFromANotCreatedCart stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test22CannotRemoveABookWhenSessionIsExpired stamp: 'JD 11/17/2021 18:49:22'!
+PASSED!
+!TusLibrosSystemFacadeTest methodsFor: 'tests - checkout' stamp: 'JD 11/17/2021 18:52:36'!
+test23CanRemoveABookFromCart
+	
+	| cartId |
+
+	cartId := systemFacade createCartFor: self validUser authenticatedWith: self validUserPassword.
+	systemFacade add: 2 of: self validBook toCartIdentifiedAs: cartId.
+	systemFacade remove: self validBook fromCart: cartId.
+	
+	self assert: 1 equals: ((systemFacade listCartIdentifiedAs: cartId) occurrencesOf: self validBook).
+
+
+	! !
+
+!testRun: #TusLibrosSystemFacadeTest #test23CanRemoveABookFromCart stamp: 'JD 11/17/2021 18:52:38'!
+FAILURE!
+!CartSession methodsFor: 'cart' stamp: 'JD 11/17/2021 18:56:30' prior: 50965990!
+removeBook: aBook
+	
+	(self cartContent includes: aBook) ifFalse: [ self signalCannotRemoveANonPresentBook ].
+	self assertIsNotExpirtedAt: self now.
+	cart remove: aBook.
+! !
+!Cart methodsFor: 'adding' stamp: 'JD 11/17/2021 18:57:11'!
+remove: anItem
+
+	^ items remove: anItem! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CanCheckoutACart stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20CannotRemoveABookNotPresentInTheCart stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test21CannotRemoveABookFromANotCreatedCart stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test22CannotRemoveABookWhenSessionIsExpired stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test23CanRemoveABookFromCart stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/17/2021 18:57:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test23CanRemoveABookFromCart stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CanCheckoutACart stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20CannotRemoveABookNotPresentInTheCart stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test21CannotRemoveABookFromANotCreatedCart stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test22CannotRemoveABookWhenSessionIsExpired stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test23CanRemoveABookFromCart stamp: 'JD 11/17/2021 18:57:19'!
+PASSED!
+!TusLibrosSystemFacadeTest methodsFor: 'tests - checkout' stamp: 'JD 11/17/2021 18:57:31' prior: 50966283!
+test23CanRemoveABookFromCart
+	
+	| cartId |
+
+	cartId := systemFacade createCartFor: self validUser authenticatedWith: self validUserPassword.
+	systemFacade add: 2 of: self validBook toCartIdentifiedAs: cartId.
+	systemFacade remove: self validBook fromCart: cartId.
+	
+	self assert: 0 equals: ((systemFacade listCartIdentifiedAs: cartId) occurrencesOf: self validBook).
+
+
+	! !
+
+!testRun: #TusLibrosSystemFacadeTest #test23CanRemoveABookFromCart stamp: 'JD 11/17/2021 18:57:32'!
+FAILURE!
+!TusLibrosSystemFacadeTest methodsFor: 'tests - checkout' stamp: 'JD 11/17/2021 18:57:34' prior: 50966607!
+test23CanRemoveABookFromCart
+	
+	| cartId |
+
+	cartId := systemFacade createCartFor: self validUser authenticatedWith: self validUserPassword.
+	systemFacade add: 2 of: self validBook toCartIdentifiedAs: cartId.
+	systemFacade remove: self validBook fromCart: cartId.
+	
+	self assert: 1 equals: ((systemFacade listCartIdentifiedAs: cartId) occurrencesOf: self validBook).
+
+
+	! !
+
+!testRun: #TusLibrosSystemFacadeTest #test23CanRemoveABookFromCart stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CanCheckoutACart stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20CannotRemoveABookNotPresentInTheCart stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test21CannotRemoveABookFromANotCreatedCart stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test22CannotRemoveABookWhenSessionIsExpired stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test23CanRemoveABookFromCart stamp: 'JD 11/17/2021 18:57:35'!
+PASSED!
+
+!methodRemoval: TusLibrosSystemFacadeTest #test20CannotRemoveABookNotPresentInTheCart stamp: 'JD 11/17/2021 18:58:44'!
+test20CannotRemoveABookNotPresentInTheCart
+
+	| cartId |
+
+	cartId := systemFacade createCartFor: self validUser authenticatedWith: self validUserPassword.
+	self should: [
+		systemFacade remove: self validBook fromCart: cartId]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText equals: systemFacade cannotRemoveANonPresentBookErrorMessage.
+			self assert: (systemFacade listCartIdentifiedAs: cartId) isEmpty ]
+
+
+	!
+!TusLibrosSystemFacadeTest methodsFor: 'nil' stamp: 'JD 11/17/2021 18:58:47'!
+test20CannotRemoveABookNotPresentInTheCart
+
+	| cartId |
+
+	cartId := systemFacade createCartFor: self validUser authenticatedWith: self validUserPassword.
+	self should: [
+		systemFacade remove: self validBook fromCart: cartId]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText equals: systemFacade cannotRemoveANonPresentBookErrorMessage.
+			self assert: (systemFacade listCartIdentifiedAs: cartId) isEmpty ]
+
+
+	! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CanCheckoutACart stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20CannotRemoveABookNotPresentInTheCart stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test21CannotRemoveABookFromANotCreatedCart stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test22CannotRemoveABookWhenSessionIsExpired stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test23CanRemoveABookFromCart stamp: 'JD 11/17/2021 18:59:25'!
+PASSED!
+!TusLibrosSystemFacade methodsFor: 'facade protocol' stamp: 'JD 11/17/2021 19:01:08' prior: 50965813!
+remove: aBook fromCart: aCartId
+
+	self withCartSessionIdentifiedAs: aCartId do: [ :cartSession | cartSession removeBook: aBook]! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CanCheckoutACart stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20CannotRemoveABookNotPresentInTheCart stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test21CannotRemoveABookFromANotCreatedCart stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test22CannotRemoveABookWhenSessionIsExpired stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test23CanRemoveABookFromCart stamp: 'JD 11/17/2021 19:01:10'!
+PASSED!
+!CartSession methodsFor: 'cart' stamp: 'JD 11/17/2021 19:01:53' prior: 50966301!
+removeBook: aBook
+
+	self assertIsNotExpirtedAt: self now.
+	cart remove: aBook.
+! !
+!CartSession methodsFor: 'cart' stamp: 'JD 11/17/2021 19:02:25' prior: 50967083!
+removeBook: aBook
+	
+	(self cartContent includes: aBook) ifFalse: [ self signalCannotRemoveANonPresentBook ].
+	self assertIsNotExpirtedAt: self now.
+	cart remove: aBook.
+! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CanCheckoutACart stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20CannotRemoveABookNotPresentInTheCart stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test21CannotRemoveABookFromANotCreatedCart stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test22CannotRemoveABookWhenSessionIsExpired stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test23CanRemoveABookFromCart stamp: 'JD 11/17/2021 19:04:28'!
+PASSED!
+!CartSession methodsFor: 'cart' stamp: 'JD 11/17/2021 19:04:31' prior: 50967089!
+removeBook: aBook
+	
+	(self cartContent includes: aBook) ifFalse: [ self signalCannotRemoveANonPresentBook ].
+	cart remove: aBook.
+! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CanCheckoutACart stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20CannotRemoveABookNotPresentInTheCart stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test21CannotRemoveABookFromANotCreatedCart stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test22CannotRemoveABookWhenSessionIsExpired stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test23CanRemoveABookFromCart stamp: 'JD 11/17/2021 19:04:33'!
+PASSED!
+!CartSession methodsFor: 'cart' stamp: 'JD 11/17/2021 19:06:31'!
+removeFromCart: aBook
+	
+	(self cartContent includes: aBook) ifFalse: [ self signalCannotRemoveANonPresentBook ].
+	cart remove: aBook.
+! !
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'JD 11/17/2021 19:06:31' prior: 50966944!
+remove: aBook fromCart: aCartId
+
+	self withCartSessionIdentifiedAs: aCartId do: [ :cartSession | cartSession removeFromCart: aBook]! !
+
+!methodRemoval: CartSession #removeBook: stamp: 'JD 11/17/2021 19:06:31'!
+removeBook: aBook
+	
+	(self cartContent includes: aBook) ifFalse: [ self signalCannotRemoveANonPresentBook ].
+	cart remove: aBook.
+!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CanCheckoutACart stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20CannotRemoveABookNotPresentInTheCart stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test21CannotRemoveABookFromANotCreatedCart stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test22CannotRemoveABookWhenSessionIsExpired stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test23CanRemoveABookFromCart stamp: 'JD 11/17/2021 19:06:34'!
+PASSED!
+!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 19:08:44'!
+addRemoveFromCartService
+
+	webServer addService: '/remove-from-cart' action:[:request | | book cartId |
+		
+		[
+			book := (request fields at: 'book').
+			cartId := (request fields at: 'cartId') asNumber.
+			tusLibrosSystemFacade remove: book fromCart: cartId.
+			request send200Response: 'OK'
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send400Response: (anError messageText) ]].
+	
+	! !
+!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 19:08:53' prior: 50965321!
+addServices
+
+	self addCreateCartService.
+	self addListCatalogService.
+	self addAddToCartService.
+	self addListCartService.
+	self addCheckoutCartService.
+	self addListPurchasesService.
+	self addRemoveFromCartService.! !
+
+TusLibrosRestAPI allInstances do: [:anInstance | anInstance destroy].!
+
+| userAndPassword catalog tusLibrosXxInstance |
+
+userAndPassword := Dictionary new.
+userAndPassword at: 'validUser' put: 'validUserPassword'.
+catalog := Dictionary new.
+catalog at: 'book' put: 10.
+
+tusLibrosXxInstance := TusLibrosRestAPI listeningOn: 8080 authenticatingWith: userAndPassword acceptingItemsOf: catalog registeringOn: (OrderedCollection new) debitingThrought: (MerchantProcessorStub new) measuringTimeWith: DateAndTime. !
+
+TusLibrosRestAPI allInstances do: [:anInstance | anInstance destroy].!
+
+----SNAPSHOT----(17 November 2021 19:12:31) CuisUniversity-4972.image priorSource: 20242475!
+
+----SNAPSHOT----(17 November 2021 19:12:37) CuisUniversity-4972.image priorSource: 20349216!
+Can process chunked data.!
+Exception signaled when authentication is required.!
+WebClient provides a simple yet complete HTTP client implementation.
+
+To retrieve the contents of a web page:
+(WebClient httpGet: 'http://www.cuis-smalltalk.org/') content
+
+INTRO
+-------
+
+The simplest form to use WebClient is by one of its convenience APIs:
+
+	WebClient httpGet: 'http://www.squeak.org/'.
+	WebClient httpPost: 'http://www.squeak.org/' content:'Hello Squeak' type: 'text/plain'.
+
+For more elaborate use of headers and some other options in the request, a client can utilize modified variants:
+
+	WebClient new httpGet: 'http://www.squeak.org/' do: [ :req|
+		"Set an if-modified-since header"
+		req headerAt: 'If-Modified-Since' put: 'Sat, 29 Oct 1994 19:43:31 GMT'.
+		"Add several accept headers"
+		req addHeader: 'Accept' value: 'text/plain'.
+		req addHeader: 'Accept' value: 'application/x-foo-bar'.
+		req addHeader: 'Accept' value: 'image/jpg'.
+	].
+
+The set of utility methods is limited to a few useful ones but it is easy to do the setup on your own:
+
+	| url client request data |
+	data := 'Hello Squeak'.								"POST data"
+	url := 'http://www.squeak.org/'.						"POST url"
+	client := WebClient new initializeFromUrl: url. 		"sets host etc"
+	request := client requestWithUrl: url. 				"sets path etc"
+	request method: 'POST'.							"sets method"
+	request headerAt: 'Content-Length' put: data size.
+	request headerAt: 'Content-Type' put: 'text/plain'.
+	"... any other headers required ..."
+	^client sendRequest: request 
+		content: data readStream
+		size: data size.
+
+The utility methods like httpGet: etc. are similarly simple requests.
+
+RESPONSES
+--------------
+
+The WebClient request methods return a WebResponse that the client can process:
+
+	| resp |
+	resp := WebClient httpGet: 'http://www.squeak.org/'.
+	resp isSuccess ifFalse: [^self error: resp status].
+	"Process the content from the response"
+	^resp content
+
+In addition, content can be streamed from the response so that it does not need to be downloaded all at once:
+
+	| client resp |
+	client := WebClient new.
+	[
+		resp := client httpGet: 'http://www.squeak.org/'.
+		resp isSuccess ifFalse:[^self error: resp status].
+		"Stream the content from the response"
+		'page.html' asFileEntry forceWriteStreamDo: [ :file |
+			resp streamTo: file 
+				size: resp contentLength
+				progress: [ :total :amount ]].
+	] ensure: [ client close].
+
+The progress block in the above can be omitted but has been included in this example to illustrate its usage. The block takes a total length (which can be nil if the length is not known) and the amount that has been loaded.
+
+MULTIPLE REQUESTS
+-------------------------
+
+WebClient can and should be used for multiple requests to the same host. This will ensure persistent connections as well as having cookies processed properly within one session:
+
+	| client resp |
+	client := WebClient new.
+	resp := client httpGet: 'http://www.squeak.org/'.
+	resp := client httpGet: 'http://www.squeak.org/Download'.
+	resp := client httpGet: 'http://www.squeak.org/Features'.
+	client close.
+
+One important issue to keep in mind is that because WebClient is optimized for persistent connections, you need to close it when you are done. That is not true for WebClient's class-side convenience APIs, which prefetch the response and close the socket. Generally speaking, whenever you say 'WebClient new' you need to close the client when you're done (however, you can do so by sending #close to a response you've received). For example:
+
+	"Convenience API. Don't need to close, but prefetches result."
+	WebClient httpGet: 'http://www.squeak.org'.
+
+	| client resp |
+	"Regular use. Create WebClient, return after header is read ..."
+	client := WebClient new.
+	[response := client httpGet: 'http://www.squeak.org/'.
+	"... then fetch (or stream) the content ..."
+	response content.
+	] ensure:[
+		"... and close the client when done."
+		client close.
+	].
+
+AUTHENTICATION
+---------------------
+
+WebClient supports basic and digest authentication by default. WebClient delegates the retrieval of username/password to WebUtils which prompts the user for credentials. 
+
+WebClient can either be supplied with specific credentials to be used or custom credentials handlers, for example:
+
+	| client |
+	client := WebClient new.
+	client username: 'squeak'.
+	client password: 'squeak'.
+	client httpGet: 'http://www.squeak.org/protected'.
+
+Proxy authentication works the same way as authentication but operates on a different authentication context to allow different sets of credentials to work.
+!
+WebCookie represents an http cookie for use by WebClient.!
+A common base class for WebRequest and WebResponse.!
+Represents an HTTP request for WebClient/WebServer.!
+Represents an HTTP response for WebClient/WebServer.!
+WebServer provides a simple yet complete HTTP server implementation.
+
+Example:
+(WebServer new listenOn: 8080) addService: '/hello' action: [ :req | req send200Response: 'Hello World!!']!
+A wrapper object for the WebSocket API.!
+A wrapper object for the WebSocket API.!
+A wrapper object for the WebSocket API.!
+WebUtils contains a number of utility methods used by WebClient/WebServer.!
+A variant on SocketStream supporting SSL/TLS encryption via SqueakSSL.
+!
+SqueakSSL provides an interface to the platforms SSL/TLS facilities.
+!
+
+----SNAPSHOT----(17 November 2021 19:13:45) CuisUniversity-4972.image priorSource: 20349310!

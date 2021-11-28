@@ -534,137 +534,145 @@ of: aCollectionOfLineItems
 	^self new initializeOf: aCollectionOfLineItems ! !
 
 
-!classDefinition: #TusLibrosRestAPI category: 'TusLibros-Model'!
-Object subclass: #TusLibrosRestAPI
+!classDefinition: #TusLibrosServer category: 'TusLibros-Model'!
+Object subclass: #TusLibrosServer
 	instanceVariableNames: 'tusLibrosSystemFacade port webServer'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros-Model'!
 
-!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'FR 11/15/2021 21:24:56'!
+!TusLibrosServer methodsFor: 'services' stamp: 'JD 11/27/2021 22:01:12'!
 addAddToCartService
 
-	webServer addService: '/add-to-cart' action:[:request | | bookAmount book cartId |
-		
-		[
-			bookAmount := (request fields at: 'bookAmount') asNumber.
-			book := (request fields at: 'book').
-			cartId := (request fields at: 'cartId') asNumber.
-			tusLibrosSystemFacade add: bookAmount of: book toCartIdentifiedAs: cartId.
-			request send200Response: (WebUtils jsonEncode: 'Book added correctly')
-		 ] 
-		on: Error 
-		do: [ :anError |
-			request send400Response: (anError messageText) ]].
+	webServer 
+		addService: '/add-to-cart' 
+		action: 
+			(self serviceActionDoingOnRequest: 
+				[:request | 
+					| bookAmount book cartId |
+					bookAmount := (request fields at: 'bookAmount') asNumber.
+					book := (request fields at: 'book').
+					cartId := (request fields at: 'cartId') asNumber.
+					tusLibrosSystemFacade add: bookAmount of: book toCartIdentifiedAs: cartId.
+					WebUtils jsonEncode: 'Book added correctly'
+			 	]
+			)
 	
 	! !
 
-!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 18:14:06'!
+!TusLibrosServer methodsFor: 'services' stamp: 'JD 11/28/2021 00:30:47'!
 addCheckoutCartService
 
-	webServer addService: '/checkout-cart' action:[:request | | cartId cardNumber cardExpirationDate cardOwner |
-		
-		[	
-			cartId := (request fields at: 'cartId') asNumber.
-			cardNumber := (request fields at: 'ccn') asNumber.
-			cardExpirationDate := Month readFrom: (ReadStream on: (request fields at: 'cced')).
-			cardOwner := request fields at: 'cco'.
-			tusLibrosSystemFacade checkOutCartIdentifiedAs: cartId withCreditCardNumbered: cardNumber ownedBy: cardOwner expiringOn: cardExpirationDate.
-			request send200Response: 'OK'
-		 ] 
-		on: Error 
-		do: [ :anError |
-			request send400Response: (anError messageText) ]].
-	
+	webServer 
+		addService: '/checkout-cart' 
+		action:
+			(self serviceActionDoingOnRequest: 
+				[:request | 
+					| cartId cardNumber cardExpirationDate cardOwner |
+					cartId := (request fields at: 'cartId') asNumber.
+					cardNumber := (request fields at: 'ccn') asNumber.
+					cardExpirationDate := Month readFrom: (ReadStream on: (request fields at: 'cced')).
+					cardOwner := request fields at: 'cco'.
+					tusLibrosSystemFacade checkOutCartIdentifiedAs: cartId withCreditCardNumbered: cardNumber ownedBy: cardOwner expiringOn: cardExpirationDate.
+					WebUtils jsonEncode: 'Checkout was successfull'
+				]
+			) 
 	! !
 
-!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'FR 11/15/2021 21:15:48'!
+!TusLibrosServer methodsFor: 'services' stamp: 'JD 11/27/2021 22:07:48'!
 addCreateCartService
 
-	webServer addService: '/create-cart' action:[:request | | user password cartId cartIdAsJson |
-		
-		[
-			user := (request fields at: 'user').
-			password := (request fields at: 'password').
-			cartId := tusLibrosSystemFacade createCartFor: user authenticatedWith: password.
-			cartIdAsJson := WebUtils jsonEncode: (cartId).
-			request send200Response: (cartIdAsJson)
-		 ] 
-		on: Error 
-		do: [ :anError |
-			request send400Response: (anError messageText) ]].
+	webServer 
+		addService: '/create-cart' 
+		action: 
+			(self serviceActionDoingOnRequest:
+				[:request |
+					| user password cartId |
+					user := (request fields at: 'user').
+					password := (request fields at: 'password').
+					cartId := tusLibrosSystemFacade createCartFor: user authenticatedWith: password.
+					WebUtils jsonEncode: cartId
+				]
+			)
 	
 	! !
 
-!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 17:36:53'!
+!TusLibrosServer methodsFor: 'services' stamp: 'JD 11/27/2021 22:06:19'!
 addListCartService
 
-	 webServer addService: '/list-cart' action:[:request | | cartId cartContent cartContentAsJson |
-
-		  [
-			   cartId := (request fields at: 'cartId') asNumber.	
-			   cartContent := tusLibrosSystemFacade listCartIdentifiedAs: cartId.
-			   cartContentAsJson := WebUtils jsonEncode: cartContent asArray.
-			   request send200Response: (cartContentAsJson)
-		   ]
-		  on: Error
-		  do: [ :anError |
-		   	  request send400Response: (anError messageText) ]].
+	 webServer 
+		addService: '/list-cart' 
+		action:
+			(self serviceActionDoingOnRequest:
+				[:request | 
+					| cartId cartContent |
+					cartId := (request fields at: 'cartId') asNumber.	
+				   	cartContent := tusLibrosSystemFacade listCartIdentifiedAs: cartId.
+				   	WebUtils jsonEncode: cartContent asArray.
+				]
+			)
 	
 	! !
 
-!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'FR 11/15/2021 19:45:27'!
+!TusLibrosServer methodsFor: 'services' stamp: 'JD 11/27/2021 22:14:22'!
 addListCatalogService
 
-	webServer addService: '/list-catalog' action:[:request | | catalogAsJson |
-		
-		[
-			catalogAsJson := WebUtils jsonEncode: (tusLibrosSystemFacade 
-			listCatalog).
-			request send200Response: (catalogAsJson)
-		 ] 
-		on: Error 
-		do: [ :anError |
-			request send400Response: (anError messageText) ]].
+	webServer 
+		addService: '/list-catalog' 
+		action:
+			(self serviceActionDoingOnRequest:
+				[:request |
+					WebUtils jsonEncode: (tusLibrosSystemFacade 
+					listCatalog)
+				]
+			)
 	
 	! !
 
-!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 17:51:19'!
+!TusLibrosServer methodsFor: 'services' stamp: 'JD 11/27/2021 22:14:28'!
 addListPurchasesService
 
-	webServer addService: '/list-purchases' action:[:request | | user password purchasesList purchasesListAsJson |
-		
-		[	
-			user := (request fields at: 'user').
-			password := (request fields at: 'password').
-			purchasesList := tusLibrosSystemFacade listPurchasesOf: user  authenticatingWith: password.
-			purchasesListAsJson := WebUtils jsonEncode: purchasesList.
-			request send200Response: purchasesListAsJson
-		 ] 
-		on: Error 
-		do: [ :anError |
-			request send400Response: (anError messageText) ]].
+	webServer 
+		addService: '/list-purchases' 
+		action:
+			(self serviceActionDoingOnRequest: 
+				[:request | 
+					| user password purchasesList |
+					user := (request fields at: 'user').
+					password := (request fields at: 'password').
+					purchasesList := tusLibrosSystemFacade listPurchasesOf: user  authenticatingWith: password.
+					WebUtils jsonEncode: purchasesList
+				]
+			)
 	
 	! !
 
-!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 19:08:44'!
+!TusLibrosServer methodsFor: 'services' stamp: 'JD 11/28/2021 00:31:57'!
 addRemoveFromCartService
 
-	webServer addService: '/remove-from-cart' action:[:request | | book cartId |
-		
-		[
-			book := (request fields at: 'book').
-			cartId := (request fields at: 'cartId') asNumber.
-			tusLibrosSystemFacade remove: book fromCart: cartId.
-			request send200Response: 'OK'
-		 ] 
-		on: Error 
-		do: [ :anError |
-			request send400Response: (anError messageText) ]].
+	webServer 
+		addService: '/remove-from-cart' 
+		action:
+			(self serviceActionDoingOnRequest:
+				[:request | 
+					| book cartId |
+					book := (request fields at: 'book').
+					cartId := (request fields at: 'cartId') asNumber.
+					tusLibrosSystemFacade remove: book fromCart: cartId.
+					WebUtils jsonEncode: 'Item removed successfully'
+				] 
+			)
 	
 	! !
 
-!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'JD 11/17/2021 19:08:53'!
+
+!TusLibrosServer methodsFor: 'destroy' stamp: 'FR 11/15/2021 19:49:26'!
+destroy
+	
+	webServer ifNotNil:[webServer destroy]! !
+
+
+!TusLibrosServer methodsFor: 'initialization' stamp: 'JD 11/17/2021 19:08:53'!
 addServices
 
 	self addCreateCartService.
@@ -675,12 +683,7 @@ addServices
 	self addListPurchasesService.
 	self addRemoveFromCartService.! !
 
-!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'FR 11/15/2021 19:49:26'!
-destroy
-	
-	webServer ifNotNil:[webServer destroy]! !
-
-!TusLibrosRestAPI methodsFor: 'initialization' stamp: 'FR 11/11/2021 21:31:58'!
+!TusLibrosServer methodsFor: 'initialization' stamp: 'FR 11/11/2021 21:31:58'!
 listeningOn: aPortNumber authenticatingWith: aValidUsersAndPasswords
 acceptingItemsOf: aCatalog registeringOn: aSalesBook debitingThrought: aMerchantProcessor measuringTimeWith: aClock
 	
@@ -698,13 +701,34 @@ acceptingItemsOf: aCatalog registeringOn: aSalesBook debitingThrought: aMerchant
 	
 	self addServices! !
 
+
+!TusLibrosServer methodsFor: 'services - private' stamp: 'JD 11/27/2021 20:33:29'!
+responseOnErrorTo: aRequest
+	
+	^ [:anError | aRequest send400Response: (anError messageText)]
+	
+	! !
+
+!TusLibrosServer methodsFor: 'services - private' stamp: 'JD 11/27/2021 21:55:55'!
+serviceActionDoingOnRequest: aSpecificServiceAction
+	
+	^ [:request | 
+		[
+			| responseContent |
+			responseContent := aSpecificServiceAction value: request.
+			request send200Response: responseContent
+		] 
+			on: Error
+			do: (self responseOnErrorTo: request)
+	   ]! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'TusLibrosRestAPI class' category: 'TusLibros-Model'!
-TusLibrosRestAPI class
+!classDefinition: 'TusLibrosServer class' category: 'TusLibros-Model'!
+TusLibrosServer class
 	instanceVariableNames: ''!
 
-!TusLibrosRestAPI class methodsFor: 'instance creation' stamp: 'FR 11/11/2021 21:28:55'!
+!TusLibrosServer class methodsFor: 'instance creation' stamp: 'FR 11/11/2021 21:28:55'!
 listeningOn: aPortNumber authenticatingWith: aValidUsersAndPasswords
 acceptingItemsOf: aCatalog registeringOn: aSalesBook debitingThrought: aMerchantProcessor measuringTimeWith: aClock
 
@@ -827,12 +851,12 @@ add: anAmount of: aBook toCartIdentifiedAs: aCartId
 
 	self withCartSessionIdentifiedAs: aCartId do: [ :cartSession | cartSession addToCart: anAmount of: aBook ]! !
 
-!TusLibrosSystemFacade methodsFor: 'facade protocol' stamp: 'HernanWilkinson 6/17/2015 20:47'!
+!TusLibrosSystemFacade methodsFor: 'facade protocol' stamp: 'JD 11/26/2021 21:55:22'!
 checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
 
 	self
 		withCartSessionIdentifiedAs: aCartId
-		do: [ :cartSession | cartSession
+		do: [ :cartSession | ^ cartSession
 			checkOutCartWithCreditCardNumbered: aCreditCartNumber
 			ownedBy: anOwner
 			expiringOn: anExpirationMonthOfYear ]
